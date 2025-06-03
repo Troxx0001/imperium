@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Todos os Pedidos (Admin)</h2>
+
+{% if pedidos %}
+  {% for pedido in pedidos %}
+    <div class="pedido">
+      <h4>Pedido #{{ pedido.id }} – {{ pedido.usuario.nome }} – {{ pedido.data.strftime('%d/%m/%Y %H:%M') }}</h4>
+      <p><strong>Total:</strong> R$ {{ "%.2f"|format(pedido.total) }}</p>
+      <ul>
+        {% for item in pedido.itens %}
+          <li>{{ item.produto.nome }} – {{ item.quantidade }}x</li>
+        {% endfor %}
+      </ul>
+      <hr>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>Nenhum pedido realizado ainda.</p>
+{% endif %}
+{% endblock %}

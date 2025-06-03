@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja de Informática</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <a href="{{ url_for('auth.login') }}" class="btn-login">Login</a>
+    <a href="{{ url_for('carrinho.ver_carrinho') }}" class="btn-carrinho">🛒 Carrinho</a>
+    <h1>Produtos disponíveis</h1>
+    <div class="produtos">
+        {% for produto in produtos %}
+            <div class="produto">
+                <a href="{{ url_for('loja.produto_detalhe', id=produto.id) }}">
+                    <img src="{{ produto.imagem }}" width="200"><br>
+                    {{ produto.nome }} - R$ {{ "%.2f"|format(produto.preco) }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
