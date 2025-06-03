@@ -11,7 +11,7 @@ from itsdangerous import URLSafeTimedSerializer
 from flask import flash, redirect, request, render_template, url_for
 from werkzeug.security import generate_password_hash
 from utils.email_utils import enviar_email
-
+    
 app = Flask(__name__)
 app.config.from_object('config.Config')
 app.secret_key = 'sua-chave-secreta'  # Adicionando a chave secreta

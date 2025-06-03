@@ -20,7 +20,10 @@
             {% endfor %}
         </ul>
         <p><strong>Total:</strong> R$ {{ "%.2f"|format(total) }}</p>
-        <a href="{{ url_for('loja.finalizar_compra') }}" class="btn btn-success">Finalizar Compra</a>
+        <form action="{{ url_for('carrinho.finalizar_compra') }}" method="post">
+            <button type="submit" class="btn btn-success">Finalizar Compra</button>
+        </form>
+
     {% else %}
         <p>Seu carrinho está vazio.</p>
     {% endif %}

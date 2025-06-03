@@ -1,5 +1,10 @@
 from flask import Blueprint, session, redirect, url_for, render_template, flash, request
 from models.produto import Produto
+from flask_login import login_required, current_user
+from models.pedido import Pedido
+from models.item_pedido import ItemPedido
+from datetime import datetime
+from models import db
 
 carrinho_bp = Blueprint('carrinho', __name__)
 
@@ -28,10 +33,40 @@ def ver_carrinho():
 
     return render_template('carrinho.html', produtos=produtos, total=total)
 
-@carrinho_bp.route('/finalizar_compra')
+@carrinho_bp.route('/finalizar_compra', methods=['POST'])
+@login_required
 def finalizar_compra():
+    carrinho = session.get('carrinho', {})
+    if not carrinho:
+        flash("Seu carrinho está vazio.", "warning")
+        return redirect(url_for('loja.index'))
+
+    # Calcular o total do pedido
+    total = 0
+    for produto_id, qtd in carrinho.items():
+        produto = Produto.query.get(int(produto_id))
+        total += produto.preco * int(qtd)
+
+    # Criar o pedido com o total
+    pedido = Pedido(usuario_id=current_user.id, data=datetime.now(), total=total)
+    db.session.add(pedido)
+    db.session.commit()
+
+    # Criar itens do pedido
+    for produto_id, qtd in carrinho.items():
+        item = ItemPedido(
+            pedido_id=pedido.id,
+            produto_id=int(produto_id),
+            quantidade=int(qtd)
+        )
+        db.session.add(item)
+
+    db.session.commit()
+
+    # Esvaziar o carrinho
     session.pop('carrinho', None)
-    return "<h2>Compra finalizada com sucesso! Obrigado por comprar conosco.</h2>"
+    flash("Pedido realizado com sucesso!", "success")
+    return redirect(url_for('loja.index'))
 
 @carrinho_bp.route('/remover_do_carrinho', methods=['POST'])
 def remover_do_carrinho():
