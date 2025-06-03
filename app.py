@@ -8,6 +8,9 @@ from routes.loja_routes import loja
 from routes.carrinho_routes import carrinho_bp
 from routes.usuario_routes import usuario_bp
 from itsdangerous import URLSafeTimedSerializer
+from flask import flash, redirect, request, render_template, url_for
+from werkzeug.security import generate_password_hash
+from utils.email_utils import enviar_email
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
@@ -41,7 +44,3 @@ mail = Mail(app)
 serializer = URLSafeTimedSerializer(app.secret_key)
 
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()  # garante que as tabelas existem
-    app.run(debug=True)
