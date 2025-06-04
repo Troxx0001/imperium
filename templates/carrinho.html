@@ -1,31 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Carrinho de Compras</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
-</head>
-<body>
-    <h1>Seu Carrinho</h1>
-    {% if produtos %}
-        <ul>
-            {% for item in produtos %}
-                <li>
-                    {{ item.produto.nome }} ({{ item.quantidade }}) - R$ {{ "%.2f"|format(item.subtotal) }}
-                    <form action="{{ url_for('carrinho.remover_do_carrinho') }}" method="post" style="display:inline;">
-                        <input type="hidden" name="produto_id" value="{{ item.produto.id }}">
-                        <button type="submit" class="btn btn-danger btn-sm">Remover</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-        <p><strong>Total:</strong> R$ {{ "%.2f"|format(total) }}</p>
-        <form action="{{ url_for('carrinho.finalizar_compra') }}" method="post">
-            <button type="submit" class="btn btn-success">Finalizar Compra</button>
-        </form>
-
-    {% else %}
-        <p>Seu carrinho está vazio.</p>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Seu Carrinho</h1>
+<div class="carrinho-lista">
+  {% if produtos %}
+    <ul>
+      {% for item in produtos %}
+        <li>
+          {{ item.produto.nome }} ({{ item.quantidade }}) - R$ {{ "%.2f"|format(item.subtotal) }}
+          <form action="{{ url_for('carrinho.remover_do_carrinho') }}" method="post" style="display:inline;">
+            <input type="hidden" name="produto_id" value="{{ item.produto.id }}">
+            <button type="submit">Remover</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+    <p><strong>Total:</strong> R$ {{ "%.2f"|format(total) }}</p>
+    <form action="{{ url_for('carrinho.finalizar_compra') }}" method="post">
+      <button type="submit" class="botao-comprar">Finalizar Compra</button>
+    </form>
+  {% else %}
+    <p>Seu carrinho está vazio.</p>
+  {% endif %}
+</div>
+{% endblock %}
