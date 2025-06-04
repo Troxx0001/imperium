@@ -8,6 +8,7 @@ class Usuario(db.Model, UserMixin):
     senha = db.Column(db.String(200), nullable=False)
     admin = db.Column(db.Boolean, default=False)  # NOVO CAMPO
     verificado = db.Column(db.Boolean, default=False)
+    ativo = db.Column(db.Boolean, default=True)
 
     @classmethod
     def get(cls, user_id):

@@ -1,0 +1,37 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<h2>Pedidos</h2>
+<form method="POST" class="row g-3 mb-3">
+    {{ form.hidden_tag() }}
+    <div class="col-auto">
+        {{ form.status(class="form-select") }}
+    </div>
+    <div class="col-auto">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Data</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in pedidos %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.usuario.nome }}</td>
+            <td>{{ p.data.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>R$ {{ '%.2f'|format(p.total) }}</td>
+            <td>{{ p.status }}</td>
+            <td><a href="{{ url_for('admin.pedido_detalhe', pedido_id=p.id) }}" class="btn btn-sm btn-secondary">Ver</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

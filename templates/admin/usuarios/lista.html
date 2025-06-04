@@ -1,0 +1,35 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<h2>Usuários</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Ativo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for u in usuarios %}
+        <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.nome }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ 'Sim' if u.admin else 'Não' }}</td>
+            <td>{{ 'Sim' if u.ativo else 'Não' }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('admin.usuario_promover', usuario_id=u.id) }}" style="display:inline">
+                    <button class="btn btn-sm btn-warning">{% if u.admin %}Revogar{% else %}Promover{% endif %}</button>
+                </form>
+                <form method="POST" action="{{ url_for('admin.usuario_desativar', usuario_id=u.id) }}" style="display:inline">
+                    <button class="btn btn-sm btn-secondary">{% if u.ativo %}Desativar{% else %}Ativar{% endif %}</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

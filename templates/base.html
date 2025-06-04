@@ -6,33 +6,41 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
 </head>
 <body>
-  <nav>
-    {% if current_user.is_authenticated %}
-      <p>Usuário: {{ current_user.nome }} {% if current_user.admin %}(Admin){% endif %}</p>
-      <a href="{{ url_for('auth.logout') }}">Logout</a>
-      <ul>
-        <li><a href="{{ url_for('loja.meus_pedidos') }}">Meus Pedidos</a></li>
-      </ul>
-      {% if current_user.admin %}
-        <ul>
-          <li><a href="{{ url_for('loja.pedidos_admin') }}">Painel Admin</a></li>
-        </ul>
+  <nav class="navbar">
+    <a href="{{ url_for('loja.index') }}" class="logo">Imperium Tech</a>
+    <div class="nav-links">
+      <a href="{{ url_for('carrinho.ver_carrinho') }}">Carrinho</a>
+      {% if current_user.is_authenticated %}
+        <span class="user">Olá, {{ current_user.nome }}{% if current_user.admin %} (Admin){% endif %}</span>
+        <a href="{{ url_for('loja.meus_pedidos') }}">Meus Pedidos</a>
+        {% if current_user.admin %}
+          <a href="{{ url_for('loja.pedidos_admin') }}">Painel Admin</a>
+        {% endif %}
+        <!-- TEMPORÁRIO: Link para Painel Admin só para admin autenticado -->
+        {% if current_user.is_authenticated and current_user.admin %}
+          <a href="{{ url_for('admin.dashboard') }}" style="background: #ffc107; color: #222; padding: 8px 16px; border-radius: 4px; margin-left: 10px; font-weight: bold;">
+            Painel Admin (TEMPORÁRIO)
+          </a>
+        {% endif %}
+        <!-- FIM TEMPORÁRIO -->
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}">Login</a>
       {% endif %}
-    {% else %}
-      <a href="{{ url_for('auth.login') }}">Login</a>
-    {% endif %}
+    </div>
   </nav>
-  <main>
-    {% with messages = get_flashed_messages() %}
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=True) %}
       {% if messages %}
-        <ul>
-        {% for msg in messages %}
-          <li>{{ msg }}</li>
-        {% endfor %}
-        </ul>
+        <div class="flashes">
+          {% for category, msg in messages %}
+            <div class="flash-message {{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
       {% endif %}
     {% endwith %}
     {% block content %}{% endblock %}
   </main>
+  <script src="{{ url_for('static', filename='js/loja.js') }}"></script>
 </body>
 </html>
