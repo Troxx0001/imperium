@@ -9,7 +9,7 @@
   <nav class="navbar">
     <a href="{{ url_for('loja.index') }}" class="logo">Imperium Tech</a>
     <div class="nav-links">
-      <a href="{{ url_for('carrinho.ver_carrinho') }}">Carrinho</a>
+      <a href="{{ url_for('carrinho.ver_carrinho') }}">Carrinho /</a>
       {% if current_user.is_authenticated %}
         <span class="user">Olá, {{ current_user.nome }}{% if current_user.admin %} (Admin){% endif %}</span>
         <a href="{{ url_for('loja.meus_pedidos') }}">Meus Pedidos</a>
