@@ -1,0 +1,22 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<h2>Logs Administrativos</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Admin</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for log in logs %}
+        <tr>
+            <td>{{ log.data.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>{{ log.usuario.nome }}</td>
+            <td>{{ log.acao }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

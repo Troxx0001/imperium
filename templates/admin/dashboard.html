@@ -1,0 +1,30 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Produtos</h5>
+                <p class="card-text display-6">{{ total_produtos }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Usuários</h5>
+                <p class="card-text display-6">{{ total_usuarios }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Pedidos</h5>
+                <p class="card-text display-6">{{ total_pedidos }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

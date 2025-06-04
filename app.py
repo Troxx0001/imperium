@@ -4,6 +4,7 @@ from flask_mail import Mail
 from models import db  # use o db do models
 from models.usuario import Usuario
 from routes import loja_routes, auth_routes, api_routes
+from routes.admin_routes import admin_bp
 from routes.loja_routes import loja
 from routes.carrinho_routes import carrinho_bp
 from routes.usuario_routes import usuario_bp
@@ -39,6 +40,7 @@ app.register_blueprint(api_routes.bp)
 app.register_blueprint(loja)
 app.register_blueprint(carrinho_bp, url_prefix='/carrinho')
 app.register_blueprint(usuario_bp)
+app.register_blueprint(admin_bp)
 
 mail = Mail(app)
 serializer = URLSafeTimedSerializer(app.secret_key)

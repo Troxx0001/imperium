@@ -1,0 +1,14 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<h2>Pedido #{{ pedido.id }}</h2>
+<p><strong>Usuário:</strong> {{ pedido.usuario.nome }} ({{ pedido.usuario.email }})</p>
+<p><strong>Data:</strong> {{ pedido.data.strftime('%d/%m/%Y %H:%M') }}</p>
+<p><strong>Status:</strong> {{ pedido.status }}</p>
+<p><strong>Total:</strong> R$ {{ '%.2f'|format(pedido.total) }}</p>
+<ul class="list-group mb-3">
+{% for item in pedido.itens %}
+  <li class="list-group-item">{{ item.produto.nome }} - {{ item.quantidade }}x</li>
+{% endfor %}
+</ul>
+<a href="{{ url_for('admin.pedidos') }}" class="btn btn-secondary">Voltar</a>
+{% endblock %}
