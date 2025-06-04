@@ -16,6 +16,13 @@
         {% if current_user.admin %}
           <a href="{{ url_for('loja.pedidos_admin') }}">Painel Admin</a>
         {% endif %}
+        <!-- TEMPORÁRIO: Link para Painel Admin só para admin autenticado -->
+        {% if current_user.is_authenticated and current_user.admin %}
+          <a href="{{ url_for('admin.dashboard') }}" style="background: #ffc107; color: #222; padding: 8px 16px; border-radius: 4px; margin-left: 10px; font-weight: bold;">
+            Painel Admin (TEMPORÁRIO)
+          </a>
+        {% endif %}
+        <!-- FIM TEMPORÁRIO -->
         <a href="{{ url_for('auth.logout') }}">Logout</a>
       {% else %}
         <a href="{{ url_for('auth.login') }}">Login</a>
