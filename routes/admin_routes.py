@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, current_app, Response
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
 
@@ -8,6 +8,10 @@ from models.pedido import Pedido
 from models.usuario import Usuario
 from models.admin_log import AdminLog
 from forms import ProductForm, OrderFilterForm, AdminLoginForm
+from werkzeug.utils import secure_filename
+from sqlalchemy import func
+import os, io, csv
+from datetime import datetime, time
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -48,10 +52,14 @@ def dashboard():
     total_produtos = Produto.query.count()
     total_usuarios = Usuario.query.count()
     total_pedidos = Pedido.query.count()
+    produtos_por_marca = db.session.query(Produto.marca, func.count(Produto.id)).group_by(Produto.marca).all()
+    vendas_por_mes = db.session.query(func.strftime('%Y-%m', Pedido.data).label('mes'), func.sum(Pedido.total)).group_by('mes').all()
     return render_template('admin/dashboard.html',
                            total_produtos=total_produtos,
                            total_usuarios=total_usuarios,
-                           total_pedidos=total_pedidos)
+                           total_pedidos=total_pedidos,
+                           produtos_por_marca=produtos_por_marca,
+                           vendas_por_mes=vendas_por_mes)
 
 
 @admin_bp.route('/produtos')
@@ -70,12 +78,18 @@ def produto_novo():
         return redirect(url_for('loja.index'))
     form = ProductForm()
     if form.validate_on_submit():
+        filename = None
+        if form.imagem.data:
+            filename = secure_filename(form.imagem.data.filename)
+            upload_dir = os.path.join(current_app.root_path, 'static', 'imagens', 'produtos')
+            os.makedirs(upload_dir, exist_ok=True)
+            form.imagem.data.save(os.path.join(upload_dir, filename))
         produto = Produto(nome=form.nome.data,
                           marca=form.marca.data,
                           descricao=form.descricao.data,
                           preco=form.preco.data,
                           estoque=form.estoque.data,
-                          imagem=form.imagem.data)
+                          imagem=filename)
         db.session.add(produto)
         db.session.commit()
         log_action(f'Adicionou produto {produto.nome}')
@@ -92,7 +106,17 @@ def produto_editar(produto_id):
     produto = Produto.query.get_or_404(produto_id)
     form = ProductForm(obj=produto)
     if form.validate_on_submit():
-        form.populate_obj(produto)
+        if form.imagem.data:
+            filename = secure_filename(form.imagem.data.filename)
+            upload_dir = os.path.join(current_app.root_path, 'static', 'imagens', 'produtos')
+            os.makedirs(upload_dir, exist_ok=True)
+            form.imagem.data.save(os.path.join(upload_dir, filename))
+            produto.imagem = filename
+        form.nome.data and setattr(produto, 'nome', form.nome.data)
+        produto.marca = form.marca.data
+        produto.descricao = form.descricao.data
+        produto.preco = form.preco.data
+        produto.estoque = form.estoque.data
         db.session.commit()
         log_action(f'Editou produto {produto.nome}')
         flash('Produto atualizado.', 'success')
@@ -119,11 +143,35 @@ def pedidos():
     if not current_user.admin:
         return redirect(url_for('loja.index'))
     form = OrderFilterForm()
-    query = Pedido.query
-    if form.validate_on_submit() and form.status.data != 'todos':
-        query = query.filter_by(status=form.status.data)
+    query = Pedido.query.join(Usuario)
+    if form.validate_on_submit():
+        if form.status.data and form.status.data != 'todos':
+            query = query.filter(Pedido.status == form.status.data)
+        if form.cliente.data:
+            query = query.filter(Usuario.nome.ilike(f"%{form.cliente.data}%"))
+        if form.data_inicio.data:
+            inicio = datetime.combine(form.data_inicio.data, time.min)
+            query = query.filter(Pedido.data >= inicio)
+        if form.data_fim.data:
+            fim = datetime.combine(form.data_fim.data, time.max)
+            query = query.filter(Pedido.data <= fim)
     pedidos = query.order_by(Pedido.data.desc()).all()
     return render_template('admin/pedidos/lista.html', pedidos=pedidos, form=form)
+
+
+@admin_bp.route('/pedidos/exportar_csv')
+@login_required
+def pedidos_exportar_csv():
+    if not current_user.admin:
+        return redirect(url_for('loja.index'))
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['ID', 'Cliente', 'Data', 'Total', 'Status'])
+    for p in Pedido.query.order_by(Pedido.data.desc()).all():
+        writer.writerow([p.id, p.usuario.nome, p.data.strftime('%Y-%m-%d %H:%M'), f'{p.total:.2f}', p.status])
+    output.seek(0)
+    return Response(output.read(), mimetype='text/csv',
+                    headers={'Content-Disposition': 'attachment; filename=pedidos.csv'})
 
 
 @admin_bp.route('/pedidos/<int:pedido_id>')

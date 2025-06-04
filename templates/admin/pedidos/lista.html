@@ -7,10 +7,20 @@
         {{ form.status(class="form-select") }}
     </div>
     <div class="col-auto">
+        {{ form.cliente(class="form-control", placeholder="Cliente") }}
+    </div>
+    <div class="col-auto">
+        {{ form.data_inicio(class="form-control") }}
+    </div>
+    <div class="col-auto">
+        {{ form.data_fim(class="form-control") }}
+    </div>
+    <div class="col-auto">
         {{ form.submit(class="btn btn-primary") }}
     </div>
 </form>
-<table class="table table-striped">
+<a href="{{ url_for('admin.pedidos_exportar_csv') }}" class="btn btn-secondary mb-3">Exportar CSV</a>
+<table id="pedidos-table" class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
@@ -34,4 +44,9 @@
     {% endfor %}
     </tbody>
 </table>
+<script>
+$(document).ready(function(){
+    $('#pedidos-table').DataTable();
+});
+</script>
 {% endblock %}
