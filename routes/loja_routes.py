@@ -56,8 +56,3 @@ def meus_pedidos():
     pedidos = Pedido.query.filter_by(usuario_id=current_user.id).order_by(Pedido.data.desc()).all()
     return render_template('meus_pedidos.html', pedidos=pedidos)
 
-@loja.route('/admin/pedidos')
-@admin_required
-def pedidos_admin():
-    pedidos = Pedido.query.order_by(Pedido.data.desc()).all()
-    return render_template('admin_pedidos.html', pedidos=pedidos)
