@@ -54,7 +54,6 @@ def dashboard():
     total_usuarios = Usuario.query.count()
     total_pedidos = Pedido.query.count()
 
-
     produtos_por_marca = db.session.query(
         Produto.marca, func.count(Produto.id)
     ).group_by(Produto.marca).all()
@@ -65,7 +64,6 @@ def dashboard():
         .group_by(mes_expr)
         .all()
     )
-
 
     return render_template(
         'admin/dashboard.html',
