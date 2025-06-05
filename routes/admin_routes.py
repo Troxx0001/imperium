@@ -49,15 +49,32 @@ def logout():
 def dashboard():
     if not current_user.admin:
         return redirect(url_for('loja.index'))
+
     total_produtos = Produto.query.count()
     total_usuarios = Usuario.query.count()
     total_pedidos = Pedido.query.count()
-    return render_template('admin/dashboard.html',
-                           total_produtos=total_produtos,
-                           total_usuarios=total_usuarios,
-                           total_pedidos=total_pedidos,
-                           produtos_por_marca=produtos_por_marca,
-                           vendas_por_mes=vendas_por_mes)
+
+
+    produtos_por_marca = db.session.query(
+        Produto.marca, func.count(Produto.id)
+    ).group_by(Produto.marca).all()
+
+    mes_expr = func.strftime('%Y-%m', Pedido.data)
+    vendas_por_mes = (
+        db.session.query(mes_expr.label('mes'), func.sum(Pedido.total))
+        .group_by(mes_expr)
+        .all()
+    )
+
+
+    return render_template(
+        'admin/dashboard.html',
+        total_produtos=total_produtos,
+        total_usuarios=total_usuarios,
+        total_pedidos=total_pedidos,
+        produtos_por_marca=produtos_por_marca,
+        vendas_por_mes=vendas_por_mes
+    )
 
 
 @admin_bp.route('/produtos')
