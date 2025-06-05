@@ -27,4 +27,26 @@
         </div>
     </div>
 </div>
+<div class="row mt-4">
+    <div class="col-md-6">
+        <canvas id="produtosChart"></canvas>
+    </div>
+    <div class="col-md-6">
+        <canvas id="vendasChart"></canvas>
+    </div>
+</div>
+<script>
+const produtosLabels = {{ produtos_por_marca|map(attribute=0)|list|tojson }};
+const produtosData = {{ produtos_por_marca|map(attribute=1)|list|tojson }};
+new Chart(document.getElementById('produtosChart'), {
+    type: 'bar',
+    data: {labels: produtosLabels, datasets:[{label:'Produtos', data: produtosData}]}
+});
+const vendasLabels = {{ vendas_por_mes|map(attribute=0)|list|tojson }};
+const vendasData = {{ vendas_por_mes|map(attribute=1)|list|tojson }};
+new Chart(document.getElementById('vendasChart'), {
+    type: 'line',
+    data: {labels: vendasLabels, datasets:[{label:'Vendas', data: vendasData}]}
+});
+</script>
 {% endblock %}
