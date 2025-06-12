@@ -58,7 +58,7 @@ def dashboard():
         Produto.marca, func.count(Produto.id)
     ).group_by(Produto.marca).all()
 
-    mes_expr = func.strftime('%Y-%m', Pedido.data)
+    mes_expr = func.to_char(Pedido.data, 'YYYY-MM')
     vendas_por_mes = (
         db.session.query(mes_expr.label('mes'), func.sum(Pedido.total))
         .group_by(mes_expr)
