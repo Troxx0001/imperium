@@ -46,3 +46,6 @@ mail = Mail(app)
 serializer = URLSafeTimedSerializer(app.secret_key)
 
 
+if __name__ == '__main__':
+    app.run()
+
