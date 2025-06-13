@@ -61,3 +61,8 @@ O servidor será iniciado em `http://127.0.0.1:5000` por padrão.
 ## Medidas de Segurança
 - As senhas são armazenadas utilizando as funções de hash do Werkzeug.
 - A confirmação de conta é feita via tokens de e-mail gerados pelo `itsdangerous`.
+
+## Atualizaçoes Futuras
+-O design principal do site será desenvolvido em uma etapa futura. Por enquanto, o visual atual tem apenas o objetivo de facilitar a visualização e compreensão das funcionalidades que estão sendo implementadas.
+
+-Além disso, está prevista a criação de um software separado para o painel administrativo. No momento, o painel atual é apenas uma versão temporária, criada para testes e validação das funções administrativas.
