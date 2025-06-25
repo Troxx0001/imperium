@@ -1,10 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Login</h2>
-<form method="POST" class="form">
-  <input type="email" name="email" placeholder="E-mail" required><br>
-  <input type="password" name="senha" placeholder="Senha" required><br>
-  <button type="submit">Entrar</button>
-</form>
-<a href="{{ url_for('auth.cadastro') }}">Não tem conta? Cadastre-se</a>
+<div class="cadastro-container">
+  <h2>Login</h2>
+  <form method="POST" class="form">
+    <div class="form-group">
+      <input type="email" name="email" placeholder="E-mail" required>
+    </div>
+    <div class="form-group senha-group">
+      <input type="password" name="senha" id="senha" placeholder="Senha" required>
+      <button type="button" class="toggle-senha" onclick="toggleSenha()" tabindex="-1">
+        <img id="olho" src="{{ url_for('static', filename='img/view.png') }}" alt="Mostrar senha" style="width:22px; height:22px;">
+      </button>
+    </div>
+    <button type="submit" class="btn-cadastrar">Entrar</button>
+  </form>
+  <div style="margin-top: 18px; text-align: center;">
+    <a href="{{ url_for('auth.cadastro') }}">Não tem conta? Cadastre-se</a>
+  </div>
+</div>
+<script>
+function toggleSenha() {
+  const senhaInput = document.getElementById('senha');
+  const olho = document.getElementById('olho');
+  if (senhaInput.type === "password") {
+    senhaInput.type = "text";
+    olho.src = "{{ url_for('static', filename='img/hide.png') }}";
+    olho.alt = "Esconder senha";
+  } else {
+    senhaInput.type = "password";
+    olho.src = "{{ url_for('static', filename='img/view.png') }}";
+    olho.alt = "Mostrar senha";
+  }
+}
+</script>
 {% endblock %}

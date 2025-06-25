@@ -39,6 +39,14 @@ body {
   border: none;
   border-radius: 4px 0 0 4px;
 }
+.search-bar input[type="text"] {
+  width: 950px;
+  max-width: 100%;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
 .search-bar button {
   border: none;
   padding: 5px 10px;
@@ -206,6 +214,80 @@ button:hover, .botao-comprar:hover {
 .flash-message.info { background: #cce5ff; color: #004085; }
 .flash-message.warning { background: #fff3cd; color: #856404; }
 .flash-message.danger { background: #f8d7da; color: #721c24; }
+
+.cadastro-container {
+  max-width: 400px;
+  margin: 40px auto 0 auto;
+  background: #fff;
+  padding: 32px 32px 24px 32px;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+}
+
+.cadastro-container h2 {
+  text-align: center;
+  margin-bottom: 28px;
+  font-weight: 600;
+  color: #222;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+  width: 100%;
+  padding: 10px 38px 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #f7f7f7;
+  transition: border 0.2s;
+}
+
+.form input:focus {
+  border: 1.5px solid #007bff;
+  outline: none;
+}
+
+.senha-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.toggle-senha {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+  padding: 0 4px;
+}
+
+.btn-cadastrar {
+  width: 100%;
+  padding: 10px 0;
+  background: linear-gradient(90deg, #0099ff, #0055ff);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cadastrar:hover {
+  background: linear-gradient(90deg, #0055ff, #0099ff);
+}
 
 @keyframes fadeIn {
   from { opacity: 0; }
