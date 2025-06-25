@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if search_query %}
+<h1>Resultados para "{{ search_query }}"</h1>
+{% else %}
 <h1>Produtos disponíveis</h1>
+{% endif %}
 <div class="produtos">
   {% for produto in produtos %}
     <div class="produto">

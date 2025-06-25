@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for, flash, abort
+from flask import Blueprint, render_template, session, redirect, url_for, flash, abort, request
 from models.produto import Produto
 from models.pedido import Pedido
 from models.item_pedido import ItemPedido
@@ -17,6 +17,15 @@ def index():
 def produto_detalhe(id):
     produto = Produto.query.get_or_404(id)
     return render_template('produto_detalhe.html', produto=produto)
+
+@loja.route('/search')
+def search():
+    query = request.args.get('q', '').strip()
+    if query:
+        produtos = Produto.query.filter(Produto.nome.ilike(f'%{query}%')).all()
+    else:
+        produtos = Produto.query.all()
+    return render_template('index.html', produtos=produtos, search_query=query)
 
 @loja.route('/finalizar-compra')
 @login_required
