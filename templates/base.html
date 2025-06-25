@@ -12,19 +12,30 @@
 <body>
   <nav class="navbar">
     <a href="{{ url_for('loja.index') }}" class="logo">Imperium Tech</a>
-    <div class="nav-links">
-      <a href="{{ url_for('carrinho.ver_carrinho') }}">Carrinho /</a>
+
+    <form class="search-bar" action="{{ url_for('loja.search') }}" method="get">
+      <input type="text" name="q" placeholder="Buscar produtos" value="{{ request.args.get('q', '') }}">
+      <button type="submit">Pesquisar</button>
+    </form>
+
+    <div class="nav-right">
+      <a href="{{ url_for('carrinho.ver_carrinho') }}" class="cart-link">
+        <img src="{{ url_for('static', filename='img/cart.svg') }}" alt="Carrinho">
+      </a>
       {% if current_user.is_authenticated %}
-        <span class="user">Olá, {{ current_user.nome }}{% if current_user.admin %} (Admin){% endif %}</span>
-        <a href="{{ url_for('loja.meus_pedidos') }}">Meus Pedidos</a>
-        {% if current_user.admin %}
-          <a href="{{ url_for('admin.dashboard') }}" style="background: #ffc107; color: #222; padding: 8px 16px; border-radius: 4px; margin-left: 10px; font-weight: bold;">
-            Painel Admin
-          </a>
-        {% endif %}
         <a href="{{ url_for('auth.logout') }}">Logout</a>
       {% else %}
         <a href="{{ url_for('auth.login') }}">Login</a>
+      {% endif %}
+      <button class="hamburger" type="button">&#9776;</button>
+    </div>
+
+    <div class="nav-menu">
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('loja.meus_pedidos') }}">Meus Pedidos</a>
+        {% if current_user.admin %}
+          <a href="{{ url_for('admin.dashboard') }}" class="admin-button">Painel Admin</a>
+        {% endif %}
       {% endif %}
     </div>
   </nav>
