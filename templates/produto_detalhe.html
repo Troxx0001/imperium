@@ -1,12 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>{{ produto.nome }}</h1>
-<img src="{{ produto.imagem }}" width="300" alt="Imagem de {{ produto.nome }}">
-<p><strong>Marca:</strong> {{ produto.marca }}</p>
-<p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
-<p><strong>Descrição:</strong> {{ produto.descricao }}</p>
-<p><strong>Estoque disponível:</strong> {{ produto.estoque }}</p>
-<a href="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}" class="botao-comprar">Adicionar ao Carrinho</a>
-<br>
-<a href="{{ url_for('loja.index') }}">Voltar à loja</a>
+<div class="produto-detalhe-ml-container">
+  <div class="produto-detalhe-ml-gallery">
+    <div class="produto-detalhe-ml-thumbs">
+      {% if produto.imagens %}
+        {% for img in produto.imagens %}
+          <img src="{{ img }}" alt="Miniatura {{ loop.index }}" class="ml-thumb-img{% if loop.first %} ml-thumb-img-active{% endif %}" onclick="trocarImagem('{{ img }}', this)">
+        {% endfor %}
+      {% else %}
+        <img src="{{ produto.imagem }}" alt="Miniatura" class="ml-thumb-img ml-thumb-img-active">
+      {% endif %}
+    </div>
+    <div class="produto-detalhe-ml-mainimg">
+      <img id="imagem-principal" src="{{ produto.imagem if not produto.imagens else produto.imagens[0] }}" alt="Imagem de {{ produto.nome }}">
+    </div>
+  </div>
+  <div class="produto-detalhe-ml-info">
+    <h1>{{ produto.nome }}</h1>
+    <div class="produto-detalhe-preco">R$ {{ "%.2f"|format(produto.preco) }}</div>
+    <div class="produto-detalhe-marca"><strong>Marca:</strong> {{ produto.marca }}</div>
+    <div class="produto-detalhe-estoque">
+      <strong>Estoque disponível:</strong>
+      {% if produto.estoque > 0 %}
+        {{ produto.estoque }}
+      {% else %}
+        <span style="color:#c00;font-weight:bold;">Esgotado</span>
+      {% endif %}
+    </div>
+    <div class="produto-detalhe-ml-actions">
+      {% if produto.estoque > 0 %}
+        <a href="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}" class="ml-botao-comprar">Comprar</a>
+      {% else %}
+        <button class="ml-botao-comprar" disabled style="opacity:0.6;cursor:not-allowed;">Indisponível</button>
+      {% endif %}
+    </div>
+    <div class="produto-detalhe-ml-desc">
+      <h3 style="text-align:left;">Descrição</h3>
+      <ul>
+        {% for linha in produto.descricao.split('\n') %}
+          {% if linha.strip() %}
+            <li>{{ linha }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+function trocarImagem(src, el) {
+  document.getElementById('imagem-principal').src = src;
+  document.querySelectorAll('.ml-thumb-img').forEach(img => img.classList.remove('ml-thumb-img-active'));
+  if(el) el.classList.add('ml-thumb-img-active');
+}
+</script>
 {% endblock %}
