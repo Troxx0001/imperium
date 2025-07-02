@@ -20,7 +20,7 @@
 
     <div class="nav-right">
       <a href="{{ url_for('carrinho.ver_carrinho') }}" class="cart-link">
-        <img src="{{ url_for('static', filename='img/cart.svg') }}" alt="Carrinho">
+        <img src="{{ url_for('static', filename='img/icons8-carrinho-de-compras-64.png') }}" alt="Carrinho">
       </a>
       {% if current_user.is_authenticated %}
         <a href="{{ url_for('auth.logout') }}">Logout</a>

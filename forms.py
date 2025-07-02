@@ -9,6 +9,7 @@ class ProductForm(FlaskForm):
     descricao = TextAreaField('Descrição', validators=[DataRequired()])
     preco = FloatField('Preço', validators=[DataRequired()])
     estoque = IntegerField('Estoque', validators=[DataRequired()])
+    imagem_url = StringField('URL da imagem')
     imagem = FileField('Imagem', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
     submit = SubmitField('Salvar')
 

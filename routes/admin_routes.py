@@ -92,7 +92,9 @@ def produto_novo():
     form = ProductForm()
     if form.validate_on_submit():
         filename = None
-        if form.imagem.data:
+        if form.imagem_url.data:
+            filename = form.imagem_url.data
+        elif form.imagem.data:
             filename = secure_filename(form.imagem.data.filename)
             upload_dir = os.path.join(current_app.root_path, 'static', 'imagens', 'produtos')
             os.makedirs(upload_dir, exist_ok=True)
