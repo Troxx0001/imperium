@@ -11,3 +11,7 @@ __pycache__/
 
 # Ignorar variáveis de ambiente
 .env
+
+# Ignorar configuração local
+config.py
+
