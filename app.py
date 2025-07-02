@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_migrate import Migrate
 from models import db  # use o db do models
 from models.usuario import Usuario
 from routes import loja_routes, auth_routes, api_routes
@@ -26,6 +27,7 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 
 db.init_app(app)  # só inicializa, não crie outro db!
+migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'auth.login'  # redireciona para login se não autenticado

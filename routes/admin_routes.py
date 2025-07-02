@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, current_app, Response
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
-
+from utils.restrito_ip import restrito_por_ip
 from models import db
 from models.produto import Produto
 from models.pedido import Pedido
@@ -200,6 +200,7 @@ def pedido_detalhe(pedido_id):
 
 @admin_bp.route('/usuarios')
 @login_required
+@restrito_por_ip
 def usuarios():
     if not current_user.admin:
         return redirect(url_for('loja.index'))

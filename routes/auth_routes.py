@@ -4,6 +4,10 @@ from models import db
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from utils.email_utils import enviar_email
+from flask import request
+from utils.ipapi_utils import obter_localizacao_por_ip
+from models.admin_log import AdminLog
+
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -18,6 +22,19 @@ def login():
                 flash('Você precisa confirmar seu e-mail antes de fazer login.', 'warning')
                 return redirect(url_for('auth.login'))
             login_user(user)
+            # --- LOG DE IP E LOCALIZAÇÃO ---
+            ip = request.remote_addr
+            localizacao = obter_localizacao_por_ip(ip)
+            log = AdminLog(
+                usuario_id=user.id,
+                acao="Login no sistema",
+                ip=ip,
+                cidade=localizacao.get('city') if localizacao else 'Desconhecida',
+                pais=localizacao.get('country_name') if localizacao else 'Desconhecido'
+            )
+            db.session.add(log)
+            db.session.commit()
+            # --- FIM DO LOG ---
             flash("Login realizado com sucesso!", "success")
             return redirect(url_for('loja.index'))
         flash('Login inválido')
