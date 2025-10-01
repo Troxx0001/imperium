@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}{{ produto.nome }} - Imperium{% endblock %}
+{% block content %}
+{# Ajuste em Jinja para garantir que o campo imagens seja iterável no loop abaixo #}
+{% if produto.imagens %}
+  {% if produto.imagens is string %}
+    {% set galeria = [produto.imagens] %}
+  {% else %}
+    {% set galeria = produto.imagens %}
+  {% endif %}
+{% else %}
+  {% set galeria = [] %}
+{% endif %}
+<section class="product-detail">
+  <div class="detail-gallery">
+    <div class="thumbs">
+      {% if galeria %}
+        {% for img in galeria %}
+          <button type="button" class="thumb{% if loop.first %} is-active{% endif %}" data-target="{{ img }}">
+            <img src="{{ img }}" alt="Miniatura {{ loop.index }} de {{ produto.nome }}">
+          </button>
+        {% endfor %}
+      {% else %}
+        <button type="button" class="thumb is-active" data-target="{{ produto.imagem }}">
+          <img src="{{ produto.imagem }}" alt="Imagem de {{ produto.nome }}">
+        </button>
+      {% endif %}
+    </div>
+    <div class="main-image">
+      <img id="imagemPrincipal" src="{{ galeria[0] if galeria else produto.imagem }}" alt="{{ produto.nome }}">
+    </div>
+  </div>
+
+  <div class="detail-info">
+    <span class="detail-badge">Disponível{% if produto.estoque == 0 %} em breve{% endif %}</span>
+    <h1>{{ produto.nome }}</h1>
+    <div class="detail-meta">
+      <span class="price">R$ {{ '%.2f'|format(produto.preco) }}</span>
+      <span class="brand">Marca: {{ produto.marca or 'Imperium' }}</span>
+    </div>
+    <p class="stock">{% if produto.estoque > 0 %}{{ produto.estoque }} unidades em estoque{% else %}<span>Esgotado</span>{% endif %}</p>
+
+    <div class="detail-actions">
+      {% if produto.estoque > 0 %}
+        <a class="buy-button" href="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}">Adicionar ao carrinho</a>
+      {% else %}
+        <button class="buy-button" disabled>Indisponível</button>
+      {% endif %}
+    </div>
+
+    {% if produto.descricao %}
+      <div class="detail-description">
+        <h2>Descrição</h2>
+        <ul>
+          {% for linha in produto.descricao.split('\n') %}
+            {% if linha.strip() %}
+              <li>{{ linha }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainImage = document.getElementById('imagemPrincipal');
+    document.querySelectorAll('.thumb').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-target');
+        if (target && mainImage) {
+          mainImage.src = target;
+          document.querySelectorAll('.thumb').forEach(btn => btn.classList.remove('is-active'));
+          button.classList.add('is-active');
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
