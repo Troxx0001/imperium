@@ -1,25 +1,39 @@
 {% extends 'base.html' %}
+{% block title %}Carrinho - Imperium{% endblock %}
 {% block content %}
-<h1>Seu Carrinho</h1>
-<div class="carrinho-lista">
+<section class="cart">
+  <header class="cart-header">
+    <h1>Seu carrinho</h1>
+    <p>Revise os itens antes de finalizar a compra.</p>
+  </header>
   {% if produtos %}
-    <ul>
+    <ul class="cart-list">
       {% for item in produtos %}
-        <li>
-          {{ item.produto.nome }} ({{ item.quantidade }}) - R$ {{ "%.2f"|format(item.subtotal) }}
-          <form action="{{ url_for('carrinho.remover_do_carrinho') }}" method="post" style="display:inline;">
+        <li class="cart-item">
+          <div class="cart-info">
+            <h3>{{ item.produto.nome }}</h3>
+            <p class="cart-quantity">Quantidade: {{ item.quantidade }}</p>
+            <span class="cart-price">Subtotal: R$ {{ '%.2f'|format(item.subtotal) }}</span>
+          </div>
+          <form action="{{ url_for('carrinho.remover_do_carrinho') }}" method="post" class="cart-remove">
             <input type="hidden" name="produto_id" value="{{ item.produto.id }}">
             <button type="submit">Remover</button>
           </form>
         </li>
       {% endfor %}
     </ul>
-    <p><strong>Total:</strong> R$ {{ "%.2f"|format(total) }}</p>
-    <form action="{{ url_for('carrinho.finalizar_compra') }}" method="post">
-      <button type="submit" class="botao-comprar">Finalizar Compra</button>
+    <div class="cart-summary">
+      <span>Total</span>
+      <strong>R$ {{ '%.2f'|format(total) }}</strong>
+    </div>
+    <form action="{{ url_for('carrinho.finalizar_compra') }}" method="post" class="cart-checkout">
+      <button type="submit">Finalizar compra</button>
     </form>
   {% else %}
-    <p>Seu carrinho está vazio.</p>
+    <div class="empty-cart">
+      <p>Seu carrinho está vazio. Explore nossos produtos e adicione seus favoritos.</p>
+      <a href="{{ url_for('loja.index') }}" class="back-to-shop">Continuar comprando</a>
+    </div>
   {% endif %}
-</div>
+</section>
 {% endblock %}
