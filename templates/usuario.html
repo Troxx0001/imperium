@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block title %}Minha conta - Imperium{% endblock %}
+{% block content %}
+<section class="account-shell">
+  <header class="account-header">
+    <div class="account-identity">
+      <div class="account-avatar" aria-hidden="true">{{ current_user.nome[:1]|default('U') }}</div>
+      <div>
+        <p class="account-welcome">Olá, {{ current_user.nome }}!</p>
+        <p class="account-email">{{ current_user.email }}</p>
+      </div>
+    </div>
+    <div class="account-actions">
+      <a class="account-action-btn" href="{{ url_for('loja.index') }}#produtos">Continuar comprando</a>
+      <button class="account-action-btn ghost" type="button">
+        <!-- Placeholder para futura ação de edição de perfil -->
+        Editar perfil
+      </button>
+    </div>
+  </header>
+
+  <div class="account-grid">
+    <section class="account-panel">
+      <header class="account-panel-header">
+        <h2>Meus dados</h2>
+        <p>Informações principais da sua conta.</p>
+      </header>
+      <dl class="account-details">
+        <div>
+          <dt>Nome completo</dt>
+          <dd>{{ current_user.nome }}</dd>
+        </div>
+        <div>
+          <dt>E-mail</dt>
+          <dd>{{ current_user.email }}</dd>
+        </div>
+      </dl>
+      <div class="account-security">
+        <p>Segurança da conta</p>
+        <button class="account-action-btn full" type="button">
+          <!-- Placeholder de fluxo de alteração de senha -->
+          Alterar senha
+        </button>
+        <button class="account-action-btn link" type="button">
+          <!-- Placeholder de fluxo de recuperação de acesso -->
+          Recuperar acesso
+        </button>
+      </div>
+    </section>
+
+    <section class="account-panel">
+      <header class="account-panel-header">
+        <h2>Meus pedidos</h2>
+        <p>Acompanhe o status e o histórico de compras.</p>
+      </header>
+      <div class="orders-list">
+        {% if pedidos %}
+          {% for pedido in pedidos %}
+            <article class="order-card">
+              <header>
+                <span class="order-id">Pedido #{{ pedido.id }}</span>
+                <span class="order-date">{{ pedido.data.strftime('%d/%m/%Y %H:%M') }}</span>
+              </header>
+              <div class="order-body">
+                <p class="order-total">Total: R$ {{ '%.2f'|format(pedido.total) }}</p>
+                <ul>
+                  {% for item in pedido.itens %}
+                    <li>
+                      <span>{{ item.produto.nome }}</span>
+                      <span class="order-qty">{{ item.quantidade }}x</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <footer class="order-footer">
+                <a href="{{ url_for('loja.produto_detalhe', id=pedido.itens[0].produto.id) if pedido.itens else '#' }}" class="order-link{% if not pedido.itens %} is-disabled{% endif %}"{% if not pedido.itens %} aria-disabled="true"{% endif %}>
+                  Ver detalhes
+                </a>
+                <span class="order-status {{ pedido.status|default('processando') }}">{{ pedido.status|default('Processando') }}</span>
+              </footer>
+            </article>
+          {% endfor %}
+        {% else %}
+          <div class="empty-orders">
+            <p>Você ainda não fez nenhum pedido.</p>
+            <a class="account-action-btn" href="{{ url_for('loja.index') }}#produtos">Começar a comprar</a>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="account-panel">
+      <header class="account-panel-header">
+        <h2>Outras informações</h2>
+        <p>Personalize a experiência Imperium ao seu estilo.</p>
+      </header>
+      <div class="account-extra">
+        <div class="extra-card">
+          <h3>Endereços</h3>
+          <p>Cadastrar ou atualizar locais de entrega.</p>
+          <button class="account-action-btn ghost" type="button">
+            <!-- Placeholder para cadastro de endereço futuro -->
+            Gerenciar endereços
+          </button>
+        </div>
+        <div class="extra-card">
+          <h3>Preferências</h3>
+          <p>Selecione componentes favoritos e alertas personalizados.</p>
+          <button class="account-action-btn ghost" type="button">
+            <!-- Placeholder para preferências personalizadas -->
+            Ajustar preferências
+          </button>
+        </div>
+        <div class="extra-card">
+          <h3>Notificações</h3>
+          <p>Defina como deseja receber novidades e promoções.</p>
+          <button class="account-action-btn ghost" type="button">
+            <!-- Placeholder para configurações de notificações -->
+            Configurar notificações
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+{% endblock %}

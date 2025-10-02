@@ -24,21 +24,39 @@
   </div>
 </section>
 
-<section class="quick-actions" id="categorias">
-  <div class="quick-card">
-    <span class="quick-icon">🗓️</span>
-    <h3>Agenda</h3>
-    <p>Organize projetos e entregas com equipamentos que acompanham o seu ritmo.</p>
+<section class="category-toolbar" id="categorias">
+  <header class="category-toolbar-header">
+    <h2>Categorias em destaque</h2>
+    <p>Escolha um segmento para explorar componentes específicos.</p>
+  </header>
+  <nav class="category-toolbar-actions" aria-label="Categorias de hardware">
+    <a class="category-chip" href="#produtos" data-category="placas-de-video">Placas de vídeo</a>
+    <a class="category-chip" href="#produtos" data-category="processadores">Processadores</a>
+    <a class="category-chip" href="#produtos" data-category="memoria-ram">Memória RAM</a>
+    <a class="category-chip" href="#produtos" data-category="armazenamento">Armazenamento</a>
+    <a class="category-chip" href="#produtos" data-category="perifericos">Periféricos</a>
+  </nav>
+</section>
+
+<section class="learn-banner" id="aprender-intro">
+  <div class="learn-banner-content">
+    <header>
+      <span class="section-tag">Aprender</span>
+      <h2>Um mini texto que descreva essa área</h2>
+      <p>Aprofunde conhecimentos sobre componentes e periféricos com materiais selecionados pela equipe Imperium.</p>
+    </header>
+    <div class="learn-actions">
+      <a class="primary-cta" href="{{ url_for('loja.index') }}#produtos">Ver produtos</a>
+      <a class="secondary-cta" href="{{ url_for('loja.index') }}#categorias">Explorar categorias</a>
+      <a class="ghost-cta" href="{{ url_for('loja.index') }}#aprender-intro" data-target="aprender">
+        Ir para a área Aprender
+      </a>
+    </div>
   </div>
-  <div class="quick-card">
-    <span class="quick-icon">🛠️</span>
-    <h3>Ferramentas</h3>
-    <p>Periféricos, peças e acessórios para montar ou turbinar qualquer máquina.</p>
-  </div>
-  <div class="quick-card">
-    <span class="quick-icon">🧪</span>
-    <h3>Teste</h3>
-    <p>Experimente tecnologias emergentes antes de todo mundo.</p>
+  <div class="learn-banner-link">
+    <a href="{{ url_for('loja.index') }}#aprender-intro" data-target="aprender">
+      Descubra a nova área Aprender
+    </a>
   </div>
 </section>
 
@@ -63,20 +81,23 @@
             <img src="{{ produto.imagem }}" alt="Imagem de {{ produto.nome }}">
           </div>
           <div class="product-info">
-            <h3>{{ produto.nome }}</h3>
+            <h3 class="product-title">{{ produto.nome }}</h3>
             {% if produto.descricao %}
-              <p class="product-description">{{ produto.descricao|truncate(80, True, '...') }}</p>
+              <p class="product-description">{{ produto.descricao|truncate(96, True, '...') }}</p>
+            {% else %}
+              <p class="product-description product-description--placeholder">Descrição em breve.</p>
             {% endif %}
-            <div class="product-meta">
-              <span class="product-price">R$ {{ '%.2f'|format(produto.preco) }}</span>
-              <span class="product-stock">{% if produto.estoque > 0 %}{{ produto.estoque }} em estoque{% else %}Esgotado{% endif %}</span>
-            </div>
           </div>
         </a>
-        <form action="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}" method="post" class="product-actions">
-          <!-- O botão continua postando para a rota existente, apenas alteramos o visual -->
-          <button type="submit">Adicionar ao carrinho</button>
-        </form>
+        <div class="product-footer">
+          <div class="product-meta">
+            <span class="product-price">R$ {{ '%.2f'|format(produto.preco) }}</span>
+            <span class="product-stock">{% if produto.estoque > 0 %}{{ produto.estoque }} em estoque{% else %}Esgotado{% endif %}</span>
+          </div>
+          <form action="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}" method="post" class="product-actions">
+            <button type="submit" class="add-to-cart">Adicionar ao carrinho</button>
+          </form>
+        </div>
       </article>
     {% else %}
       <p class="empty-state">Nenhum produto encontrado no momento.</p>
