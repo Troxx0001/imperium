@@ -12,6 +12,7 @@ from werkzeug.utils import secure_filename
 from sqlalchemy import func
 import os, io, csv
 from datetime import datetime, time
+from utils.ipapi_utils import obter_localizacao_por_ip
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -31,6 +32,15 @@ def login():
         if user and check_password_hash(user.senha, form.senha.data):
             login_user(user)
             flash('Login de administrador realizado com sucesso!', 'success')
+            ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+            geo = get_geo_from_ip(ip) or {}
+            pais = geo.get('country_name') or geo.get('country')
+            cidade = geo.get('city')
+
+            log = AdminLog(admin=current_user.nome, acao="Login no sistema",
+                           ip=ip, pais=pais, cidade=cidade)
+            db.session.add(log)
+            db.session.commit()
             return redirect(url_for('admin.dashboard'))
         flash('Credenciais inválidas ou usuário não é administrador.', 'danger')
     return render_template('admin/login.html', form=form)

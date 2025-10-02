@@ -11,6 +11,8 @@ django-cors-headers==3.14.0
 django-rql==4.4.1
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
+dnspython==2.8.0
+email-validator==2.3.0
 Flask==3.1.0
 Flask-Login==0.6.3
 Flask-Mail==0.10.0
@@ -28,8 +30,8 @@ MarkupSafe==3.0.2
 mysql-connector-python==9.2.0
 psycopg2-binary==2.9.6
 PyJWT==2.9.0
-python-dotenv==1.0.1
 python-dateutil==2.9.0.post0
+python-dotenv==1.1.1
 pytz==2025.2
 requests==2.32.4
 six==1.17.0

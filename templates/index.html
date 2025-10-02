@@ -28,13 +28,11 @@
   <div class="learn-banner-content">
     <header>
       <span class="section-tag">Aprender</span>
-      <h2>Um mini texto que descreva essa área</h2>
-      <p>Aprofunde conhecimentos sobre componentes e periféricos com materiais selecionados pela equipe Imperium.</p>
+      <h2>Entenda o Essencial</h2>
+      <p>Explicações com vídeos e textos sobre Periféricos e Hardware</p>
     </header>
     <div class="learn-actions">
-      <a class="primary-cta" href="{{ url_for('loja.index') }}#produtos">Ver produtos</a>
-      <a class="secondary-cta" href="{{ url_for('loja.index') }}#categorias">Explorar categorias</a>
-      <a class="ghost-cta" href="{{ url_for('loja.aprender') }}">
+      <a class="primary-cta learn-main-cta" href="{{ url_for('loja.aprender') }}">
         Ir para a área Aprender
       </a>
     </div>
@@ -71,7 +69,7 @@
       <h2>Produtos em destaque</h2>
       <p>Seleção atualizada com os componentes mais procurados.</p>
     </header>
-  {% endif %}
+  {% endif %} 
 
   <div class="product-grid">
     {% for produto in produtos %}

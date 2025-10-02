@@ -1495,6 +1495,17 @@ a:hover {
   font-size: 0.85rem;
 }
 
+.learn-main-cta {
+  display: inline-block;
+  min-width: 220px;
+  padding: 1.1em 2.2em;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 0;       
+  box-shadow: 0 4px 24px 0 #0002;
+}
+
 /* Responsive */
 @media (max-width: 1280px) {
   .product-grid {
