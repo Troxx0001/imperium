@@ -34,7 +34,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l1 9h10l1-9h2v-2l-1-2h-2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg>
       </a>
       {% if current_user.is_authenticated %}
-        <a href="{{ url_for('auth.logout') }}" class="auth-link">Sair</a>
+        <a href="{{ url_for('loja.meus_pedidos') }}" class="auth-link account-link">Minha conta</a>
       {% else %}
         <a href="{{ url_for('auth.login') }}" class="auth-link">Login / Cadastro</a>
       {% endif %}
@@ -47,11 +47,10 @@
       <button class="drawer-close" type="button" aria-label="Fechar menu" id="drawerClose">&times;</button>
     </div>
     <ul class="drawer-links">
-      <li><a href="{{ url_for('loja.index') }}">Início</a></li>
-      <li><a href="{{ url_for('loja.index') }}#categorias">Categorias</a></li>
       <li><a href="{{ url_for('loja.meus_pedidos') }}">Meus pedidos</a></li>
-      <li><a href="{{ url_for('carrinho.ver_carrinho') }}">Carrinho</a></li>
+      <li><a href="{{ url_for('loja.index') }}#aprender-intro">Aprender</a></li>
       {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('loja.meus_pedidos') }}">Minha conta</a></li>
         <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
       {% else %}
         <li><a href="{{ url_for('auth.login') }}">Login</a></li>

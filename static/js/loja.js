@@ -88,5 +88,20 @@
         card.style.transform = 'translateY(0)';
       }, 100 * index);
     });
+
+    const categoryChips = qsa('.category-chip');
+    if (categoryChips.length) {
+      categoryChips.forEach((chip) => {
+        chip.setAttribute('aria-pressed', 'false');
+        chip.addEventListener('click', () => {
+          categoryChips.forEach(other => {
+            other.classList.remove('is-active');
+            other.setAttribute('aria-pressed', 'false');
+          });
+          chip.classList.add('is-active');
+          chip.setAttribute('aria-pressed', 'true');
+        });
+      });
+    }
   });
 })();
