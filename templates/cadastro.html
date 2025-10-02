@@ -6,15 +6,34 @@
     <h2>Criar conta</h2>
     <p class="auth-subtitle">Cadastre-se para acessar ofertas exclusivas.</p>
     <form method="POST" class="auth-form">
-      {# Mantemos compatibilidade com WTForms caso o backend injete um form #}
       {{ form.hidden_tag() if form is defined }}
       <div class="input-group">
         <label for="nome">Nome completo</label>
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          placeholder="Seu nome"
+          value="{{ form.nome.data if form is defined else '' }}"
+          required
+        >
+        {% if form is defined and form.nome.errors %}
+          <small class="text-danger">{{ form.nome.errors[0] }}</small>
+        {% endif %}
       </div>
       <div class="input-group">
         <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" placeholder="nome@imperium.com" required>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="nome@imperium.com"
+          value="{{ form.email.data if form is defined else '' }}"
+          required
+        >
+        {% if form is defined and form.email.errors %}
+          <small class="text-danger">{{ form.email.errors[0] }}</small>
+        {% endif %}
       </div>
       <div class="input-group password-group">
         <label for="senha">Senha</label>
@@ -24,6 +43,19 @@
             <img id="olho" src="{{ url_for('static', filename='img/view.png') }}" alt="Mostrar senha">
           </button>
         </div>
+        {% if form is defined and form.senha.errors %}
+          <small class="text-danger">{{ form.senha.errors[0] }}</small>
+        {% endif %}
+        <small class="text-muted">
+          A senha deve ter <strong>6+ caracteres</strong>, pelo menos <strong>1 letra maiúscula</strong> e <strong>1 número</strong>.
+        </small>
+      </div>
+      <div class="input-group">
+        <label for="confirmar">Confirmar senha</label>
+        <input type="password" id="confirmar" name="confirmar" placeholder="Repita a senha" required>
+        {% if form is defined and form.confirmar.errors %}
+          <small class="text-danger">{{ form.confirmar.errors[0] }}</small>
+        {% endif %}
       </div>
       <button type="submit" class="auth-submit">Cadastrar</button>
     </form>
