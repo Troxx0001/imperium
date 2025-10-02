@@ -65,3 +65,15 @@ def meus_pedidos():
     pedidos = Pedido.query.filter_by(usuario_id=current_user.id).order_by(Pedido.data.desc()).all()
     return render_template('meus_pedidos.html', pedidos=pedidos)
 
+@loja.route('/aprender')
+def aprender():
+    return render_template('aprender.html')
+
+@loja.route('/perifericos')
+def perifericos():
+    return render_template('perifericos.html')
+
+@loja.route('/componentes')
+def componentes():
+    return render_template('componentes.html')
+

@@ -24,6 +24,28 @@
   </div>
 </section>
 
+<section class="learn-banner" id="aprender-intro">
+  <div class="learn-banner-content">
+    <header>
+      <span class="section-tag">Aprender</span>
+      <h2>Um mini texto que descreva essa área</h2>
+      <p>Aprofunde conhecimentos sobre componentes e periféricos com materiais selecionados pela equipe Imperium.</p>
+    </header>
+    <div class="learn-actions">
+      <a class="primary-cta" href="{{ url_for('loja.index') }}#produtos">Ver produtos</a>
+      <a class="secondary-cta" href="{{ url_for('loja.index') }}#categorias">Explorar categorias</a>
+      <a class="ghost-cta" href="{{ url_for('loja.aprender') }}">
+        Ir para a área Aprender
+      </a>
+    </div>
+  </div>
+  <div class="learn-banner-link">
+    <a href="{{ url_for('loja.index') }}#aprender-intro" data-target="aprender">
+      Descubra a nova área Aprender
+    </a>
+  </div>
+</section>
+
 <section class="category-toolbar" id="categorias">
   <header class="category-toolbar-header">
     <h2>Categorias em destaque</h2>
@@ -36,28 +58,6 @@
     <a class="category-chip" href="#produtos" data-category="armazenamento">Armazenamento</a>
     <a class="category-chip" href="#produtos" data-category="perifericos">Periféricos</a>
   </nav>
-</section>
-
-<section class="learn-banner" id="aprender-intro">
-  <div class="learn-banner-content">
-    <header>
-      <span class="section-tag">Aprender</span>
-      <h2>Um mini texto que descreva essa área</h2>
-      <p>Aprofunde conhecimentos sobre componentes e periféricos com materiais selecionados pela equipe Imperium.</p>
-    </header>
-    <div class="learn-actions">
-      <a class="primary-cta" href="{{ url_for('loja.index') }}#produtos">Ver produtos</a>
-      <a class="secondary-cta" href="{{ url_for('loja.index') }}#categorias">Explorar categorias</a>
-      <a class="ghost-cta" href="{{ url_for('loja.index') }}#aprender-intro" data-target="aprender">
-        Ir para a área Aprender
-      </a>
-    </div>
-  </div>
-  <div class="learn-banner-link">
-    <a href="{{ url_for('loja.index') }}#aprender-intro" data-target="aprender">
-      Descubra a nova área Aprender
-    </a>
-  </div>
 </section>
 
 <section class="catalog" id="produtos">

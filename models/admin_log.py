@@ -10,3 +10,4 @@ class AdminLog(db.Model):
     cidade = db.Column(db.String(100))  # Cidade do administrador
     pais = db.Column(db.String(100))  # País do administrador
     usuario = db.relationship('Usuario')
+#CRIAR LOG DE ONDE O ADM FEZ A ALTERAÇÃO

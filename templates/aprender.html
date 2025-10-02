@@ -15,24 +15,22 @@
 
 <section class="learning-actions">
   <h2>Comece pelo que mais importa</h2>
-  <p>Escolha uma trilha para seguir os conteúdos dedicados.</p>
   <div class="learning-buttons">
-    <a class="primary-cta" href="{{ url_for('loja.index') }}#produtos" data-target="componentes">Componentes</a>
-    <a class="secondary-cta" href="{{ url_for('loja.index') }}#produtos" data-target="perifericos">Periféricos</a>
+    <a class="primary-cta" href="{{ url_for('loja.componentes') }}#produtos" data-target="componentes">Componentes</a>
+    <a class="secondary-cta" href="{{ url_for('loja.perifericos') }}#produtos" data-target="perifericos">Periféricos</a>
   </div>
-  <p class="learning-disclaimer">Esses atalhos serão direcionados para as páginas dedicadas quando a rota estiver disponível.</p>
 </section>
 
 <section class="learning-grid">
   <article class="learning-card">
     <h3>Componentes principais</h3>
     <p>Entenda como cada peça influencia no desempenho e compatibilidade do computador.</p>
-    <a href="#componentes" class="ghost-cta">Ver guia de componentes</a>
+    <a href="{{ url_for('loja.componentes') }}" class="ghost-cta">Ver guia de componentes</a>
   </article>
   <article class="learning-card">
     <h3>Periféricos ideais</h3>
     <p>Explore teclados, mouses e monitores para completar seu setup com conforto e precisão.</p>
-    <a href="#perifericos" class="ghost-cta">Ver guia de periféricos</a>
+    <a href="{{ url_for('loja.perifericos') }}" class="ghost-cta">Ver guia de periféricos</a>
   </article>
   <article class="learning-card">
     <h3>Suporte e comunidade</h3>
