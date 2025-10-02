@@ -3,20 +3,38 @@
 <div class="cadastro-container">
   <h2>Cadastro</h2>
   <form method="POST" class="form">
+    {{ form.hidden_tag() }}
     <div class="form-group">
-      <input type="text" name="nome" placeholder="Nome" required>
+      {{ form.nome(placeholder='Nome', required=True) }}
+      {% for error in form.nome.errors %}
+        <div class="invalid-feedback" style="display:block; color:#dc3545;">{{ error }}</div>
+      {% endfor %}
     </div>
     <div class="form-group">
-      <input type="email" name="email" placeholder="E-mail" required>
+      {{ form.email(placeholder='E-mail', required=True) }}
+      {% for error in form.email.errors %}
+        <div class="invalid-feedback" style="display:block; color:#dc3545;">{{ error }}</div>
+      {% endfor %}
     </div>
-    <!-- Exemplo para login.html e cadastro.html -->
     <div class="form-group senha-group">
-      <input type="password" name="senha" id="senha" placeholder="Senha" required>
+      {{ form.senha(id='senha', placeholder='Senha', required=True) }}
       <button type="button" class="toggle-senha" onclick="toggleSenha()" tabindex="-1">
         <img id="olho" src="{{ url_for('static', filename='img/view.png') }}" alt="Mostrar senha" style="width:22px; height:22px;">
       </button>
+      {% for error in form.senha.errors %}
+        <div class="invalid-feedback" style="display:block; color:#dc3545;">{{ error }}</div>
+      {% endfor %}
     </div>
-    <button type="submit" class="btn-cadastrar">Cadastrar</button>
+    <div class="form-group">
+      {{ form.confirmar(placeholder='Confirmar senha', required=True) }}
+      {% for error in form.confirmar.errors %}
+        <div class="invalid-feedback" style="display:block; color:#dc3545;">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <small class="text-muted">
+      A senha deve ter <strong>6+ caracteres</strong>, pelo menos <strong>1 letra maiúscula</strong> e <strong>1 número</strong>.
+    </small>
+    <button type="submit" class="btn-cadastrar" style="margin-top: 12px;">Cadastrar</button>
   </form>
 </div>
 <script>

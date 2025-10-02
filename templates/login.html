@@ -3,18 +3,28 @@
 <div class="cadastro-container">
   <h2>Login</h2>
   <form method="POST" class="form">
+    {{ form.hidden_tag() }}
     <div class="form-group">
-      <input type="email" name="email" placeholder="E-mail" required>
+      {{ form.email(placeholder='E-mail', required=True) }}
+      {% for error in form.email.errors %}
+        <div class="invalid-feedback" style="display:block; color:#dc3545;">{{ error }}</div>
+      {% endfor %}
     </div>
     <div class="form-group senha-group">
-      <input type="password" name="senha" id="senha" placeholder="Senha" required>
+      {{ form.senha(id='senha', placeholder='Senha', required=True) }}
       <button type="button" class="toggle-senha" onclick="toggleSenha()" tabindex="-1">
         <img id="olho" src="{{ url_for('static', filename='img/view.png') }}" alt="Mostrar senha" style="width:22px; height:22px;">
       </button>
+      {% for error in form.senha.errors %}
+        <div class="invalid-feedback" style="display:block; color:#dc3545;">{{ error }}</div>
+      {% endfor %}
     </div>
     <button type="submit" class="btn-cadastrar">Entrar</button>
   </form>
   <div style="margin-top: 18px; text-align: center;">
+    <a href="{{ url_for('auth.reset_password_request') }}">Esqueci minha senha</a>
+  </div>
+  <div style="margin-top: 8px; text-align: center;">
     <a href="{{ url_for('auth.cadastro') }}">Não tem conta? Cadastre-se</a>
   </div>
 </div>
