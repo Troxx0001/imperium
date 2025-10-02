@@ -1,3 +1,6 @@
+import os
+
+from dotenv import load_dotenv
 from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
@@ -14,17 +17,23 @@ from flask import flash, redirect, request, render_template, url_for
 from werkzeug.security import generate_password_hash
 from utils.email_utils import enviar_email
     
+load_dotenv()
+
 app = Flask(__name__)
 app.config.from_object('config.Config')
 app.secret_key = 'sua-chave-secreta'  # Adicionando a chave secreta
 
-# Looking to send emails in production? Check out our Email API/SMTP product!
-app.config['MAIL_SERVER']='sandbox.smtp.mailtrap.io'
-app.config['MAIL_PORT'] = 2525
-app.config['MAIL_USERNAME'] = '9308d9fabc9dd9'
-app.config['MAIL_PASSWORD'] = '449db778deda39'
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
+def _bool_env(name: str, default: str = 'False') -> bool:
+    return os.getenv(name, default).lower() in {'true', '1', 't', 'yes'}
+
+
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER', 'sandbox.smtp.mailtrap.io')
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 2525))
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME', '9308d9fabc9dd9')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD', '449db778deda39')
+app.config['MAIL_USE_TLS'] = _bool_env('MAIL_USE_TLS', 'True')
+app.config['MAIL_USE_SSL'] = _bool_env('MAIL_USE_SSL', 'False')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER', 'Imperium <no-reply@imperium.com>')
 
 db.init_app(app)  # só inicializa, não crie outro db!
 migrate = Migrate(app, db)

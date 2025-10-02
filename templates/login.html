@@ -6,11 +6,20 @@
     <h2>Entrar</h2>
     <p class="auth-subtitle">Use suas credenciais para continuar comprando.</p>
     <form method="POST" class="auth-form">
-      {# Mantemos compatibilidade com WTForms caso o backend injete um form #}
       {{ form.hidden_tag() if form is defined }}
       <div class="input-group">
         <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" placeholder="nome@imperium.com" required>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="nome@imperium.com"
+          value="{{ form.email.data if form is defined else '' }}"
+          required
+        >
+        {% if form is defined and form.email.errors %}
+          <small class="text-danger">{{ form.email.errors[0] }}</small>
+        {% endif %}
       </div>
       <div class="input-group password-group">
         <label for="senha">Senha</label>
@@ -20,9 +29,15 @@
             <img id="olho" src="{{ url_for('static', filename='img/view.png') }}" alt="Mostrar senha">
           </button>
         </div>
+        {% if form is defined and form.senha.errors %}
+          <small class="text-danger">{{ form.senha.errors[0] }}</small>
+        {% endif %}
       </div>
       <button type="submit" class="auth-submit">Entrar</button>
     </form>
+    <div class="auth-links">
+      <a class="auth-link" href="{{ url_for('auth.reset_password_request') }}">Esqueci minha senha</a>
+    </div>
     <p class="auth-switch">Não tem conta? <a href="{{ url_for('auth.cadastro') }}">Crie agora mesmo</a>.</p>
   </div>
 </section>

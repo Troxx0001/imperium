@@ -1,21 +1,32 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
-from models.usuario import Usuario
-from models import db
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from utils.email_utils import enviar_email
-from flask import request
-from utils.ipapi_utils import obter_localizacao_por_ip
+
+from forms import (
+    RegisterForm,
+    LoginForm,
+    RequestResetForm,
+    ResetPasswordForm,
+    ChangePasswordForm,
+)
+from models import db
 from models.admin_log import AdminLog
+from models.usuario import Usuario
+from utils.email_utils import enviar_email
+from utils.ipapi_utils import obter_localizacao_por_ip
+from utils.mail_utils import send_email
+from utils.token_utils import generate_token, confirm_token
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        senha = request.form['senha']
+    form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data.strip().lower()
+        senha = form.senha.data
         user = Usuario.query.filter_by(email=email).first()
         if user and check_password_hash(user.senha, senha):
             if not user.verificado:
@@ -37,24 +48,27 @@ def login():
             # --- FIM DO LOG ---
             flash("Login realizado com sucesso!", "success")
             return redirect(url_for('loja.index'))
-        flash('Login inválido')
-    return render_template('login.html')
+        flash('E-mail ou senha inválidos.', 'danger')
+    return render_template('login.html', form=form)
+
 
 @bp.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
-    if request.method == 'POST':
+    form = RegisterForm()
+    if form.validate_on_submit():
         from app import serializer  # Importa dentro da função para evitar import circular
-        nome = request.form['nome']
-        email = request.form['email']
-        senha = generate_password_hash(request.form['senha'])
+
+        nome = form.nome.data.strip()
+        email = form.email.data.strip().lower()
+        senha = generate_password_hash(form.senha.data)
 
         if Usuario.query.filter_by(email=email).first():
-            flash("Este e-mail já está em uso. Tente outro.", "danger")
-            return render_template("cadastro.html")
+            form.email.errors.append("Este e-mail já está em uso. Tente outro.")
+            return render_template("cadastro.html", form=form)
 
         if Usuario.query.filter_by(nome=nome).first():
-            flash("Este nome de usuário já está em uso. Escolha outro.", "danger")
-            return render_template("cadastro.html")
+            form.nome.errors.append("Este nome de usuário já está em uso. Escolha outro.")
+            return render_template("cadastro.html", form=form)
 
         novo_usuario = Usuario(nome=nome, email=email, senha=senha)
         db.session.add(novo_usuario)
@@ -73,7 +87,7 @@ def cadastro():
         flash("Cadastro realizado com sucesso! Verifique seu e-mail.", "success")
         return redirect(url_for('auth.login'))
 
-    return render_template("cadastro.html")
+    return render_template("cadastro.html", form=form)
 
 @bp.route('/logout')
 @login_required
@@ -97,3 +111,50 @@ def confirmar_email(token):
         return 'Conta confirmada com sucesso!'
     else:
         return 'Usuário não encontrado.'
+
+
+@bp.route('/reset-password', methods=['GET', 'POST'])
+def reset_password_request():
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = Usuario.query.filter_by(email=form.email.data.strip().lower()).first()
+        if user:
+            token = generate_token(user.email)
+            reset_link = url_for('auth.reset_password_token', token=token, _external=True)
+            html = render_template('emails/reset_password.html', user=user, reset_link=reset_link)
+            send_email(user.email, "Recuperação de senha - Imperium", html)
+        flash("Se o e-mail existir, enviaremos um link de recuperação.", "info")
+        return redirect(url_for('auth.login'))
+    return render_template('auth/reset_password_request.html', form=form)
+
+
+@bp.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_password_token(token):
+    email = confirm_token(token)
+    if not email:
+        flash("Link inválido ou expirado.", "danger")
+        return redirect(url_for('auth.reset_password_request'))
+
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user = Usuario.query.filter_by(email=email.lower()).first_or_404()
+        user.senha = generate_password_hash(form.senha.data)
+        db.session.commit()
+        flash("Senha alterada com sucesso. Faça login.", "success")
+        return redirect(url_for('auth.login'))
+    return render_template('auth/reset_password_form.html', form=form)
+
+
+@bp.route('/change-password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        if not check_password_hash(current_user.senha, form.atual.data):
+            flash("Senha atual incorreta.", "danger")
+        else:
+            current_user.senha = generate_password_hash(form.nova.data)
+            db.session.commit()
+            flash("Senha atualizada.", "success")
+            return redirect(url_for('loja.meus_pedidos'))
+    return render_template('auth/change_password.html', form=form)
