@@ -11,6 +11,7 @@ from models.admin_log import AdminLog
 from forms import ProductForm, OrderFilterForm, AdminLoginForm, IMAGE_EXTENSIONS
 from werkzeug.utils import secure_filename
 from sqlalchemy import func
+from sqlalchemy.exc import IntegrityError
 import os, io, csv
 from datetime import datetime, time
 from utils.ipapi_utils import obter_localizacao_por_ip
@@ -287,10 +288,32 @@ def produto_excluir(produto_id):
     if not current_user.admin:
         return redirect(url_for('loja.index'))
     produto = Produto.query.get_or_404(produto_id)
-    db.session.delete(produto)
+    try:
+        db.session.delete(produto)
+        db.session.commit()
+        log_action(f'Excluiu produto {produto.nome}')
+        flash('Produto excluído.', 'success')
+    except IntegrityError:
+        db.session.rollback()
+        produto.ativo = False
+        db.session.commit()
+        log_action(f'Desativou produto {produto.nome} (referências em pedidos)')
+        flash('Produto possui pedidos vinculados. Foi DESATIVADO em vez de excluído.', 'warning')
+
+    return redirect(url_for('admin.produtos'))
+
+
+@admin_bp.route('/produtos/<int:produto_id>/reativar', methods=['POST'])
+@login_required
+def produto_reativar(produto_id):
+    if not current_user.admin:
+        return redirect(url_for('loja.index'))
+
+    produto = Produto.query.get_or_404(produto_id)
+    produto.ativo = True
     db.session.commit()
-    log_action(f'Excluiu produto {produto.nome}')
-    flash('Produto excluído.', 'info')
+    log_action(f'Reativou produto {produto.nome}')
+    flash('Produto reativado.', 'success')
     return redirect(url_for('admin.produtos'))
 
 
