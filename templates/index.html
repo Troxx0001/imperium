@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% from 'macros/img.j2' import img_src %}
 {% block title %}Imperium Tech - Loja{% endblock %}
 {% block content %}
 <section class="hero">
@@ -76,7 +77,7 @@
       <article class="product-card">
         <a href="{{ url_for('loja.produto_detalhe', id=produto.id) }}" class="product-link">
           <div class="product-thumb">
-            <img src="{{ produto.imagem }}" alt="Imagem de {{ produto.nome }}">
+            <img src="{{ img_src(produto.imagem) }}" alt="{{ produto.nome }}" loading="lazy">
           </div>
           <div class="product-info">
             <h3 class="product-title">{{ produto.nome }}</h3>

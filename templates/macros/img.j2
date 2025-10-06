@@ -1,0 +1,6 @@
+{% macro img_src(name) -%}
+  {%- if name and '://' in name -%}{{ name }}
+  {%- elif name -%}{{ url_for('static', filename='imagens/produtos/' ~ name) }}
+  {%- else -%}{{ url_for('static', filename='imagens/placeholder.svg') }}
+  {%- endif -%}
+{%- endmacro %}

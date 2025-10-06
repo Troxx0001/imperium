@@ -10,8 +10,4 @@ class Produto(db.Model):
     descricao = db.Column(db.Text, nullable=False)
     preco = db.Column(db.Float, nullable=False)
     estoque = db.Column(db.Integer, nullable=False)
-    imagem = db.Column(db.String(255))  # URL/caminho ou apenas filename
-    ativo = db.Column(db.Boolean, nullable=False, default=True, server_default=db.text('true'))
-
-    def __repr__(self):
-        return f"<Produto {self.id} {self.nome} ativo={self.ativo}>"
+    imagem = db.Column(db.String(255))  # URL ou caminho da imagem

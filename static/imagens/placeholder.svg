@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-label="Imagem não disponível">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3f4f6"/>
+      <stop offset="100%" stop-color="#e5e7eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="200" rx="16" fill="url(#grad)"/>
+  <g fill="none" stroke="#cbd5f5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M88 136l48-64 40 48 24-32 32 48H88z"/>
+    <circle cx="120" cy="88" r="20"/>
+  </g>
+  <text x="160" y="176" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#94a3b8">
+    Imagem indisponível
+  </text>
+</svg>

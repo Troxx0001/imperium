@@ -19,14 +19,25 @@ senha_policy = [
     Regexp(r".*\d.*", message="Inclua pelo menos 1 número."),
 ]
 
+IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp']
+
+
 class ProductForm(FlaskForm):
     nome = StringField('Nome', validators=[DataRequired()])
     marca = StringField('Marca', validators=[DataRequired()])
     descricao = TextAreaField('Descrição', validators=[DataRequired()])
     preco = FloatField('Preço', validators=[DataRequired()])
     estoque = IntegerField('Estoque', validators=[DataRequired()])
-    imagem_url = StringField('URL da imagem')
-    imagem = FileField('Imagem', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
+    imagem_url = StringField('URL da imagem', render_kw={'type': 'url'})
+    imagem = FileField('Imagem', validators=[FileAllowed(IMAGE_EXTENSIONS, 'Apenas imagens são permitidas.')])
+    extra_url_1 = StringField('URL da imagem extra 1', render_kw={'type': 'url'})
+    extra_1 = FileField('Imagem extra 1', validators=[FileAllowed(IMAGE_EXTENSIONS, 'Apenas imagens são permitidas.')])
+    extra_url_2 = StringField('URL da imagem extra 2', render_kw={'type': 'url'})
+    extra_2 = FileField('Imagem extra 2', validators=[FileAllowed(IMAGE_EXTENSIONS, 'Apenas imagens são permitidas.')])
+    extra_url_3 = StringField('URL da imagem extra 3', render_kw={'type': 'url'})
+    extra_3 = FileField('Imagem extra 3', validators=[FileAllowed(IMAGE_EXTENSIONS, 'Apenas imagens são permitidas.')])
+    extra_url_4 = StringField('URL da imagem extra 4', render_kw={'type': 'url'})
+    extra_4 = FileField('Imagem extra 4', validators=[FileAllowed(IMAGE_EXTENSIONS, 'Apenas imagens são permitidas.')])
     submit = SubmitField('Salvar')
 
 class OrderFilterForm(FlaskForm):
