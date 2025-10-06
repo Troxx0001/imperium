@@ -804,10 +804,69 @@ a:hover {
   gap: 0.75rem;
 }
 
+.account-popover-wrapper {
+  position: relative;
+}
+
+.account-popover {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  min-width: 280px;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(20, 20, 24, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
+  display: grid;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+
+.account-popover.is-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.account-popover-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.account-popover-form label {
+  font-size: 0.75rem;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.account-popover-form input {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+}
+
+.account-popover-links {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.account-popover-links a {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
 .account-grid {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: start;
 }
 
 .account-panel {
@@ -817,6 +876,60 @@ a:hover {
   padding: 2rem;
   display: grid;
   gap: 1.5rem;
+}
+
+.primary-cta.small {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+.address-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.address-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.form-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14rem;
+  color: var(--text-muted);
+}
+
+.form-field input {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.85rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+}
+
+.address-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.address-feedback {
+  margin: 0;
+  min-height: 1em;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.address-feedback.is-visible {
+  color: var(--accent);
 }
 
 .account-panel-header h2 {
@@ -1030,7 +1143,7 @@ a:hover {
 .learning-grid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .learning-card {
@@ -1039,7 +1152,7 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 1.6rem;
   display: grid;
-  gap: 0.8rem;
+  gap: 1rem;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -1051,6 +1164,36 @@ a:hover {
 .learning-card p {
   margin: 0;
   color: var(--text-muted);
+}
+
+.learning-card-media {
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  text-align: center;
+  padding: 0.75rem;
+}
+
+.learning-card-media iframe,
+.learning-card-media video {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: inherit;
+}
+
+.learning-card-body {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.learning-card-body h3 {
+  margin: 0;
 }
 
 .learning-detail {
@@ -1107,7 +1250,8 @@ a:hover {
 }
 
 .auth-card {
-  width: min(420px, 100%);
+  width: min(420px, calc(100% - 2rem));
+  margin: 0 1rem;
   background: var(--surface-light);
   padding: 2.5rem 2.3rem;
   border-radius: var(--radius-lg);
