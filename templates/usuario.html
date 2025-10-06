@@ -12,10 +12,41 @@
     </div>
     <div class="account-actions">
       <a class="account-action-btn" href="{{ url_for('loja.index') }}#produtos">Continuar comprando</a>
-      <button class="account-action-btn ghost" type="button">
-        <!-- Placeholder para futura ação de edição de perfil -->
-        Editar perfil
-      </button>
+      <div class="account-popover-wrapper">
+        <button
+          class="account-action-btn ghost"
+          type="button"
+          id="editProfileToggle"
+          aria-expanded="false"
+          aria-controls="editProfilePopover"
+        >
+          Editar perfil
+        </button>
+        <div
+          class="account-popover"
+          id="editProfilePopover"
+          role="dialog"
+          aria-label="Opções de edição de perfil"
+          hidden
+        >
+          <form class="account-popover-form" action="{{ url_for('auth.update_name') }}" method="post">
+            <label for="novo_nome">Trocar o nome</label>
+            <input
+              type="text"
+              id="novo_nome"
+              name="novo_nome"
+              placeholder="Como devemos te chamar?"
+              minlength="2"
+              required
+            >
+            <button type="submit" class="primary-cta small">Salvar nome</button>
+          </form>
+          <div class="account-popover-links" role="group" aria-label="Atalhos de senha">
+            <a href="{{ url_for('auth.reset_password_request') }}">Recuperar a senha</a>
+            <a href="{{ url_for('auth.change_password') }}">Trocar a senha</a>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -89,36 +120,107 @@
 
     <section class="account-panel">
       <header class="account-panel-header">
-        <h2>Outras informações</h2>
-        <p>Personalize a experiência Imperium ao seu estilo.</p>
+        <h2>Endereço de entrega</h2>
+        <p>Cadastre ou atualize o endereço utilizado nas suas compras.</p>
       </header>
-      <div class="account-extra">
-        <div class="extra-card">
-          <h3>Endereços</h3>
-          <p>Cadastrar ou atualizar locais de entrega.</p>
-          <button class="account-action-btn ghost" type="button">
-            <!-- Placeholder para cadastro de endereço futuro -->
-            Gerenciar endereços
-          </button>
+      <form class="address-form" id="addressForm" novalidate>
+        <div class="address-row">
+          <div class="form-field">
+            <label for="endereco_cep">CEP</label>
+            <input type="text" id="endereco_cep" name="cep" inputmode="numeric" placeholder="00000-000" maxlength="9" required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_logradouro">Endereço</label>
+            <input type="text" id="endereco_logradouro" name="logradouro" placeholder="Rua, avenida, etc." required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_numero">Número</label>
+            <input type="text" id="endereco_numero" name="numero" placeholder="000" required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_complemento">Complemento</label>
+            <input type="text" id="endereco_complemento" name="complemento" placeholder="Apartamento, bloco, referência">
+          </div>
         </div>
-        <div class="extra-card">
-          <h3>Preferências</h3>
-          <p>Selecione componentes favoritos e alertas personalizados.</p>
-          <button class="account-action-btn ghost" type="button">
-            <!-- Placeholder para preferências personalizadas -->
-            Ajustar preferências
-          </button>
+        <div class="address-row">
+          <div class="form-field">
+            <label for="endereco_bairro">Bairro</label>
+            <input type="text" id="endereco_bairro" name="bairro" required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_cidade">Cidade</label>
+            <input type="text" id="endereco_cidade" name="cidade" required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_estado">Estado</label>
+            <input type="text" id="endereco_estado" name="estado" maxlength="2" placeholder="UF" required>
+          </div>
         </div>
-        <div class="extra-card">
-          <h3>Notificações</h3>
-          <p>Defina como deseja receber novidades e promoções.</p>
-          <button class="account-action-btn ghost" type="button">
-            <!-- Placeholder para configurações de notificações -->
-            Configurar notificações
-          </button>
+        <div class="address-actions">
+          <button type="submit" class="primary-cta">Salvar endereço</button>
+          <button type="reset" class="account-action-btn ghost">Limpar campos</button>
         </div>
-      </div>
+        <p class="address-feedback" id="addressFeedback" role="status" aria-live="polite"></p>
+      </form>
     </section>
   </div>
 </section>
+{% endblock %}
+
+{% block extra_scripts %}
+  {{ super() }}
+  <script>
+    (function() {
+      const toggle = document.getElementById('editProfileToggle');
+      const popover = document.getElementById('editProfilePopover');
+      const addressForm = document.getElementById('addressForm');
+      const feedback = document.getElementById('addressFeedback');
+
+      if (toggle && popover) {
+        const closePopover = (event) => {
+          if (!popover.contains(event.target) && event.target !== toggle) {
+            popover.hidden = true;
+            popover.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.removeEventListener('click', closePopover);
+          }
+        };
+
+        toggle.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const isHidden = popover.hasAttribute('hidden');
+          if (isHidden) {
+            popover.hidden = false;
+            requestAnimationFrame(() => popover.classList.add('is-open'));
+            toggle.setAttribute('aria-expanded', 'true');
+            document.addEventListener('click', closePopover);
+          } else {
+            popover.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            popover.hidden = true;
+            document.removeEventListener('click', closePopover);
+          }
+        });
+      }
+
+      if (addressForm) {
+        addressForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          if (!addressForm.checkValidity()) {
+            addressForm.reportValidity();
+            return;
+          }
+
+          if (feedback) {
+            feedback.textContent = 'Endereço salvo localmente. Integração com o cadastro em breve!';
+            feedback.classList.add('is-visible');
+            setTimeout(() => {
+              feedback.classList.remove('is-visible');
+              feedback.textContent = '';
+            }, 5000);
+          }
+        });
+      }
+    })();
+  </script>
 {% endblock %}

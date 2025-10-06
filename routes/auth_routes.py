@@ -158,3 +158,26 @@ def change_password():
             flash("Senha atualizada.", "success")
             return redirect(url_for('loja.meus_pedidos'))
     return render_template('auth/change_password.html', form=form)
+
+
+@bp.route('/profile/update-name', methods=['POST'])
+@login_required
+def update_name():
+    novo_nome = request.form.get('novo_nome', '').strip()
+
+    if not novo_nome:
+        flash('Informe um nome válido para atualizar o perfil.', 'warning')
+        return redirect(url_for('loja.meus_pedidos'))
+
+    if len(novo_nome) < 2:
+        flash('O nome precisa ter pelo menos 2 caracteres.', 'warning')
+        return redirect(url_for('loja.meus_pedidos'))
+
+    if novo_nome == current_user.nome:
+        flash('Esse já é o nome associado à sua conta.', 'info')
+        return redirect(url_for('loja.meus_pedidos'))
+
+    current_user.nome = novo_nome
+    db.session.commit()
+    flash('Nome atualizado com sucesso.', 'success')
+    return redirect(url_for('loja.meus_pedidos'))
