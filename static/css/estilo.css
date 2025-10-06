@@ -175,16 +175,20 @@ a:hover {
 }
 
 .auth-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  padding: 0;
   font-weight: 500;
-  padding: 0.6rem 1.2rem;
-  background: var(--surface-light);
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: background 0.2s ease;
+  text-decoration: underline;
+  border-radius: 0;
+  box-shadow: none;
+  display: inline;
 }
 
-.auth-link:hover {
-  background: var(--highlight);
+.auth-links {
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .primary-cta,
@@ -1121,6 +1125,32 @@ a:hover {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.module-video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #232329;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.module-video-frame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.module-video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  background: #232329;
+}
+
 .learning-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1225,7 +1255,7 @@ a:hover {
 .learning-modules {
   display: grid;
   gap: 1.2rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .learning-modules article {
@@ -1233,8 +1263,9 @@ a:hover {
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 1.5rem;
-  display: grid;
-  gap: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .learning-modules p {
@@ -1699,6 +1730,12 @@ a:hover {
 
   .learning-detail-body {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .learning-modules {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 

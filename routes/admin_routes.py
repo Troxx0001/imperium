@@ -286,6 +286,7 @@ def produto_imagem_remover(produto_id, imagem_id):
 def produto_excluir(produto_id):
     if not current_user.admin:
         return redirect(url_for('loja.index'))
+
     produto = Produto.query.get_or_404(produto_id)
     db.session.delete(produto)
     db.session.commit()
