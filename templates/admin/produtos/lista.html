@@ -9,37 +9,21 @@
             <th>Nome</th>
             <th>Preço</th>
             <th>Estoque</th>
-            <th>Status</th>
-            <th class="text-end">Ações</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-        {% for produto in produtos %}
+        {% for p in produtos %}
         <tr>
-            <td>{{ produto.id }}</td>
-            <td>{{ produto.nome }}</td>
-            <td>R$ {{ '%.2f'|format(produto.preco) }}</td>
-            <td>{{ produto.estoque }}</td>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nome }}</td>
+            <td>R$ {{ '%.2f'|format(p.preco) }}</td>
+            <td>{{ p.estoque }}</td>
             <td>
-                {% if produto.ativo %}
-                    <span class="badge bg-success">Ativo</span>
-                {% else %}
-                    <span class="badge bg-secondary">Desativado</span>
-                {% endif %}
-            </td>
-            <td class="text-end">
-                <a class="btn btn-sm btn-outline-primary"
-                   href="{{ url_for('admin.produto_editar', produto_id=produto.id) }}">Editar</a>
-
-                {% if produto.ativo %}
-                    <form method="post" action="{{ url_for('admin.produto_excluir', produto_id=produto.id) }}" style="display:inline">
-                        <button class="btn btn-sm btn-danger">Excluir</button>
-                    </form>
-                {% else %}
-                    <form method="post" action="{{ url_for('admin.produto_reativar', produto_id=produto.id) }}" style="display:inline">
-                        <button class="btn btn-sm btn-primary">Reativar</button>
-                    </form>
-                {% endif %}
+                <a href="{{ url_for('admin.produto_editar', produto_id=p.id) }}" class="btn btn-sm btn-primary">Editar</a>
+                <form method="POST" action="{{ url_for('admin.produto_excluir', produto_id=p.id) }}" style="display:inline-block;">
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('Excluir produto?')">Excluir</button>
+                </form>
             </td>
         </tr>
         {% endfor %}
