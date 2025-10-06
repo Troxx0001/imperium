@@ -11,6 +11,7 @@ from models.admin_log import AdminLog
 from forms import ProductForm, OrderFilterForm, AdminLoginForm, IMAGE_EXTENSIONS
 from werkzeug.utils import secure_filename
 from sqlalchemy import func
+from sqlalchemy.exc import IntegrityError
 import os, io, csv
 from datetime import datetime, time
 from utils.ipapi_utils import obter_localizacao_por_ip
@@ -288,8 +289,14 @@ def produto_excluir(produto_id):
         return redirect(url_for('loja.index'))
 
     produto = Produto.query.get_or_404(produto_id)
-    db.session.delete(produto)
-    db.session.commit()
+    try:
+        db.session.delete(produto)
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        flash('Não é possível excluir este produto pois existem pedidos associados a ele.', 'danger')
+        return redirect(url_for('admin.produtos'))
+
     log_action(f'Excluiu produto {produto.nome}')
     flash('Produto excluído.', 'info')
     return redirect(url_for('admin.produtos'))
