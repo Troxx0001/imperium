@@ -11,7 +11,6 @@ from models.admin_log import AdminLog
 from forms import ProductForm, OrderFilterForm, AdminLoginForm, IMAGE_EXTENSIONS
 from werkzeug.utils import secure_filename
 from sqlalchemy import func
-from sqlalchemy.exc import IntegrityError
 import os, io, csv
 from datetime import datetime, time
 from utils.ipapi_utils import obter_localizacao_por_ip
