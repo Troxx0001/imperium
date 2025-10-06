@@ -10,21 +10,26 @@ loja = Blueprint('loja', __name__)
 
 @loja.route('/')
 def index():
-    produtos = Produto.query.all()
+    produtos = Produto.query.filter_by(ativo=True).all()
     return render_template('index.html', produtos=produtos)
 
 @loja.route('/produto/<int:id>')
 def produto_detalhe(id):
     produto = Produto.query.get_or_404(id)
+    if not produto.ativo and (not current_user.is_authenticated or not current_user.admin):
+        abort(404)
     return render_template('produto_detalhe.html', produto=produto)
 
 @loja.route('/search')
 def search():
     query = request.args.get('q', '').strip()
     if query:
-        produtos = Produto.query.filter(Produto.nome.ilike(f'%{query}%')).all()
+        produtos = Produto.query.filter(
+            Produto.nome.ilike(f'%{query}%'),
+            Produto.ativo.is_(True)
+        ).all()
     else:
-        produtos = Produto.query.all()
+        produtos = Produto.query.filter_by(ativo=True).all()
     return render_template('index.html', produtos=produtos, search_query=query)
 
 @loja.route('/finalizar-compra')
