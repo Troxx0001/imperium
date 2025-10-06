@@ -10,3 +10,9 @@ class Produto(db.Model):
     preco = db.Column(db.Float, nullable=False)
     estoque = db.Column(db.Integer, nullable=False)
     imagem = db.Column(db.String(255))  # URL ou caminho da imagem
+    imagens = db.relationship(
+        'ProdutoImagem',
+        backref='produto',
+        cascade='all, delete-orphan',
+        order_by='ProdutoImagem.ordem'
+    )
