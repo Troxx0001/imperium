@@ -7,10 +7,6 @@
     <h1>Domine cada componente do seu setup</h1>
     <p>Guias curtos, vídeos introdutórios e recomendações para quem quer montar, atualizar ou entender os detalhes do hardware.</p>
   </header>
-  <div class="learning-video" role="presentation">
-    <!-- Placeholder para embed de vídeo introdutório -->
-    <div class="video-placeholder">Vídeo introdutório</div>
-  </div>
 </section>
 
 <section class="learning-actions">
@@ -21,24 +17,198 @@
   </div>
 </section>
 
-<section class="learning-grid">
-  <article class="learning-card">
-    <h3>Componentes principais</h3>
-    <p>Entenda como cada peça influencia no desempenho e compatibilidade do computador.</p>
-    <a href="{{ url_for('loja.componentes') }}" class="ghost-cta">Ver guia de componentes</a>
-  </article>
-  <article class="learning-card">
-    <h3>Periféricos ideais</h3>
-    <p>Explore teclados, mouses e monitores para completar seu setup com conforto e precisão.</p>
-    <a href="{{ url_for('loja.perifericos') }}" class="ghost-cta">Ver guia de periféricos</a>
-  </article>
-  <article class="learning-card">
-    <h3>Suporte e comunidade</h3>
-    <p>Dicas rápidas, perguntas frequentes e espaço para compartilhar montagens.</p>
-    <button class="account-action-btn ghost" type="button">
-      <!-- Placeholder para recurso comunitário futuro -->
-      Participar da comunidade
-    </button>
-  </article>
+<section class="learning-section" id="perifericos">
+  <header class="learning-section-header">
+    <h2>Periféricos em destaque</h2>
+    <p>Vídeos e guias rápidos para escolher teclados, mouses, monitores e muito mais.</p>
+  </header>
+
+  <div class="learning-layout">
+    <div class="learning-video-panel">
+      <div class="learning-video-frame" aria-label="Vídeo sobre periféricos">
+        <iframe
+          title="Guia de periféricos"
+          src=""
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+        <span class="learning-video-placeholder">Vídeo sobre periféricos</span>
+      </div>
+      <button class="video-info-btn" type="button" data-modal-target="perifericos-modal">Saiba mais</button>
+    </div>
+
+    <div class="learning-cards-grid">
+      <article class="learning-card">
+        <h3>Teclados mecânicos</h3>
+        <p>Entenda layouts, switches e como escolher o teclado ideal para o seu estilo.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Mouses de alto desempenho</h3>
+        <p>Descubra sensores, ergonomia e pesos ajustáveis para partidas precisas.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Headsets imersivos</h3>
+        <p>Compare drivers, isolamento e recursos surround para comunicação cristalina.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Monitores ideais</h3>
+        <p>Aprenda a avaliar taxa de atualização, painel e sincronização adaptativa.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Microfones para streaming</h3>
+        <p>Guia sobre padrões de captação, filtros e interfaces para criar conteúdo.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Cadeiras ergonômicas</h3>
+        <p>Mantenha o conforto com ajustes corretos de encosto, altura e apoios.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Iluminação e ambiance</h3>
+        <p>Dicas de iluminação inteligente para reduzir fadiga e melhorar o foco.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Acessórios complementares</h3>
+        <p>Organizadores, suportes e hubs USB para um setup funcional e limpo.</p>
+      </article>
+    </div>
+  </div>
 </section>
+
+<section class="learning-section" id="componentes">
+  <header class="learning-section-header">
+    <h2>Componentes essenciais</h2>
+    <p>Conheça o impacto de cada peça no desempenho e planeje upgrades com confiança.</p>
+  </header>
+
+  <div class="learning-layout">
+    <div class="learning-video-panel">
+      <div class="learning-video-frame" aria-label="Vídeo sobre componentes">
+        <iframe
+          title="Guia de componentes"
+          src=""
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+        <span class="learning-video-placeholder">Vídeo sobre componentes</span>
+      </div>
+      <button class="video-info-btn" type="button" data-modal-target="componentes-modal">Saiba mais</button>
+    </div>
+
+    <div class="learning-cards-grid">
+      <article class="learning-card">
+        <h3>Processadores</h3>
+        <p>Como escolher o número de núcleos, threads e frequências ideais.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Placas-mãe</h3>
+        <p>Compatibilidade de soquetes, chipsets e recursos de expansão explicados.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Memórias RAM</h3>
+        <p>Latências, frequências e perfis XMP para aproveitar o desempenho máximo.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Armazenamento</h3>
+        <p>Compare SSDs NVMe, SATA e HDDs para equilibrar velocidade e capacidade.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Placas de vídeo</h3>
+        <p>Entenda VRAM, arquitetura e tecnologias de upscaling para jogos e criação.</p>
+      </article>
+      <article class="learning-card">
+        <h3>Fontes e resfriamento</h3>
+        <p>Dimensione a potência correta e escolha soluções térmicas eficientes.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="learning-modal" id="perifericos-modal" role="dialog" aria-modal="true" aria-labelledby="perifericos-modal-title" hidden>
+  <div class="learning-modal__overlay" data-modal-close></div>
+  <div class="learning-modal__content">
+    <button class="learning-modal__close" type="button" aria-label="Fechar" data-modal-close>&times;</button>
+    <h3 id="perifericos-modal-title">Sobre o vídeo de periféricos</h3>
+    <p>
+      Este vídeo apresenta recomendações práticas para montar um ambiente confortável, com foco em ajustes ergonômicos e na escolha de periféricos que atendam às suas necessidades de desempenho.
+    </p>
+  </div>
+</div>
+
+<div class="learning-modal" id="componentes-modal" role="dialog" aria-modal="true" aria-labelledby="componentes-modal-title" hidden>
+  <div class="learning-modal__overlay" data-modal-close></div>
+  <div class="learning-modal__content">
+    <button class="learning-modal__close" type="button" aria-label="Fechar" data-modal-close>&times;</button>
+    <h3 id="componentes-modal-title">Sobre o vídeo de componentes</h3>
+    <p>
+      Aqui você encontra um panorama completo dos principais componentes internos, entendendo como balancear orçamento e performance para diferentes perfis de uso.
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoFrames = document.querySelectorAll('.learning-video-frame');
+    const openButtons = document.querySelectorAll('[data-modal-target]');
+    const closeTriggers = document.querySelectorAll('[data-modal-close]');
+
+    const markVideoLoaded = (frame) => {
+      frame.classList.add('has-video');
+    };
+
+    videoFrames.forEach((frame) => {
+      const iframe = frame.querySelector('iframe');
+      if (!iframe) return;
+
+      if (iframe.getAttribute('src')) {
+        markVideoLoaded(frame);
+      }
+
+      iframe.addEventListener('load', () => {
+        if (iframe.src) {
+          markVideoLoaded(frame);
+        }
+      });
+    });
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.removeAttribute('hidden');
+      modal.classList.add('is-open');
+    }
+
+    function closeModal(modal) {
+      modal.classList.remove('is-open');
+      modal.setAttribute('hidden', '');
+    }
+
+    openButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-modal-target');
+        if (targetId) {
+          openModal(targetId);
+        }
+      });
+    });
+
+    closeTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const modal = trigger.closest('.learning-modal');
+        if (modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      document.querySelectorAll('.learning-modal.is-open').forEach((modal) => {
+        closeModal(modal);
+      });
+    });
+  });
+</script>
 {% endblock %}
