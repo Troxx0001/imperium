@@ -36,14 +36,16 @@
 
   .product-content {
     display: grid;
-    grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+    /* increased left column max so main image can be wider */
+    grid-template-columns: minmax(0, 680px) minmax(0, 1fr);
     gap: 2.5rem;
     align-items: start;
   }
 
   .product-gallery {
     display: grid;
-    grid-template-columns: 90px 1fr;
+    /* slightly larger thumb column and bigger main image column */
+    grid-template-columns: 100px 1fr;
     gap: 1.5rem;
     align-items: start;
   }
@@ -89,7 +91,8 @@
 
   .product-main-image img {
     max-width: 100%;
-    max-height: 320px;
+    /* allow taller image so it appears larger inside the widened column */
+    max-height: 420px;
     object-fit: contain;
   }
 
@@ -260,6 +263,83 @@
     .purchase-actions {
       grid-template-columns: 1fr;
     }
+  }
+</style>
+<style>
+  /* Dark-mode overrides for product detail page */
+  html[data-theme="dark"] .page-product {
+    background: #0b1116; /* page background in dark */
+  }
+
+  html[data-theme="dark"] .product-container {
+    color: #e6eef6;
+  }
+
+  html[data-theme="dark"] .breadcrumb {
+    color: #9ca3af;
+  }
+
+  html[data-theme="dark"] .product-main-image {
+    border-color: rgba(255,255,255,0.04);
+    background: #0f1720; /* slightly elevated panel */
+  }
+
+  html[data-theme="dark"] .product-thumbs button {
+    background: #0b1116;
+    border-color: rgba(255,255,255,0.04);
+    box-shadow: none;
+  }
+
+  html[data-theme="dark"] .product-thumbs button.is-active {
+    border-color: #60a5fa; /* accent for active thumb */
+    box-shadow: 0 0 0 2px rgba(96,165,250,0.09);
+  }
+
+  html[data-theme="dark"] .product-main-image img,
+  html[data-theme="dark"] .product-thumbs img {
+    filter: none; /* show images normally on dark bg */
+  }
+
+  html[data-theme="dark"] .product-summary h1 {
+    color: #ffffff;
+  }
+
+  html[data-theme="dark"] .product-summary .brand,
+  html[data-theme="dark"] .product-summary .brand + * {
+    color: #9ca3af;
+  }
+
+  html[data-theme="dark"] .price {
+    color: #93c5fd;
+  }
+
+  html[data-theme="dark"] .stock {
+    color: #34d399;
+  }
+
+  html[data-theme="dark"] .purchase-actions a,
+  html[data-theme="dark"] .purchase-actions button {
+    background: #111827; /* dark button */
+    color: #fff;
+    border-color: rgba(255,255,255,0.06);
+  }
+
+  html[data-theme="dark"] .purchase-actions .outline {
+    background: transparent;
+    color: #93c5fd;
+    border-color: rgba(147,197,253,0.12);
+  }
+
+  html[data-theme="dark"] .info-item {
+    border-bottom-color: rgba(255,255,255,0.03);
+    color: #9ca3af;
+  }
+
+  /* Ensure product details text is readable */
+  html[data-theme="dark"] .product-details h2,
+  html[data-theme="dark"] .product-details p,
+  html[data-theme="dark"] .product-details li {
+    color: #e6eef6;
   }
 </style>
 {% endblock %}
