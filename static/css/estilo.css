@@ -1,18 +1,117 @@
+/* SEÇÃO: Paleta - variáveis CSS centrais
+  Função: contém tokens de cores, raios e fonte usados em todo o arquivo. */
 :root {
-  --bg-dark: #1b1b1f;
-  --bg-darker: #111113;
-  --accent: #f7ce46;
-  --accent-dark: #c49b07;
-  --text-light: #f5f5f5;
-  --text-muted: #a7a7b7;
-  --surface: #242429;
-  --surface-light: #2d2d34;
-  --highlight: #3a3a44;
-  --shadow: rgba(0, 0, 0, 0.25);
+  --palette-bg-0: #FFFFFF;
+  --palette-bg-1: #F8FAFC;
+  --palette-bg-dark-1: #1f1f24;
+  --palette-bg-dark-2: #101014;
+
+  --palette-surface: #242429;
+  --palette-surface-light: #2d2d34;
+  --palette-highlight: #3a3a44;
+
+  --palette-text: #E5E7EB;
+  --palette-text-light: #f5f5f5;
+  --palette-text-muted: #a7a7b7;
+
+  --palette-border: rgba(255,255,255,0.06);
+  --palette-shadow: rgba(0, 0, 0, 0.25);
+
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-sm: 8px;
   font-family: 'Barlow', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --bg-dark: var(--palette-bg-dark-2);
+  --bg-darker: var(--palette-bg-dark-1);
+  --text-light: var(--palette-text-light);
+  --text-muted: var(--palette-text-muted);
+  --surface: var(--palette-surface);
+  --surface-light: var(--palette-surface-light);
+  --highlight: var(--palette-highlight);
+  --shadow: var(--palette-shadow);
+
+  --white-04: rgba(255, 255, 255, 0.04);
+  --white-06: rgba(255, 255, 255, 0.06);
+  --white-08: rgba(255, 255, 255, 0.08);
+  --white-12: rgba(255, 255, 255, 0.12);
+  --white-14: rgba(255, 255, 255, 0.14);
+  --white-45: rgba(255, 255, 255, 0.45);
+
+  --accent-010: rgba(29, 78, 216, 0.10);
+  --accent-012: rgba(29, 78, 216, 0.12);
+  --accent-015: rgba(29, 78, 216, 0.15);
+  --accent-025: rgba(29, 78, 216, 0.25);
+  --accent-035: rgba(29, 78, 216, 0.35);
+  --accent-040: rgba(29, 78, 216, 0.40);
+
+  --black-60: rgba(0, 0, 0, 0.6);
+  --black-32: rgba(15, 23, 42, 0.32);
+
+  --top-shell-bg: rgba(13, 13, 15, 0.92);
+  --body-bg-start: var(--palette-bg-dark-1);
+  --body-bg-end: var(--palette-bg-dark-2);
+}
+
+/* SEÇÃO: Tokens de tema - conjuntos light/dark/deuteranomaly
+  Função: substituições de variáveis por tema usadas pelo seletor de tema. */
+:root {
+  --light-bg: #FFFFFF;
+  --light-surface: #F8FAFC;
+  --light-text: #0F172A;
+  --light-muted: #475569;
+  --light-border: #E2E8F0;
+  --light-primary: #1D4ED8;
+  --light-on-primary: #FFFFFF;
+  --light-link: #1D4ED8;
+  --light-focus: #111827;
+  --light-bg-dark: #FFFFFF;
+  --light-bg-darker: #F1F5F9;
+  --light-surface-light: #EEF2F8;
+  --light-highlight: #E2E8F0;
+  --light-accent: #1D4ED8;
+  --light-accent-dark: #163FA3;
+  --light-text-light: #0F172A;
+  --light-text-muted: #475569;
+  --light-shadow: rgba(15, 23, 42, 0.08);
+
+  --dark-bg: #0B0F19;
+  --dark-surface: #111827;
+  --dark-text: #E5E7EB;
+  --dark-muted: #94A3B8;
+  --dark-border: #1F2937;
+  --dark-primary: #60A5FA;
+  --dark-on-primary: #0B0F19;
+  --dark-link: #93C5FD;
+  --dark-focus: #E5E7EB;
+  --dark-bg-dark: #0B0F19;
+  --dark-bg-darker: #111827;
+  --dark-surface-light: #1F2937;
+  --dark-highlight: #1F2937;
+  --dark-accent: #60A5FA;
+  --dark-accent-dark: #3B82F6;
+  --dark-text-light: #E5E7EB;
+  --dark-text-muted: #94A3B8;
+  --dark-shadow: rgba(2, 6, 23, 0.4);
+
+  --deut-bg: #FFFFFF;
+  --deut-surface: #F5F7FA;
+  --deut-text: #0B1220;
+  --deut-muted: #374151;
+  --deut-border: #CBD5E1;
+  --deut-primary: #0077EE;
+  --deut-on-primary: #FFFFFF;
+  --deut-link: #005BBB;
+  --deut-focus: #000000;
+  --deut-bg-dark: #FFFFFF;
+  --deut-bg-darker: #E2E8F0;
+  --deut-surface-light: #E8EDF5;
+  --deut-highlight: #CBD5E1;
+  --deut-accent: #0077EE;
+  --deut-accent-dark: #005BBB;
+  --deut-text-light: #0B1220;
+  --deut-text-muted: #374151;
+  --deut-shadow: rgba(11, 18, 32, 0.16);
 }
 
 * {
@@ -23,8 +122,9 @@ body {
   font-family: 'Barlow', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #1f1f24 0%, #101014 100%);
+  background: linear-gradient(180deg, var(--body-bg-start) 0%, var(--body-bg-end) 100%);
   color: var(--text-light);
+  text-decoration: none;
 }
 
 a {
@@ -32,9 +132,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
+
 
 .sr-only {
   position: absolute;
@@ -57,17 +155,15 @@ a:hover {
   align-items: center;
   gap: 1.5rem;
   padding: 0.75rem 2.5rem;
-  background: rgba(13, 13, 15, 0.92);
+  background: var(--top-shell-bg);
   backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--white-06);
 }
 
 .menu-toggle {
   width: 46px;
   height: 46px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: var(--surface);
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -77,48 +173,82 @@ a:hover {
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.menu-toggle span {
-  width: 20px;
-  height: 2px;
-  background: var(--text-light);
-  border-radius: 999px;
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: black;
 }
 
-.menu-toggle:hover {
-  transform: scale(1.05);
-  background: var(--surface-light);
+/* Icon inside menu-toggle (when using inline SVG) */
+.menu-toggle svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  color: white;
+  fill: currentColor; /* garante que SVG seja preenchido pela cor atual */
+}
+
+.menu-toggle svg :hover {
+  fill: black;
 }
 
 .brand {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
   font-weight: 600;
+  text-decoration: none;
   letter-spacing: 0.18rem;
   text-transform: uppercase;
+}
+
+/* Prevent global a:hover underline from affecting the brand link */
+.brand:hover {
+  text-decoration: none;
 }
 
 .brand-logo {
   width: 46px;
   height: 46px;
+  flex: 0 0 auto;
 }
 
 .brand-name {
-  font-size: 1.25rem;
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--text);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* New wrappers for brand layout */
+.brand-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto; /* keep logo size stable */
+}
+
+.brand-text {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  min-width: 0; /* allow truncation inside flex/grid */
+  max-width: 18rem; /* prevent brand text from occupying entire header on wide screens */
 }
 
 .search {
   display: flex;
   align-items: center;
   background: var(--surface);
-  border-radius: 999px;
+  border-radius: 5px;
   padding: 0.35rem;
   gap: 0.5rem;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px var(--white-06);
 }
 
 .search input {
   flex: 1;
+  border-radius: 4px;
   background: transparent;
   border: none;
   color: var(--text-light);
@@ -127,15 +257,14 @@ a:hover {
 }
 
 .search input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--white-45);
 }
 
 .search button {
   border: none;
-  background: var(--accent);
-  color: #111;
+  background: var(--primary);
   font-weight: 600;
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 0.55rem 1.2rem;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -143,7 +272,7 @@ a:hover {
 
 .search button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(247, 206, 70, 0.25);
+  box-shadow: 0 6px 12px var(--accent-025);
 }
 
 .header-actions {
@@ -158,10 +287,10 @@ a:hover {
   justify-content: center;
   width: 46px;
   height: 46px;
-  border-radius: 50%;
+  border-radius: 5px;
   background: var(--surface);
   color: var(--text-light);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--white-12);
   transition: transform 0.2s ease;
 }
 
@@ -209,25 +338,26 @@ a:hover {
 }
 
 .primary-cta {
-  background: var(--accent);
-  color: #111;
-  box-shadow: 0 12px 24px rgba(247, 206, 70, 0.25);
+  background: var(--primary);
+  color: var(--light-on-primary, #111);
+  /* subtler, more centered shadow */
+  box-shadow: 0 6px 12px var(--accent-025);
 }
 
 .primary-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(247, 206, 70, 0.35);
+  box-shadow: 0 8px 16px var(--accent-035);
   text-decoration: none;
 }
 
 .secondary-cta {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--white-08);
   color: var(--text-light);
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--white-12);
 }
 
 .secondary-cta:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--white-14);
   transform: translateY(-2px);
   text-decoration: none;
 }
@@ -235,23 +365,23 @@ a:hover {
 .ghost-cta {
   background: transparent;
   color: var(--accent);
-  border-color: rgba(247, 206, 70, 0.4);
+  border-color: var(--accent-040);
 }
 
 .ghost-cta:hover {
-  background: rgba(247, 206, 70, 0.1);
+  background: var(--accent-010);
   transform: translateY(-2px);
   text-decoration: none;
 }
 
 .account-action-btn {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--white-08);
   color: var(--text-light);
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--white-12);
 }
 
 .account-action-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--white-14);
   transform: translateY(-2px);
   text-decoration: none;
 }
@@ -259,11 +389,11 @@ a:hover {
 .account-action-btn.ghost {
   background: transparent;
   color: var(--accent);
-  border-color: rgba(247, 206, 70, 0.35);
+  border-color: var(--accent-035);
 }
 
 .account-action-btn.ghost:hover {
-  background: rgba(247, 206, 70, 0.12);
+  background: var(--accent-012);
 }
 
 .account-action-btn.link {
@@ -335,7 +465,7 @@ a:hover {
 }
 
 .drawer-links .admin-link a {
-  background: rgba(247, 206, 70, 0.15);
+  background: var(--accent-015);
   color: var(--accent);
 }
 
@@ -368,9 +498,9 @@ a:hover {
 .flash-message {
   padding: 1rem 1.2rem;
   border-radius: var(--radius-md);
-  background: rgba(247, 206, 70, 0.12);
+  background: var(--accent-012);
   color: var(--accent);
-  border: 1px solid rgba(247, 206, 70, 0.3);
+  border: 1px solid var(--accent-025);
 }
 
 /* Hero */
@@ -394,7 +524,7 @@ a:hover {
   opacity: 0;
   transform: scale(1.02);
   transition: opacity 0.6s ease, transform 0.6s ease;
-  background: radial-gradient(circle at top, rgba(247, 206, 70, 0.35), transparent 55%),
+  background: radial-gradient(circle at top, var(--accent-035), transparent 55%),
               linear-gradient(120deg, #2f2f37, #18181d 70%);
 }
 
@@ -402,6 +532,21 @@ a:hover {
   opacity: 1;
   transform: scale(1);
   position: absolute;
+}
+
+/* Garante que slides inativos não capturem eventos e que o slide ativo/controles fiquem no topo */
+.hero-slide {
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-slide.is-active {
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.hero-control {
+  z-index: 2; /* keep controls above slides */
 }
 
 .hero-overlay {
@@ -420,14 +565,13 @@ a:hover {
 .hero-content {
   position: relative;
   text-align: center;
-  padding: 3rem 2rem;
   max-width: 540px;
 }
 
 .hero-tag {
   display: inline-block;
   padding: 0.35rem 1.2rem;
-  background: rgba(247, 206, 70, 0.15);
+  background: var(--accent-015);
   color: var(--accent);
   border-radius: 999px;
   font-size: 0.85rem;
@@ -454,16 +598,16 @@ a:hover {
   align-items: center;
   gap: 0.6rem;
   padding: 0.75rem 1.8rem;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #111;
+  border-radius: 5px;
+  background: var(--primary);
+  color: var(--light-on-primary, #111);
   font-weight: 600;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hero-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(247, 206, 70, 0.25);
+  box-shadow: 0 8px 16px var(--accent-025);
 }
 
 .hero-control {
@@ -472,7 +616,6 @@ a:hover {
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
-  border-radius: 50%;
   border: none;
   background: rgba(0, 0, 0, 0.35);
   color: var(--text-light);
@@ -502,6 +645,11 @@ a:hover {
   gap: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
+.category-toolbar-header {
+  display: flex;
+  flex-direction: column;
+  border-color: #374151;
+}
 
 .category-toolbar-header h2 {
   margin: 0;
@@ -515,7 +663,7 @@ a:hover {
 
 .category-toolbar-actions {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
 }
 
@@ -533,26 +681,27 @@ a:hover {
 }
 
 .category-chip:hover {
-  background: rgba(247, 206, 70, 0.15);
+  background: var(--accent-015);
   transform: translateY(-2px);
   text-decoration: none;
 }
 
 .category-chip.is-active {
-  background: var(--accent);
+  background: var(--primary);
   border-color: transparent;
-  color: #111;
-  box-shadow: 0 12px 20px rgba(247, 206, 70, 0.25);
+  color: var(--light-on-primary, #111);
+  box-shadow: 0 6px 12px var(--accent-025);
 }
 
 .learn-banner {
   margin: 3rem 0;
-  background: linear-gradient(130deg, rgba(247, 206, 70, 0.18), rgba(33, 33, 40, 0.95));
+  background: linear-gradient(130deg, var(--accent-015), rgba(33, 33, 40, 0.95));
   border-radius: var(--radius-lg);
   padding: 2.5rem;
   display: grid;
   gap: 1.8rem;
-  border: 1px solid rgba(247, 206, 70, 0.3);
+  border: 1px solid var(--accent-025);
+  justify-items: center;
 }
 
 .learn-banner-content {
@@ -588,7 +737,8 @@ a:hover {
 
 .learn-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
   gap: 0.75rem;
 }
 
@@ -606,8 +756,7 @@ a:hover {
 /* Catalog */
 .catalog-header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  flex-direction: column;
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -651,7 +800,7 @@ a:hover {
 
 .product-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(247, 206, 70, 0.45);
+  border-color: var(--accent-035);
 }
 
 .product-link {
@@ -662,7 +811,7 @@ a:hover {
 }
 
 .product-thumb {
-  background: linear-gradient(140deg, rgba(247, 206, 70, 0.2), rgba(24, 24, 28, 0.9));
+  background: linear-gradient(140deg, var(--accent-025), rgba(24, 24, 28, 0.9));
   display: grid;
   place-items: center;
   min-height: 160px;
@@ -713,8 +862,8 @@ a:hover {
 }
 
 .product-price {
-  color: #111;
-  background: var(--accent);
+  color: var(--light-on-primary, #111);
+  background: var(--primary);
   padding: 0.35rem 0.8rem;
   border-radius: 999px;
   font-weight: 700;
@@ -787,8 +936,8 @@ a:hover {
   place-items: center;
   font-weight: 700;
   font-size: 1.4rem;
-  background: var(--accent);
-  color: #111;
+  background: var(--primary);
+  color: var(--light-on-primary, #111);
 }
 
 .account-welcome {
@@ -874,7 +1023,7 @@ a:hover {
 }
 
 .account-panel {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(78, 78, 78, 0.04);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 2rem;
@@ -1050,7 +1199,7 @@ a:hover {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.16rem;
-  background: rgba(247, 206, 70, 0.16);
+  background: var(--accent-015);
   color: var(--accent);
 }
 
@@ -1097,12 +1246,23 @@ a:hover {
 .learning-hero header {
   display: grid;
   gap: 0.75rem;
+  padding: 1rem;
+  /* center stack: align all header children vertically and horizontally */
+  place-items: center;
+  text-align: center;
 }
 
 .learning-hero p {
   margin: 0;
   color: var(--text-muted);
   max-width: 620px;
+}
+
+/* helper class to center arbitrary stacks inside learning sections */
+.centered-stack {
+  display: grid;
+  place-items: center;
+  text-align: center;
 }
 
 .learning-video {
@@ -1153,7 +1313,8 @@ a:hover {
 
 .learning-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   gap: 0.75rem;
   margin-bottom: 3rem;
 }
@@ -1179,7 +1340,7 @@ a:hover {
 .learning-card {
   background: rgba(255, 255, 255, 0.04);
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(0, 0, 0, 0.123);
   padding: 1.6rem;
   display: grid;
   gap: 1rem;
@@ -1188,7 +1349,7 @@ a:hover {
 
 .learning-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(247, 206, 70, 0.3);
+  border-color: var(--accent-025);
 }
 
 .learning-card p {
@@ -1230,6 +1391,14 @@ a:hover {
   display: grid;
   gap: 1.5rem;
   margin-bottom: 3rem;
+}
+
+.learning-detail > header {
+  /* make the page header centered and give it a comfortable padding */
+  padding: 1rem;
+  place-items: center;
+  display: grid;
+  text-align: center;
 }
 
 .learning-detail-body {
@@ -1323,14 +1492,14 @@ a:hover {
   border: none;
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(75, 75, 75, 0.05);
   color: var(--text-light);
 }
 
 .password-wrapper {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(75, 75, 75, 0.05);
   border-radius: var(--radius-sm);
   padding-right: 0.4rem;
 }
@@ -1344,7 +1513,7 @@ a:hover {
 
 .toggle-password {
   border: none;
-  background: none;
+  background: var(--primary);
   padding: 0.4rem;
   cursor: pointer;
 }
@@ -1359,8 +1528,8 @@ a:hover {
   border: none;
   border-radius: 999px;
   padding: 0.85rem;
-  background: var(--accent);
-  color: #111;
+  background: var(--primary);
+  color: var(--light-on-primary, #111);
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -1368,7 +1537,7 @@ a:hover {
 
 .auth-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 25px rgba(247, 206, 70, 0.25);
+  box-shadow: 0 8px 14px var(--accent-025);
 }
 
 .auth-switch {
@@ -1447,8 +1616,8 @@ a:hover {
   display: inline-block;
   padding: 0.4rem 1.2rem;
   border-radius: 999px;
-  background: rgba(247, 206, 70, 0.2);
-  color: var(--accent);
+  background: var(--accent-025);
+  color: var(--primary);
   letter-spacing: 0.18rem;
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -1468,8 +1637,8 @@ a:hover {
 }
 
 .price {
-  background: var(--accent);
-  color: #111;
+  background: var(--primary);
+  color: var(--light-on-primary, #111);
   padding: 0.4rem 1.3rem;
   border-radius: 999px;
   font-weight: 600;
@@ -1499,15 +1668,15 @@ a:hover {
   justify-content: center;
   padding: 0.9rem 2.8rem;
   border-radius: 999px;
-  background: var(--accent);
-  color: #111;
+  background: var(--primary);
+  color: var(--light-on-primary, #111);
   font-weight: 600;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .buy-button:hover:not([disabled]) {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(247, 206, 70, 0.3);
+  box-shadow: 0 8px 16px var(--accent-035);
 }
 
 .buy-button[disabled] {
@@ -1606,8 +1775,8 @@ a:hover {
   border: none;
   padding: 0.9rem;
   border-radius: 999px;
-  background: var(--accent);
-  color: #111;
+  background: var(--primary);
+  color: var(--light-on-primary, #111);
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -1829,3 +1998,508 @@ a:hover {
     scroll-behavior: auto !important;
   }
 }
+
+/* === Início: conteúdo mesclado de theme.css (tokens de tema e resets) === */
+/* Reset básico (não destrutivo) */
+:root {
+  color-scheme: light dark;
+}
+
+/* Fallback inicial */
+html {
+  --bg: #FFFFFF;
+  --surface: #F8FAFC;
+  --text: #0F172A;
+  --muted: #475569;
+  --border: #E2E8F0;
+  --primary: #1D4ED8;
+  --on-primary: #FFFFFF;
+  --link: #1D4ED8;
+  --focus: #111827;
+  --bg-dark: var(--bg);
+  --bg-darker: var(--surface);
+  --surface-light: var(--surface);
+  --highlight: var(--surface);
+  --accent: var(--primary);
+  --accent-dark: #163FA3;
+  --text-light: var(--text);
+  --text-muted: var(--muted);
+  --shadow: rgba(15, 23, 42, 0.12);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  font-family: 'Barlow', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Tema claro */
+html[data-theme="light"] {
+  --bg: var(--light-bg);
+  --surface: var(--light-surface);
+  --text: var(--light-text);
+  --muted: var(--light-muted);
+  --border: var(--light-border);
+  --primary: var(--light-primary);
+  --on-primary: var(--light-on-primary);
+  --link: var(--light-link);
+  --focus: var(--light-focus);
+  --bg-dark: var(--light-bg-dark);
+  --bg-darker: var(--light-bg-darker);
+  --surface-light: var(--light-surface-light);
+  --highlight: var(--light-highlight);
+  --accent: var(--light-accent);
+  --accent-dark: var(--light-accent-dark);
+  --text-light: var(--light-text-light);
+  --text-muted: var(--light-text-muted);
+  --shadow: var(--light-shadow);
+  color-scheme: light;
+}
+
+/* Tema escuro */
+html[data-theme="dark"] {
+  --bg: var(--dark-bg);
+  --surface: var(--dark-surface);
+  --text: var(--dark-text);
+  --muted: var(--dark-muted);
+  --border: var(--dark-border);
+  --primary: var(--dark-primary);
+  --on-primary: var(--dark-on-primary);
+  --link: var(--dark-link);
+  --focus: var(--dark-focus);
+  --bg-dark: var(--dark-bg-dark);
+  --bg-darker: var(--dark-bg-darker);
+  --surface-light: var(--dark-surface-light);
+  --highlight: var(--dark-highlight);
+  --accent: var(--dark-accent);
+  --accent-dark: var(--dark-accent-dark);
+  --text-light: var(--dark-text-light);
+  --text-muted: var(--dark-text-muted);
+  --shadow: var(--dark-shadow);
+  color-scheme: dark;
+}
+
+/* Modo deuteranomalia */
+html[data-theme="deuteranomaly"] {
+  --bg: var(--deut-bg);
+  --surface: var(--deut-surface);
+  --text: var(--deut-text);
+  --muted: var(--deut-muted);
+  --border: var(--deut-border);
+  --primary: var(--deut-primary);
+  --on-primary: var(--deut-on-primary);
+  --link: var(--deut-link);
+  --focus: var(--deut-focus);
+  --bg-dark: var(--deut-bg-dark);
+  --bg-darker: var(--deut-bg-darker);
+  --surface-light: var(--deut-surface-light);
+  --highlight: var(--deut-highlight);
+  --accent: var(--deut-accent);
+  --accent-dark: var(--deut-accent-dark);
+  --text-light: var(--deut-text-light);
+  --text-muted: var(--deut-text-muted);
+  --shadow: var(--deut-shadow);
+  color-scheme: light;
+}
+
+/* Aplicação geral */
+body {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+
+header, nav, .card, .drawer, .product-card, .site-footer, .top-shell, .learn-banner, .hero-slide,
+.hero-overlay, .product-thumb, .category-chip, .empty-state {
+  background: var(--surface);
+  color: var(--text);
+  text-align: center;
+}
+
+main, .page {
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* No modo deuteranomalia, sempre sublinhar links */
+html[data-theme="deuteranomaly"] a {
+  text-decoration: underline;
+}
+
+.button,
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--on-primary);
+  padding: 0.5rem 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.button:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+hr {
+  border-color: var(--border);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Layout do cabeçalho e navegação */
+.top-shell {
+  /* garante que o cabeçalho receba sempre o background de superfície e um desfoque */
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  backdrop-filter: blur(18px) !important;
+  box-shadow: none;
+}
+
+/* Be explicit per-theme as a safety net */
+html[data-theme="dark"] .top-shell,
+html[data-theme="deuteranomaly"] .top-shell,
+html[data-theme="light"] .top-shell {
+  background: var(--surface) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+.brand {
+  color: var(--text);
+}
+
+.brand-logo,
+.footer-logo {
+  width: 140px;
+  height: auto;
+  display: inline-block;
+}
+
+.header-actions .auth-link,
+.drawer a,
+.drawer button {
+  color: var(--text);
+}
+
+.header-actions .auth-link {
+  text-decoration: underline;
+}
+
+.icon-link,
+.btn-cart {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.icon-link:hover,
+.btn-cart:hover {
+  background: var(--surface-light);
+}
+
+/* Images (fallback) and SVG icons in header actions */
+.btn-cart img,
+.icon-link img,
+.btn-cart svg,
+.icon-link svg {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.btn-cart svg,
+.icon-link svg {
+  fill: currentColor; /* garante que ícone use a cor do elemento */
+}
+
+html[data-theme="dark"] .btn-cart img {
+  filter: brightness(1.1) contrast(1.05);
+}
+
+.search {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.search input {
+  color: var(--text);
+}
+
+.search input::placeholder {
+  color: var(--muted);
+}
+
+.drawer {
+  border-right: 1px solid var(--border);
+}
+
+.drawer-close {
+  color: var(--text);
+}
+
+.drawer-links button.btn {
+  width: 100%;
+}
+
+.backdrop {
+  background: rgba(15, 23, 42, 0.32);
+}
+
+/* Conteúdo principal */
+.page {
+  background: var(--bg);
+}
+
+.card,
+.flash-message,
+.learn-banner,
+.empty-state {
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.flash-message {
+  background: var(--surface-light);
+  color: var(--text);
+}
+
+.hero-slide {
+  background: var(--surface);
+}
+
+.hero-overlay {
+  background: none;
+}
+
+.hero-tag,
+.section-tag {
+  background: var(--surface-light);
+  color: var(--text);
+}
+
+.hero-cta,
+.primary-cta,
+.hero-control,
+.category-chip.is-active,
+.product-price {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+  box-shadow: none;
+}
+
+.hero-control,
+.category-chip,
+.add-to-cart,
+.clear-search,
+.secondary-cta,
+.account-action-btn,
+.ghost-cta {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  box-shadow: none;
+}
+
+.category-chip.is-active {
+  color: var(--on-primary);
+}
+
+.category-chip:hover,
+.add-to-cart:hover,
+.secondary-cta:hover,
+.account-action-btn:hover,
+.ghost-cta:hover,
+.hero-cta:hover {
+  transform: translateY(-2px);
+  background: var(--surface-light);
+  text-decoration: none;
+}
+
+.product-thumb {
+  background: var(--surface);
+}
+
+.add-to-cart {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+
+.add-to-cart:hover {
+  background: var(--accent-dark);
+  color: var(--on-primary);
+}
+
+.product-card {
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.product-card:hover {
+  border-color: var(--primary);
+}
+
+.product-description,
+.product-stock,
+.learn-banner-content p,
+.catalog-header p,
+.empty-state,
+.muted,
+.text-muted {
+  color: var(--muted);
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+}
+
+.footer-links a {
+  color: var(--link);
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+input,
+select,
+textarea {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: var(--surface-light);
+  color: var(--muted);
+}
+
+html[data-theme="deuteranomaly"] .hero-cta,
+html[data-theme="deuteranomaly"] .primary-cta,
+html[data-theme="deuteranomaly"] .add-to-cart,
+html[data-theme="deuteranomaly"] .button,
+html[data-theme="deuteranomaly"] button,
+html[data-theme="deuteranomaly"] .btn {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+  text-decoration: none;
+}
+
+html[data-theme="deuteranomaly"] .category-chip,
+html[data-theme="deuteranomaly"] .hero-tag,
+html[data-theme="deuteranomaly"] .section-tag {
+  border-color: var(--border);
+  background: var(--surface-light);
+  color: var(--text);
+}
+
+html[data-theme="deuteranomaly"] .btn-cart img,
+html[data-theme="deuteranomaly"] .icon-link img {
+  filter: contrast(1.1);
+}
+
+html[data-theme="deuteranomaly"] .header-actions .auth-link,
+html[data-theme="deuteranomaly"] .drawer a {
+  text-decoration: underline;
+}
+
+/* === End merged content from theme.css === */
+
+/* Garante que os hover de hero e CTAs principais prevaleçam sobre resets de tema.
+  Alguns blocos de tema removem box-shadow; esta regra reaplica sombra e transform
+  para todos os temas. Deve ficar após os tokens de tema para garantir precedência. */
+.hero-cta:hover,
+.primary-cta:hover,
+.add-to-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px var(--accent-025);
+  text-decoration: none;
+}
+
+/* Garante que SVGs inline nos controles do hero herdem cor e tenham tamanho uniforme */
+.hero-control svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: currentColor;
+}
+
+/* Ícones ligeiramente maiores e centragem garantida nos seus contêineres */
+/* Mantém .menu-toggle como flex (para barras empilhadas) e aumenta levemente o svg */
+.menu-toggle svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+/* Garante que contêineres de ações do cabeçalho centralizem seus ícones */
+.icon-link,
+.btn-cart,
+.hero-control {
+  display: grid;
+  place-items: center;
+}
+
+/* Ícones do cabeçalho/ações um pouco maiores */
+.icon-link svg,
+.btn-cart svg,
+.hero-control svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Classe unificada para ícones dos controles do hero: tamanho e centralização consistentes */
+.hero-control-icon {
+  width: 26px; /* um pouco maior que outros ícones do cabeçalho para visibilidade */
+  height: 26px;
+  display: block;
+  fill: currentColor;
+}
+
+
+
+/* === Limpeza e ajustes finais (específicos e não destrutivos) === */
+/* Garante que o link da marca no cabeçalho não receba sublinhado global */
+header.top-shell a.brand,
+header.top-shell a.brand:hover,
+header.top-shell a.brand:focus {
+  text-decoration: none;
+}
+
+/* Normalização pequena para o ícone do menu seguir a cor do tema */
+.menu-toggle {
+  color: var(--text);
+}
+
+/* Fim dos ajustes finais */

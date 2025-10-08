@@ -20,14 +20,22 @@
         </div>
       </article>
     {% endfor %}
-    <button class="hero-control prev" type="button" aria-label="Slide anterior" data-direction="prev">&#10094;</button>
-    <button class="hero-control next" type="button" aria-label="Próximo slide" data-direction="next">&#10095;</button>
+    <button class="hero-control prev" type="button" aria-label="Slide anterior" data-direction="prev">
+      <svg class="hero-control-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+        <path fill-rule="evenodd" d="M15.03 5.03a.75.75 0 0 1 0 1.06L10.06 11l4.97 4.91a.75.75 0 1 1-1.06 1.08l-5.5-5.44a1.66 1.66 0 0 1 0-2.36l5.5-5.44a.75.75 0 0 1 1.06 0z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+    <button class="hero-control next" type="button" aria-label="Próximo slide" data-direction="next">
+      <svg class="hero-control-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+        <path fill-rule="evenodd" d="M8.97 18.97a.75.75 0 0 1 0-1.06L13.94 13 8.97 8.09a.75.75 0 1 1 1.06-1.08l5.5 5.44c.65.64.65 1.67 0 2.31l-5.5 5.44a.75.75 0 0 1-1.06 0z" clip-rule="evenodd"/>
+      </svg>
+    </button>
   </div>
 </section>
 
 <section class="learn-banner" id="aprender-intro">
   <div class="learn-banner-content">
-    <header>
+    <header class="centered-stack">
       <span class="section-tag">Aprender</span>
       <h2>Entenda o Essencial</h2>
       <p>Explicações com vídeos e textos sobre Periféricos e Hardware</p>

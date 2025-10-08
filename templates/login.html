@@ -14,7 +14,7 @@
           id="email"
           name="email"
           placeholder="nome@imperium.com"
-          value="{{ form.email.data if form is defined else '' }}"
+          value="{{ form.email.data|default('', true) if form is defined else '' }}"
           required
         >
         {% if form is defined and form.email.errors %}
