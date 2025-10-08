@@ -4,597 +4,57 @@
 {% block extra_styles %}
 <style>
   .page-product {
-    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 6vw, 4rem) 5rem;
-    background: radial-gradient(circle at top, rgba(99, 102, 241, 0.08) 0%, transparent 55%),
-      radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.08) 0%, transparent 45%);
+    background: #f8f7f4;
+    padding: 2.5rem 0 4rem;
   }
 
-  .product-detail {
-    width: min(1180px, 100%);
+  .product-container {
+    max-width: 1100px;
     margin: 0 auto;
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    align-items: start;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    align-items: stretch;
-  }
-
-  .produto-visual {
-    position: relative;
-    background: var(--surface, rgba(255, 255, 255, 0.04));
-    border-radius: var(--radius-lg, 18px);
-    padding: clamp(1.5rem, 3vw, 2.75rem);
-    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.28);
+    padding: 0 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    gap: 1.5rem;
-    overflow: hidden;
   }
-
-  .produto-visual::before {
-    content: '';
-    position: absolute;
-    inset: -40% auto auto -40%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%);
-    filter: blur(0.5px);
-    opacity: 0.6;
-    pointer-events: none;
-  }
-
   .produto-imagem-principal {
     border: 1px solid #ececec;
     border-radius: 12px;
     padding: 1rem;
-    position: relative;
-    z-index: 1;
-    border-radius: var(--radius-md, 12px);
-    padding: clamp(1rem, 2vw, 1.75rem);
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.65));
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    min-height: clamp(320px, 45vw, 440px);
     display: flex;
     justify-content: center;
     align-items: center;
     background: #fff;
-    overflow: hidden;
   }
-
   .produto-imagem-principal img {
     width: 100%;
     max-height: 420px;
-    width: min(100%, 580px);
-    height: auto;
     object-fit: contain;
-    transition: transform 0.35s ease;
   }
-
-  .produto-visual:hover .produto-imagem-principal img {
-    transform: scale(1.04);
-  }
-
   .produto-thumbs {
-    position: relative;
-    z-index: 1;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
     gap: 0.75rem;
-    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
-    gap: 0.65rem;
-    padding: 0.25rem;
   }
   .produto-thumbs .thumb {
     border: 1px solid #d8d8d8;
     border-radius: 10px;
     padding: 0.5rem;
     background: #fff;
-  }
-
-  .produto-thumbs button.thumb {
-    position: relative;
-    border: none;
-    border-radius: var(--radius-sm, 10px);
-    padding: 0.45rem;
-    background: rgba(15, 23, 42, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease, background 0.2s ease;
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    min-height: 64px;
   }
-
   .produto-thumbs .thumb.is-active {
     border-color: #0d6efd;
     box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
   }
-
-  .produto-thumbs button.thumb::after {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    border-radius: inherit;
-    border: 1px solid transparent;
-    transition: border-color 0.2s ease;
-  }
-
   .produto-thumbs .thumb img {
-    /* You may want to add styles here or remove this block if not needed */
-  }
-
-  .produto-thumbs button.thumb img {
     width: 100%;
-    height: 52px;
+    height: 64px;
     object-fit: contain;
-    filter: saturate(0.9);
   }
-
-  .produto-thumbs button.thumb:is(:hover, :focus-visible) {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 18px rgba(15, 23, 42, 0.32);
-    background: rgba(30, 64, 175, 0.25);
-  }
-
-  .produto-thumbs button.thumb:is(:hover, :focus-visible)::after {
-    border-color: rgba(96, 165, 250, 0.8);
-  }
-
-  .produto-thumbs button.thumb.is-active {
-    background: rgba(59, 130, 246, 0.28);
-    box-shadow: 0 15px 28px rgba(37, 99, 235, 0.25);
-  }
-
-  .produto-thumbs button.thumb.is-active::after {
-    border-color: rgba(191, 219, 254, 0.75);
-  }
-
-  .detail-info {
-    position: relative;
-    background: linear-gradient(160deg, rgba(17, 24, 39, 0.96) 0%, rgba(17, 24, 39, 0.78) 60%, rgba(15, 23, 42, 0.92) 100%);
-    border-radius: var(--radius-lg, 18px);
-    padding: clamp(1.75rem, 3vw, 2.75rem);
-    box-shadow: 0 35px 45px rgba(2, 6, 23, 0.45);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    overflow: hidden;
-  }
-
-  .detail-info::before {
-    content: '';
-    position: absolute;
-    inset: auto -25% -25% auto;
-    width: 55%;
-    height: 55%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.32) 0%, transparent 70%);
-    pointer-events: none;
-    opacity: 0.6;
-  }
-
-  .detail-header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .detail-badge {
-    align-self: flex-start;
-    background: rgba(74, 222, 128, 0.16);
-    color: rgba(134, 239, 172, 0.96);
-    padding: 0.4rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-  }
-
-  .detail-header h1 {
-    margin: 0;
-    font-size: clamp(1.85rem, 3vw, 2.45rem);
-    letter-spacing: -0.015em;
-  }
-
-  .product-subtitle {
-    margin: 0;
-    font-size: 0.98rem;
-    color: rgba(226, 232, 240, 0.78);
-  }
-
-  .detail-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 1.5rem;
-    align-items: center;
-  }
-
-  .price {
-    font-size: clamp(1.9rem, 3vw, 2.6rem);
-    font-weight: 700;
-    color: rgba(96, 165, 250, 0.95);
-  }
-
-  .brand {
-    font-size: 1rem;
-    color: rgba(148, 163, 184, 0.9);
-  }
-
-  .stock {
-    font-size: 0.98rem;
-    color: rgba(226, 232, 240, 0.82);
-    margin: 0;
-  }
-
-  .stock span {
-    color: rgba(248, 113, 113, 0.92);
-    font-weight: 600;
-  }
-
-  .detail-highlights {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 0.6rem;
-  }
-
-  .detail-highlights li {
-    position: relative;
-    padding-left: 2.2rem;
-    line-height: 1.45;
-    color: rgba(226, 232, 240, 0.9);
-    font-size: 0.98rem;
-  }
-
-  .detail-highlights li::before {
-    content: '✦';
-    position: absolute;
-    left: 0.4rem;
-    top: 0.1rem;
-    font-size: 1.1rem;
-    color: rgba(129, 140, 248, 0.95);
-  }
-
-  .detail-quick-facts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 0.85rem;
-  }
-
-  .quick-fact {
-    position: relative;
-    padding: 0.95rem 1rem 0.95rem 3.1rem;
-    border-radius: var(--radius-md, 12px);
-    background: rgba(30, 64, 175, 0.18);
-    border: 1px solid rgba(59, 130, 246, 0.22);
-    box-shadow: inset 0 1px 0 rgba(148, 197, 255, 0.22);
-  }
-
-  .quick-fact::before {
-    content: attr(data-icon);
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.45rem;
-  }
-
-  .quick-fact .label {
-    display: block;
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(191, 219, 254, 0.82);
-    margin-bottom: 0.35rem;
-  }
-
-  .quick-fact .value {
-    font-size: 0.95rem;
-    color: rgba(226, 232, 240, 0.92);
-  }
-
-  .detail-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    align-items: center;
-  }
-
-  .buy-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.85rem 1.65rem;
-    background: linear-gradient(120deg, rgba(59, 130, 246, 0.95), rgba(14, 165, 233, 0.85));
-    color: #0b1020;
-    font-weight: 700;
-    border-radius: 999px;
-    border: none;
-    text-decoration: none;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-    cursor: pointer;
-  }
-
-  .buy-button:is(:hover, :focus-visible) {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 35px rgba(37, 99, 235, 0.35);
-  }
-
-  .buy-button[disabled] {
-    cursor: not-allowed;
-    opacity: 0.5;
-    filter: grayscale(0.2);
-    box-shadow: none;
-  }
-
-  .ghost-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.75rem 1.3rem;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    background: rgba(15, 23, 42, 0.6);
-    color: rgba(226, 232, 240, 0.92);
-    font-weight: 600;
-    cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-  }
-
-  .ghost-button svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .button-label {
-    white-space: nowrap;
-  }
-
-  .ghost-button:is(:hover, :focus-visible) {
-    transform: translateY(-2px);
-    border-color: rgba(96, 165, 250, 0.7);
-    background: rgba(30, 64, 175, 0.35);
-  }
-
-  .ghost-button.is-active {
-    border-color: rgba(249, 168, 212, 0.7);
-    background: rgba(190, 24, 93, 0.35);
-    color: rgba(251, 207, 232, 0.95);
-  }
-
-  .detail-feedback {
-    min-height: 1.5rem;
-    font-size: 0.9rem;
-    color: rgba(191, 219, 254, 0.85);
-    transition: opacity 0.25s ease;
-    opacity: 0;
-  }
-
-  .detail-feedback.is-visible {
-    opacity: 1;
-  }
-
-  .detail-feedback.is-negative {
-    color: rgba(252, 165, 165, 0.92);
-  }
-
-  .detail-description {
-    padding: 1.35rem 1.5rem;
-    background: rgba(15, 23, 42, 0.65);
-    border-radius: var(--radius-md, 12px);
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    backdrop-filter: blur(6px);
-  }
-
-  .detail-description h2 {
-    margin-top: 0;
-    font-size: 1.35rem;
-    margin-bottom: 0.85rem;
-  }
-
-  .product-story {
-    margin: 0 0 0.85rem;
-    font-size: 0.98rem;
-    color: rgba(226, 232, 240, 0.85);
-    line-height: 1.6;
-  }
-
-  .detail-description ul {
   @media (max-width: 576px) {
     .produto-imagem-principal img {
       max-height: 320px;
-    }
-  }
-
-  .detail-description li {
-    font-size: 0.95rem;
-    color: rgba(226, 232, 240, 0.88);
-  }
-
-  .detail-description li {
-    font-size: 0.95rem;
-    color: rgba(226, 232, 240, 0.88);
-  }
-
-  .product-extras {
-    width: min(1180px, 100%);
-    margin: 2.75rem auto 0;
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .extra-card-row {
-    display: grid;
-    gap: 1.2rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  }
-
-  .extra-card {
-    position: relative;
-    padding: 1.5rem;
-    background: rgba(15, 23, 42, 0.72);
-    border-radius: var(--radius-md, 14px);
-    border: 1px solid rgba(96, 165, 250, 0.22);
-    overflow: hidden;
-  }
-
-  .extra-card::before {
-    content: '';
-    position: absolute;
-    inset: -20% -20% auto auto;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 70%);
-    opacity: 0.65;
-    pointer-events: none;
-  }
-
-  .extra-card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    background: rgba(59, 130, 246, 0.25);
-    display: grid;
-    place-items: center;
-    margin-bottom: 0.85rem;
-  }
-
-  .extra-card-icon svg {
-    width: 22px;
-    height: 22px;
-    color: rgba(191, 219, 254, 0.9);
-  }
-
-  .extra-card h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.1rem;
-  }
-
-  .extra-card p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: rgba(226, 232, 240, 0.82);
-  }
-
-  .product-extra-panels {
-    display: grid;
-    gap: 1.25rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-
-  .extra-panel {
-    padding: 1.4rem 1.5rem;
-    border-radius: var(--radius-md, 12px);
-    background: rgba(15, 23, 42, 0.68);
-    border: 1px solid rgba(148, 163, 184, 0.18);
-  }
-
-  .extra-panel h3 {
-    margin: 0 0 0.75rem;
-    font-size: 1.1rem;
-  }
-
-  .extra-panel ul {
-    margin: 0;
-    padding-left: 1.1rem;
-    display: grid;
-    gap: 0.4rem;
-    color: rgba(226, 232, 240, 0.85);
-    font-size: 0.94rem;
-  }
-
-  .extra-panel p {
-    margin: 0 0 1rem;
-    color: rgba(226, 232, 240, 0.82);
-    line-height: 1.5;
-  }
-
-  .extra-panel .support-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.6rem 1.1rem;
-    border-radius: 999px;
-    border: 1px solid rgba(96, 165, 250, 0.45);
-    color: rgba(191, 219, 254, 0.95);
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-
-  .extra-panel .support-button:is(:hover, :focus-visible) {
-    transform: translateY(-2px);
-    border-color: rgba(59, 130, 246, 0.85);
-  }
-
-  [data-animate] {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  [data-animate].is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (max-width: 1024px) {
-    .product-detail {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .produto-imagem-principal {
-      min-height: 360px;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .page-product {
-      padding-inline: clamp(1rem, 4vw, 2rem);
-    }
-
-    .produto-visual {
-      padding: 1.25rem;
-    }
-
-    .produto-thumbs {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(62px, 1fr);
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
-      scroll-snap-type: x mandatory;
-      gap: 0.65rem;
-    }
-
-    .produto-thumbs button.thumb {
-      min-width: 62px;
-      scroll-snap-align: center;
-    }
-
-    .detail-quick-facts {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    }
-  }
-
-  @media (max-width: 480px) {
-    .detail-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .ghost-button,
-    .buy-button {
-      width: 100%;
-      justify-content: center;
     }
   }
 </style>
@@ -610,22 +70,6 @@
       {% for extra in produto.imagens|sort(attribute='ordem') %}
         <img class="thumb" src="{{ img_src(extra.filename) }}" data-full="{{ img_src(extra.filename) }}" alt="{{ produto.nome }} - imagem extra {{ loop.index }}">
       {% endfor %}
-<section class="page-product">
-  <div class="product-detail">
-    <div class="produto-visual" data-animate>
-      <div class="produto-imagem-principal">
-        <img id="img-principal" src="{{ img_src(produto.imagem) }}" alt="{{ produto.nome }}" loading="eager">
-      </div>
-      <div class="produto-thumbs" role="list" aria-label="Galeria de imagens do produto {{ produto.nome }}">
-        <button type="button" class="thumb is-active" data-full="{{ img_src(produto.imagem) }}" aria-label="Imagem principal do produto" role="listitem">
-          <img src="{{ img_src(produto.imagem) }}" alt="{{ produto.nome }} - imagem principal">
-        </button>
-        {% for extra in produto.imagens|sort(attribute='ordem') %}
-          <button type="button" class="thumb" data-full="{{ img_src(extra.filename) }}" aria-label="Imagem complementar {{ loop.index }}" role="listitem">
-            <img src="{{ img_src(extra.filename) }}" alt="{{ produto.nome }} - imagem complementar {{ loop.index }}">
-          </button>
-        {% endfor %}
-      </div>
     </div>
   </div>
 
@@ -637,160 +81,28 @@
       <span class="brand">Marca: {{ produto.marca or 'Imperium' }}</span>
     </div>
     <p class="stock">{% if produto.estoque > 0 %}{{ produto.estoque }} unidades em estoque{% else %}<span>Esgotado</span>{% endif %}</p>
-    <aside class="detail-info" data-animate>
-      <div class="detail-header">
-        <span class="detail-badge">{% if produto.estoque > 0 %}Disponível agora{% else %}Disponível em breve{% endif %}</span>
-        <h1>{{ produto.nome }}</h1>
-        <p class="product-subtitle">Tecnologia {{ produto.marca or 'Imperium' }} selecionada por especialistas para elevar sua experiência.</p>
-      </div>
-      <div class="detail-meta">
-        <span class="price">R$ {{ '%.2f'|format(produto.preco) }}</span>
-        <span class="brand">Marca: {{ produto.marca or 'Imperium' }}</span>
-      </div>
-      <p class="stock">{% if produto.estoque > 0 %}{{ produto.estoque }} unidades em estoque com envio imediato{% else %}<span>Esgotado no momento</span>{% endif %}</p>
-
-      <ul class="detail-highlights">
-        <li>Curadoria Imperium com foco em desempenho e confiabilidade.</li>
-        <li>Embalagem reforçada e segura para proteger seu investimento.</li>
-        <li>Equipe de especialistas disponível para ajudar na configuração.</li>
-      </ul>
-
-      <div class="detail-quick-facts">
-        <div class="quick-fact" data-icon="🚚">
-          <span class="label">Frete</span>
-          <span class="value">Entrega rápida para todo o Brasil</span>
-        </div>
-        <div class="quick-fact" data-icon="🛡️">
-          <span class="label">Garantia</span>
-          <span class="value">12 meses com suporte Imperium</span>
-        </div>
-        <div class="quick-fact" data-icon="💳">
-          <span class="label">Pagamento</span>
-          <span class="value">Até 10x sem juros no cartão</span>
-        </div>
-      </div>
-
-      <div class="detail-actions">
-        {% if produto.estoque > 0 %}
-          <a class="buy-button" href="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
-              <path d="M7 4h-2l-1 2v2h2l3.6 7.59-1.35 2.45C7.11 19.37 7.55 20 8.17 20H19v-2H9.42c-.13 0-.25-.07-.32-.18l.03-.06L10.1 16h7.45c.75 0 1.41-.41 1.75-1.03L22 7H7V4Zm14 0V2h-2v2h-2v2h2v2h2V6h2V4h-2Z"/>
-            </svg>
-            Adicionar ao carrinho
-          </a>
-        {% else %}
-          <button class="buy-button" disabled>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
-              <path d="M5 4h2l3.6 7.59-1.35 2.45C8.11 15.37 8.55 16 9.17 16H19v-2H9.42l.1-.18L10.1 12h7.45c.75 0 1.41-.41 1.75-1.03L22 5H7l-.94-2H2V2h2l1 2ZM7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Z"/>
-            </svg>
-            Indisponível
-          </button>
-        {% endif %}
-        <button type="button" class="ghost-button" data-share>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11C16.56 7.7 17.24 8 18 8c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.3 6.8 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.8 0 1.5-.3 2.04-.81l7.09 4.12c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92Z"/>
-          </svg>
-          <span class="button-label">Compartilhar</span>
-        </button>
-        <button type="button" class="ghost-button" data-favorite>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 21.35 10.55 20C5.4 15.36 2 12.27 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.77-3.4 6.86-8.55 11.54L12 21.35Z"/>
-          </svg>
-          <span class="button-label" data-favorite-label>Favoritar</span>
-        </button>
-      </div>
-
-      <div class="detail-feedback" data-feedback aria-live="polite" role="status"></div>
 
     <div class="detail-actions">
       {% if produto.estoque > 0 %}
         <a class="buy-button" href="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}">Adicionar ao carrinho</a>
       {% else %}
         <button class="buy-button" disabled>Indisponível</button>
-      {% if produto.descricao %}
-        <div class="detail-description">
-          <h2>Descrição</h2>
-          <p class="product-story">O {{ produto.nome }} da {{ produto.marca or 'Imperium' }} foi desenvolvido para quem exige desempenho superior e acabamento premium. Confira os principais destaques selecionados pela nossa equipe:</p>
-          <ul>
-            {% for linha in produto.descricao.split('\n') %}
-              {% if linha.strip() %}
-                <li>{{ linha }}</li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
       {% endif %}
-    </aside>
-  </div>
-
-  <section class="product-extras" aria-label="Benefícios Imperium">
-    <div class="extra-card-row">
-      <article class="extra-card" data-animate>
-        <div class="extra-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M3 4h18v2H3V4Zm2 4h14l-1.4 12.6c-.1.8-.8 1.4-1.6 1.4H8c-.8 0-1.5-.6-1.6-1.4L5 8Zm3.5 4v6h2v-6h-2Zm5 0v6h2v-6h-2Zm4.5-9h-2V2h-2v1h-4V2H8v1H6v2h12V3Z"/>
-          </svg>
-        </div>
-        <h3>Garantia de fábrica</h3>
-        <p>Produto novo, lacrado e acompanhado de nota fiscal com garantia oficial de 12 meses.</p>
-      </article>
-      <article class="extra-card" data-animate>
-        <div class="extra-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20 8h-3V4H7v4H4l8 8 8-8Zm-9 3H9V6h2v5Zm4 0h-2V6h2v5Zm2 9H7v-2h10v2Z"/>
-          </svg>
-        </div>
-        <h3>Curadoria gamer</h3>
-        <p>Performance validada em laboratórios Imperium com foco em FPS estável e baixas temperaturas.</p>
-      </article>
-      <article class="extra-card" data-animate>
-        <div class="extra-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 3 2 9l10 6 9-5.4V17h2V9L12 3Zm0 15L6.5 13.7 5 14.6 12 19l7-4.4-1.5-.9L12 18Z"/>
-          </svg>
-        </div>
-        <h3>Envio blindado</h3>
-        <p>Embalagem acolchoada, seguro de transporte e rastreamento em tempo real.</p>
-      </article>
     </div>
 
     {% if produto.descricao %}
       <div class="detail-description">
         <h2>Descrição</h2>
-    <div class="product-extra-panels">
-      <div class="extra-panel" data-animate>
-        <h3>Conteúdo da caixa</h3>
         <ul>
           {% for linha in produto.descricao.split('\n') %}
             {% if linha.strip() %}
               <li>{{ linha }}</li>
             {% endif %}
           {% endfor %}
-          <li>{{ produto.nome }}{% if produto.marca %} da {{ produto.marca }}{% endif %}</li>
-          <li>Manual e guia de instalação rápida</li>
-          <li>Cabo(s) originais e acessórios oficiais</li>
-          <li>Cartão de garantia Imperium</li>
         </ul>
       </div>
     {% endif %}
   </div>
-      <div class="extra-panel" data-animate>
-        <h3>Suporte dedicado</h3>
-        <p>Precisa de ajuda para escolher ou instalar seu produto? Nossa equipe responde em minutos via chat ou WhatsApp.</p>
-        <a class="support-button" href="{{ url_for('loja.index') }}#contato">
-          Falar com especialista
-        </a>
-      </div>
-      <div class="extra-panel" data-animate>
-        <h3>Dicas de uso</h3>
-        <ul>
-          <li>Atualize drivers e firmware para extrair todo o potencial.</li>
-          <li>Integre com outros produtos Imperium para iluminação sincronizada.</li>
-          <li>Aproveite o programa de pontos acumulando compras recorrentes.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 </section>
 {% endblock %}
 {% block extra_scripts %}
@@ -806,178 +118,9 @@
             img.classList.remove('is-active');
           });
           thumb.classList.add('is-active');
-    const thumbs = Array.from(document.querySelectorAll('.produto-thumbs .thumb'));
-    const gallery = document.querySelector('.produto-thumbs');
-    const feedback = document.querySelector('[data-feedback]');
-    const shareButton = document.querySelector('[data-share]');
-    const favoriteButton = document.querySelector('[data-favorite]');
-    const favoriteLabel = favoriteButton ? favoriteButton.querySelector('[data-favorite-label]') : null;
-    const productId = {{ produto.id | tojson }};
-    const productName = {{ produto.nome | tojson }};
-
-    const setActiveThumb = (index) => {
-      const thumb = thumbs[index];
-      if (!thumb || !mainImage) return;
-      const full = thumb.getAttribute('data-full');
-      const thumbImage = thumb.querySelector('img');
-      if (full) {
-        mainImage.src = full;
-      }
-      if (thumbImage && thumbImage.alt) {
-        mainImage.alt = thumbImage.alt;
-      }
-      thumbs.forEach((item) => {
-        item.classList.remove('is-active');
-        item.setAttribute('aria-pressed', 'false');
-      });
-      thumb.classList.add('is-active');
-      thumb.setAttribute('aria-pressed', 'true');
-    };
-
-    thumbs.forEach((thumb, index) => {
-      thumb.dataset.index = index;
-      thumb.setAttribute('aria-pressed', thumb.classList.contains('is-active') ? 'true' : 'false');
-      thumb.addEventListener('click', () => setActiveThumb(index));
-      thumb.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          setActiveThumb(index);
-        }
-        if (event.key === 'ArrowRight') {
-          event.preventDefault();
-          const nextIndex = (index + 1) % thumbs.length;
-          if (thumbs[nextIndex]) {
-            thumbs[nextIndex].focus();
-          }
-          setActiveThumb(nextIndex);
-        }
-        if (event.key === 'ArrowLeft') {
-          event.preventDefault();
-          const prevIndex = (index - 1 + thumbs.length) % thumbs.length;
-          if (thumbs[prevIndex]) {
-            thumbs[prevIndex].focus();
-          }
-          setActiveThumb(prevIndex);
         }
       });
     });
-
-    if (gallery && thumbs.length > 0) {
-      gallery.setAttribute('tabindex', '-1');
-      gallery.addEventListener('keydown', (event) => {
-        const currentIndex = thumbs.findIndex((thumb) => thumb.classList.contains('is-active'));
-        if (event.key === 'ArrowRight') {
-          event.preventDefault();
-          const nextIndex = (currentIndex + 1) % thumbs.length;
-          if (thumbs[nextIndex]) {
-            thumbs[nextIndex].focus();
-          }
-          setActiveThumb(nextIndex);
-        }
-        if (event.key === 'ArrowLeft') {
-          event.preventDefault();
-          const prevIndex = (currentIndex - 1 + thumbs.length) % thumbs.length;
-          if (thumbs[prevIndex]) {
-            thumbs[prevIndex].focus();
-          }
-          setActiveThumb(prevIndex);
-        }
-      });
-    }
-
-    const showFeedback = (message, tone = 'positive') => {
-      if (!feedback) return;
-      feedback.textContent = message;
-      feedback.classList.add('is-visible');
-      feedback.classList.toggle('is-negative', tone === 'negative');
-      window.clearTimeout(feedback._timeoutId);
-      feedback._timeoutId = window.setTimeout(() => {
-        feedback.classList.remove('is-visible');
-      }, 3200);
-    };
-
-    if (shareButton) {
-      shareButton.addEventListener('click', async () => {
-        const shareData = {
-          title: `${productName} - Imperium`,
-          text: `Confira o ${productName} na Imperium e descubra porque ele é a escolha dos entusiastas.`
-        };
-        const url = window.location.href;
-        try {
-          if (navigator.share) {
-            await navigator.share({ ...shareData, url });
-            showFeedback('Link compartilhado com sucesso!');
-          } else if (navigator.clipboard) {
-            await navigator.clipboard.writeText(url);
-            showFeedback('Link copiado para a área de transferência.');
-          } else {
-            throw new Error('Compartilhamento não suportado');
-          }
-        } catch (error) {
-          if (!error || error.name !== 'AbortError') {
-            showFeedback('Não foi possível compartilhar agora, tente novamente.', 'negative');
-          }
-        }
-      });
-    }
-
-    if (favoriteButton && typeof productId === 'number') {
-      const FAVORITE_KEY = 'imperiumFavorites';
-      const loadFavorites = () => {
-        try {
-          return JSON.parse(localStorage.getItem(FAVORITE_KEY) || '[]');
-        } catch (error) {
-          console.warn('Não foi possível ler a lista de favoritos', error);
-          return [];
-        }
-      };
-
-      const persistFavorites = (favorites) => {
-        try {
-          localStorage.setItem(FAVORITE_KEY, JSON.stringify(favorites));
-        } catch (error) {
-          console.warn('Não foi possível salvar favoritos', error);
-        }
-      };
-
-      const renderFavoriteState = (isFavorite) => {
-        favoriteButton.classList.toggle('is-active', isFavorite);
-        favoriteButton.querySelector('svg').setAttribute('fill', 'currentColor');
-        if (favoriteLabel) {
-          favoriteLabel.textContent = isFavorite ? 'Favorito salvo' : 'Favoritar';
-        }
-      };
-
-      let favorites = loadFavorites();
-      let isFavorite = favorites.includes(productId);
-      renderFavoriteState(isFavorite);
-
-      favoriteButton.addEventListener('click', () => {
-        favorites = loadFavorites();
-        isFavorite = favorites.includes(productId);
-        if (isFavorite) {
-          favorites = favorites.filter((id) => id !== productId);
-          showFeedback('Removido dos favoritos.');
-        } else {
-          favorites.push(productId);
-          showFeedback('Produto salvo nos favoritos.');
-        }
-        persistFavorites(favorites);
-        renderFavoriteState(!isFavorite);
-      });
-    }
-
-    const animatedElements = document.querySelectorAll('[data-animate]');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.25 });
-
-    animatedElements.forEach((element) => observer.observe(element));
   });
 </script>
 {% endblock %}
