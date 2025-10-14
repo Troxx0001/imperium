@@ -5,7 +5,7 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
-from models import db  # use o db do models
+from models import db  # db do models
 from models.usuario import Usuario
 from routes import loja_routes, auth_routes, api_routes
 from routes.admin_routes import admin_bp
@@ -21,7 +21,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
-app.secret_key = 'sua-chave-secreta'  # Adicionando a chave secreta
+app.secret_key = 'sua-chave-secreta' # Define a chave secreta
 
 def _bool_env(name: str, default: str = 'False') -> bool:
     return os.getenv(name, default).lower() in {'true', '1', 't', 'yes'}
@@ -35,11 +35,11 @@ app.config['MAIL_USE_TLS'] = _bool_env('MAIL_USE_TLS', 'True')
 app.config['MAIL_USE_SSL'] = _bool_env('MAIL_USE_SSL', 'False')
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER', 'Imperium <no-reply@imperium.com>')
 
-db.init_app(app)  # só inicializa, não crie outro db!
+db.init_app(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'auth.login'  # redireciona para login se não autenticado
+login_manager.login_view = 'auth.login'
 
 @login_manager.user_loader
 def load_user(user_id):
