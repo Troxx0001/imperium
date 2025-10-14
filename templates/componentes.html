@@ -36,8 +36,12 @@
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-    <h3>Checklist para montagem</h3>
-    <p>Uma sequência de etapas para evitar surpresas na hora da montagem.</p>
+    <h3>Processador/CPU</h3>
+    <p>O processador, também conhecido como CPU (Central Processing Unit), é o componente responsável por interpretar e executar instruções dentro de um sistema computacional. Ele atua como o “cérebro” do computador, processando dados provenientes da memória e coordenando todas as operações lógicas, aritméticas e de controle necessárias para o funcionamento do sistema. Seu funcionamento baseia-se no ciclo de instrução, dividido em três etapas principais: busca (fetch), decodificação (decode) e execução (execute). Na fase de busca, a CPU localiza a instrução na memória; em seguida, decodifica o comando, determinando a operação que deve ser realizada; por fim, executa a tarefa, podendo envolver cálculos, movimentação de dados ou tomada de decisões lógicas.
+
+O desempenho de um processador depende de fatores como frequência de clock, medida em gigahertz (GHz), que define quantas operações podem ser realizadas por segundo, e o número de núcleos e threads, que permite o processamento paralelo de múltiplas instruções. Além disso, a presença de memórias cache (L1, L2 e L3) acelera o acesso a dados frequentemente utilizados, reduzindo o tempo de espera entre o processador e a RAM.
+
+Com arquiteturas modernas, como as da Intel e AMD, os processadores incorporam tecnologias de otimização energética, instruções vetoriais e suporte à virtualização. Em resumo, o processador é um sistema altamente sofisticado, projetado para maximizar desempenho, eficiência e compatibilidade com diferentes tipos de aplicações, desde tarefas básicas até simulações complexas e jogos de alta performance.</p>
   </article>
     <article>
     <div class="module-video-placeholder">
@@ -45,8 +49,12 @@
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-    <h3>Checklist para montagem</h3>
-    <p>Uma sequência de etapas para evitar surpresas na hora da montagem.</p>
+    <h3>Placa mãe</h3>
+    <p>A placa-mãe é o backplane eletrônico que interliga CPU, memória, armazenamento e periféricos, coordenando sinais de dados, clock e energia. No centro lógico está o chipset (PCH), que agrega e distribui linhas PCIe vindas do processador para slots PCIe, soquetes M.2 (NVMe), portas SATA e USB. O soquete (LGA/AMx) abriga a CPU; ao redor, o VRM — fases com MOSFETs, indutores e capacitores — converte 12 V da fonte para tensões baixas e estáveis (≈0,9–1,3 V) com alta resposta transitória, sustentando boost/overclock. A qualidade do VRM (número de fases, componentes e dissipadores) impacta diretamente estabilidade térmica e headroom de desempenho.
+
+A topologia de memória (daisy-chain ou T-topology) e a disposição dos slots DIMM influenciam compatibilidade e frequências máximas. Ao ativar XMP/EXPO na UEFI/BIOS, a placa aplica automaticamente frequência, timings e voltagem do kit. Para preservar integridade de sinal em buses rápidos (PCIe, NVMe, USB), o roteamento em múltiplas camadas do PCB usa impedância controlada, pares diferenciais casados e planos de referência. O gerador de clock, a árvore de reset e barramentos auxiliares (SMBus, SPI/TPM) sustentam a inicialização; o firmware em flash SPI oferece recursos de recovery (Flashback) e políticas como Secure Boot.
+
+Na conectividade, a CPU expõe linhas PCIe diretas (tipicamente para a GPU e um M.2 principal), enquanto demais dispositivos trafegam via PCH pelo link DMI, compartilhando largura de banda. Saídas de vídeo traseiras funcionam apenas se a CPU tiver iGPU. Controladoras integradas (LAN 2.5G, Wi-Fi/Bluetooth, códigos de áudio ALC), headers PWM/DC para ventoinhas/bombas, USB-C frontal, ARGB e LEDs de diagnóstico completam o conjunto. Form factors (ATX, mATX, ITX) definem dimensões, slots e layout. Em suma, a placa-mãe distribui energia com precisão, sincroniza sinais de alta velocidade e fornece o ecossistema que habilita desempenho, estabilidade e expansão.</p>
   </article>
     <article>
     <div class="module-video-placeholder">
@@ -54,8 +62,14 @@
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-    <h3>Checklist para montagem</h3>
-    <p>Uma sequência de etapas para evitar surpresas na hora da montagem.</p>
+    <h3>Memória RAM</h3>
+    <p>A memória RAM (Random Access Memory) é o componente responsável por armazenar temporariamente os dados e instruções em uso pelo processador, permitindo acesso extremamente rápido e eficiente. Ao contrário de discos rígidos ou SSDs, a RAM é volátil, ou seja, perde todas as informações quando o computador é desligado. Seu papel é garantir que o processador não precise buscar dados diretamente no armazenamento secundário, o que seria muito mais lento, mantendo o sistema ágil durante multitarefas, jogos e aplicações pesadas.
+
+Tecnicamente, a RAM funciona como um conjunto de células organizadas em linhas e colunas, acessadas por endereços binários. Cada célula armazena bits de dados controlados por capacitores e transistores. As memórias modernas utilizam a tecnologia DDR (Double Data Rate), que transfere dados na subida e na descida do pulso de clock, dobrando a taxa de transferência. Versões mais recentes, como DDR4 e DDR5, aumentam a largura de banda e reduzem o consumo energético.
+
+O desempenho da RAM depende de fatores como frequência (MHz), latência (CL) e largura do barramento (bits). A combinação adequada entre eles define a taxa real de transferência, medida em gigabytes por segundo (GB/s). Além disso, o canal duplo (Dual Channel) ou quádruplo (Quad Channel) permite maior paralelismo, duplicando ou quadruplicando o fluxo de dados.
+
+Em suma, a memória RAM é essencial para o desempenho global do sistema, servindo como ponte dinâmica entre o processador e o armazenamento, garantindo fluidez e eficiência em todas as operações computacionais.</p>
   </article>
     <article>
     <div class="module-video-placeholder">
@@ -63,8 +77,14 @@
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-    <h3>Checklist para montagem</h3>
-    <p>Uma sequência de etapas para evitar surpresas na hora da montagem.</p>
+    <h3>Fontes</h3>
+    <p>A fonte de alimentação (ou PSU – Power Supply Unit) é o componente responsável por converter a energia elétrica da rede em tensões e correntes estáveis utilizadas pelos circuitos do computador. Sua função é essencial: fornecer energia limpa e contínua para a placa-mãe, processador, placa de vídeo, drives e demais periféricos, garantindo estabilidade e segurança ao sistema.
+
+Internamente, a fonte opera por meio de um conversor AC/DC, que transforma a corrente alternada (geralmente 110 V ou 220 V) em corrente contínua (DC). Essa conversão passa por várias etapas: retificação, filtragem, chaveamento em alta frequência e regulação de tensão, controladas por circuitos PWM e MOSFETs. As saídas principais são +12 V, +5 V e +3,3 V, cada uma destinada a componentes específicos — o processador e a GPU, por exemplo, dependem fortemente da linha de 12 V.
+
+A eficiência energética é um fator crucial, classificada pelo selo 80 Plus (Bronze, Silver, Gold, Platinum, Titanium), que indica o percentual de energia efetivamente convertida em potência útil. Fontes de alta eficiência reduzem o calor gerado e o consumo elétrico. Outro aspecto importante é o PFC ativo (Power Factor Correction), que otimiza o uso da energia e reduz interferências na rede elétrica.
+
+A construção e os conectores também variam conforme o padrão: ATX, SFX e modulares, que permitem conectar apenas os cabos necessários, melhorando o fluxo de ar. Em resumo, a fonte de alimentação é o coração elétrico do PC, convertendo e estabilizando energia com precisão para garantir desempenho confiável e longevidade aos componentes.</p>
   </article>
     <article>
     <div class="module-video-placeholder">
@@ -72,8 +92,14 @@
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-    <h3>Checklist para montagem</h3>
-    <p>Uma sequência de etapas para evitar surpresas na hora da montagem.</p>
+    <h3>Gabinete/Resfriamento</h3>
+    <p>O gabinete é a estrutura física que abriga todos os componentes de um computador, servindo não apenas como proteção, mas também como parte fundamental do sistema de resfriamento e gerenciamento térmico. Seu design influencia diretamente o desempenho e a durabilidade do hardware, pois garante ventilação adequada e fluxo de ar eficiente.
+
+Internamente, o gabinete é projetado com baias e compartimentos para acomodar a placa-mãe, fonte de alimentação, armazenamento e placas de expansão. O layout deve permitir organização dos cabos (cable management) e circulação de ar livre entre os componentes. Gabinetes modernos utilizam padrões ATX, Micro-ATX e ITX, além de painéis laterais em vidro temperado e estruturas com aço reforçado ou alumínio.
+
+O resfriamento é dividido entre fluxo de ar ativo e passivo. No ativo, ventoinhas posicionadas estrategicamente criam um fluxo que entra pela frente (ar frio) e sai pela traseira e parte superior (ar quente). Já no passivo, o próprio formato interno auxilia na dissipação do calor. Em sistemas mais avançados, o resfriamento líquido (water cooler) é empregado, usando bombas, radiadores e tubos para transferir o calor da CPU e GPU de forma mais eficiente.
+
+A eficiência térmica depende da pressão positiva ou negativa do ar, do número de fans PWM/DC, do uso de filtros de poeira e da correta manutenção. Em resumo, o gabinete e o sistema de resfriamento formam o ambiente controlado que assegura estabilidade elétrica, temperaturas ideais e estética moderna, unindo funcionalidade, desempenho e proteção ao hardware.</p>
   </article>
     <article>
     <div class="module-video-placeholder">
@@ -81,8 +107,31 @@
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-    <h3>Checklist para montagem</h3>
-    <p>Uma sequência de etapas para evitar surpresas na hora da montagem.</p>
+    <h3>Armazenamento</h3>
+    <p>Os dispositivos de armazenamento são responsáveis por gravar e manter os dados do sistema operacional, programas e arquivos do usuário, mesmo após o desligamento do computador. Eles evoluíram significativamente ao longo do tempo, passando dos tradicionais HDs (Hard Disk Drives) aos modernos SSDs (Solid State Drives) e NVMe (Non-Volatile Memory Express), cada um com características técnicas distintas que afetam diretamente o desempenho e a confiabilidade do sistema.
+
+O HD utiliza discos magnéticos giratórios e um braço mecânico com cabeças de leitura/gravação. Apesar da grande capacidade e baixo custo por gigabyte, sua limitação está na latência e velocidade de acesso, que dependem da rotação dos pratos (medida em RPM) e do tempo mecânico de busca.
+
+Já o SSD substitui partes móveis por memórias NAND Flash, acessadas eletronicamente, o que reduz drasticamente o tempo de resposta. Ele utiliza o protocolo SATA III, com taxas de até 600 MB/s, sendo muito mais rápido e resistente a impactos que o HD.
+
+O NVMe, por sua vez, representa a tecnologia mais avançada, conectando-se diretamente às linhas PCIe da placa-mãe, eliminando gargalos do protocolo SATA. Suas velocidades ultrapassam 7.000 MB/s, tornando-o ideal para aplicações que exigem alta taxa de leitura e escrita, como renderização, jogos e virtualização.
+
+Em resumo, HDs priorizam capacidade e custo-benefício, SSDs equilibram velocidade e durabilidade, e NVMe entrega desempenho extremo. A escolha ideal depende do tipo de uso, mas a tendência atual é combinar tecnologias: usar SSD ou NVMe para o sistema e HDs para armazenamento massivo.</p>
+  </article>
+  <article>
+    <div class="module-video-placeholder">
+      <div class="module-video-frame">
+        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <h3>Placa de Video</h3>
+    <p>A placa de vídeo, também chamada de GPU (Graphics Processing Unit), é o componente responsável por processar e gerar todas as imagens, vídeos e animações exibidas na tela do computador. Diferente do processador central (CPU), que executa tarefas gerais, a GPU é especializada em cálculos gráficos complexos e em operações que envolvem paralelismo, ou seja, consegue processar milhares de informações visuais ao mesmo tempo.
+
+Seu funcionamento se baseia na conversão de dados binários em sinais visuais compreensíveis. Quando um programa ou jogo solicita a renderização de uma imagem, a placa de vídeo calcula cada pixel, textura, luz e sombra necessários para compor a cena. Essa capacidade de processamento é medida em núcleos CUDA (NVIDIA) ou Stream Processors (AMD), e quanto mais núcleos e maior a frequência de operação (MHz ou GHz), mais rápida é a renderização.
+
+A GPU possui sua própria memória dedicada (VRAM), que armazena texturas, modelos 3D e outros dados gráficos temporariamente, reduzindo o uso da RAM principal e garantindo mais fluidez em tarefas visuais. Além disso, atua em conjunto com APIs gráficas como DirectX, OpenGL e Vulkan, que otimizam a comunicação entre o software e o hardware.
+
+No uso prático, a placa de vídeo é essencial não só para jogos, mas também para edição de vídeo, modelagem 3D, inteligência artificial e computação científica, já que sua arquitetura paralela acelera cálculos pesados. Assim, ela transforma dados em imagens, garantindo desempenho, qualidade visual e eficiência no processamento gráfico.</p>
   </article>
 </section>
 {% endblock %}

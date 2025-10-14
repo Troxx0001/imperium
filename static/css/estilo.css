@@ -509,6 +509,7 @@ a {
 }
 
 .hero-slider {
+  height: 17rem;
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -570,14 +571,13 @@ a {
 
 .hero-tag {
   display: inline-block;
-  padding: 0.35rem 1.2rem;
+  padding: 1rem 1.2rem;
   background: var(--accent-015);
   color: var(--accent);
   border-radius: 999px;
   font-size: 0.85rem;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
-  margin-bottom: 0.9rem;
 }
 
 .hero-content h1 {
@@ -591,6 +591,22 @@ a {
   margin: 0 0 1.5rem;
   color: var(--text-muted);
   font-size: 1.05rem;
+}
+.hero-ctaet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.8rem;
+  border-radius: 5px;
+  background: var(--primary);
+  color: var(--light-on-primary, #111);
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-ctaet:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px var(--accent-025);
 }
 
 .hero-cta {
@@ -811,17 +827,30 @@ a {
 }
 
 .product-thumb {
-  background: linear-gradient(140deg, var(--accent-025), rgba(24, 24, 28, 0.9));
-  display: grid;
-  place-items: center;
-  min-height: 160px;
-  padding: 1.5rem;
+  background-color: #FFFFFF !important; /* Força branco mesmo no modo escuro */
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Borda sutil para separar do fundo */
 }
 
 .product-thumb img {
-  max-width: 100%;
-  max-height: 140px;
+  width: 100%;
+  height: 180px;
   object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+/* Para o modo escuro */
+[data-theme="dark"] .product-thumb {
+  border-color: rgba(255, 255, 255, 0.1); /* Borda mais suave no modo escuro */
+}
+
+[data-theme="dark"] .product-thumb img {
+  mix-blend-mode: multiply; /* Mantém o blend mode mesmo no dark */
+  filter: brightness(1.1); /* Opcional: ajusta o brilho no modo escuro se necessário */
 }
 
 .product-info {
@@ -2109,9 +2138,14 @@ body {
   margin: 0;
 }
 
-header, nav, .card, .drawer, .product-card, .site-footer, .top-shell, .learn-banner, .hero-slide,
-.hero-overlay, .product-thumb, .category-chip, .empty-state {
+.learn-banner{
   background: var(--surface);
+  color: var(--text);
+  text-align: center;
+
+}
+header, nav, .card, .drawer, .product-card, .site-footer, .top-shell, .hero-slide,
+.hero-overlay, .product-thumb, .category-chip, .empty-state {
   color: var(--text);
   text-align: center;
 }
@@ -2131,7 +2165,7 @@ a:focus {
   text-decoration: underline;
 }
 
-/* No modo deuteranomalia, sempre sublinhar links */
+/* No modo deuteranomia, sempre sublinhar links */
 html[data-theme="deuteranomaly"] a {
   text-decoration: underline;
 }
@@ -2287,10 +2321,6 @@ html[data-theme="dark"] .btn-cart img {
   color: var(--text);
 }
 
-.hero-slide {
-  background: var(--surface);
-}
-
 .hero-overlay {
   background: none;
 }
@@ -2376,6 +2406,7 @@ html[data-theme="dark"] .btn-cart img {
 
 .site-footer {
   border-top: 1px solid var(--border);
+  margin-top: 320px;
 }
 
 .footer-links a {
@@ -2473,7 +2504,7 @@ html[data-theme="deuteranomaly"] .drawer a {
 /* Ícones do cabeçalho/ações um pouco maiores */
 .icon-link svg,
 .btn-cart svg,
-.hero-control svg {
+hero-control svg {
   width: 24px;
   height: 24px;
   fill: currentColor;

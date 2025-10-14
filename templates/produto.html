@@ -3,120 +3,478 @@
 {% block title %}{{ produto.nome }} - Imperium{% endblock %}
 {% block extra_styles %}
 <style>
-  .product-detail {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    align-items: start;
+  .page-product {
+    background: #ffffff;
+    padding: 3rem 0;
   }
-  .produto-visual {
+
+  .product-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2.5rem;
   }
-  .produto-imagem-principal {
-    border: 1px solid #ececec;
-    border-radius: 12px;
-    padding: 1rem;
+
+  .breadcrumb {
+    font-size: 0.9rem;
+    color: #6b7280;
     display: flex;
-    justify-content: center;
+    gap: 0.5rem;
     align-items: center;
-    background: #fff;
   }
-  .produto-imagem-principal img {
-    width: 100%;
+
+  .breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .breadcrumb span {
+    color: #d1d5db;
+  }
+
+  .product-content {
+    display: grid;
+    /* increased left column max so main image can be wider */
+    grid-template-columns: minmax(0, 680px) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .product-gallery {
+    display: grid;
+    /* slightly larger thumb column and bigger main image column */
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .product-thumbs {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .product-thumbs button {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: #ffffff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .product-thumbs button.is-active {
+    border-color: #1f2937;
+    box-shadow: 0 0 0 1px #1f2937;
+  }
+
+  .product-thumbs img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .product-main-image {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem;
+    min-height: 360px;
+    background: #f9fafb;
+    display: grid;
+    place-items: center;
+  }
+
+  .product-main-image img {
+    max-width: 100%;
+    /* allow taller image so it appears larger inside the widened column */
     max-height: 420px;
     object-fit: contain;
   }
-  .produto-thumbs {
+
+  .product-summary {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .product-summary h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #111827;
+  }
+
+  .product-summary .brand {
+    color: #6b7280;
+    font-size: 0.95rem;
+  }
+
+  .price-line {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .price {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .stock {
+    font-size: 0.95rem;
+    color: #10b981;
+  }
+
+  .stock.is-out {
+    color: #dc2626;
+  }
+
+  .purchase-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 0.75rem;
   }
-  .produto-thumbs .thumb {
-    border: 1px solid #d8d8d8;
-    border-radius: 10px;
-    padding: 0.5rem;
-    background: #fff;
+
+  .purchase-actions button,
+  .purchase-actions a {
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid #111827;
+    background: #111827;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
     cursor: pointer;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-align: center;
   }
-  .produto-thumbs .thumb.is-active {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+
+  .purchase-actions .outline {
+    background: #ffffff;
+    color: #111827;
   }
-  .produto-thumbs .thumb img {
-    width: 100%;
-    height: 64px;
-    object-fit: contain;
+
+  .purchase-actions button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
-  @media (max-width: 576px) {
-    .produto-imagem-principal img {
-      max-height: 320px;
+
+  .summary-description {
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .info-list {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.65rem;
+    color: #4b5563;
+    font-size: 0.9rem;
+  }
+
+  .assist-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+
+  .assist-links a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  .assist-links a:hover {
+    text-decoration: underline;
+  }
+
+  .product-details {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .product-details section {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .product-details h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #111827;
+  }
+
+  .product-details p,
+  .product-details ul {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .product-details ul {
+    padding-left: 1.25rem;
+  }
+
+  @media (max-width: 960px) {
+    .product-content {
+      grid-template-columns: 1fr;
     }
+
+    .product-gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .product-thumbs {
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(0, 1fr);
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .product-thumbs button {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .product-container {
+      padding: 0 1rem;
+    }
+
+    .product-summary h1 {
+      font-size: 1.6rem;
+    }
+
+    .purchase-actions {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+<style>
+  /* Dark-mode overrides for product detail page */
+  html[data-theme="dark"] .page-product {
+    background: #0b1116; /* page background in dark */
+  }
+
+  html[data-theme="dark"] .product-container {
+    color: #e6eef6;
+  }
+
+  html[data-theme="dark"] .breadcrumb {
+    color: #9ca3af;
+  }
+
+  html[data-theme="dark"] .product-main-image {
+    border-color: rgba(255,255,255,0.04);
+    background: #0f1720; /* slightly elevated panel */
+  }
+
+  html[data-theme="dark"] .product-thumbs button {
+    background: #0b1116;
+    border-color: rgba(255,255,255,0.04);
+    box-shadow: none;
+  }
+
+  html[data-theme="dark"] .product-thumbs button.is-active {
+    border-color: #60a5fa; /* accent for active thumb */
+    box-shadow: 0 0 0 2px rgba(96,165,250,0.09);
+  }
+
+  html[data-theme="dark"] .product-main-image img,
+  html[data-theme="dark"] .product-thumbs img {
+    filter: none; /* show images normally on dark bg */
+  }
+
+  html[data-theme="dark"] .product-summary h1 {
+    color: #ffffff;
+  }
+
+  html[data-theme="dark"] .product-summary .brand,
+  html[data-theme="dark"] .product-summary .brand + * {
+    color: #9ca3af;
+  }
+
+  html[data-theme="dark"] .price {
+    color: #93c5fd;
+  }
+
+  html[data-theme="dark"] .stock {
+    color: #34d399;
+  }
+
+  html[data-theme="dark"] .purchase-actions a,
+  html[data-theme="dark"] .purchase-actions button {
+    background: #111827; /* dark button */
+    color: #fff;
+    border-color: rgba(255,255,255,0.06);
+  }
+
+  html[data-theme="dark"] .purchase-actions .outline {
+    background: transparent;
+    color: #93c5fd;
+    border-color: rgba(147,197,253,0.12);
+  }
+
+  html[data-theme="dark"] .info-item {
+    border-bottom-color: rgba(255,255,255,0.03);
+    color: #9ca3af;
+  }
+
+  /* Ensure product details text is readable */
+  html[data-theme="dark"] .product-details h2,
+  html[data-theme="dark"] .product-details p,
+  html[data-theme="dark"] .product-details li {
+    color: #e6eef6;
   }
 </style>
 {% endblock %}
 {% block content %}
-<section class="product-detail">
-  <div class="produto-visual">
-    <div class="produto-imagem-principal">
-      <img id="img-principal" src="{{ img_src(produto.imagem) }}" alt="{{ produto.nome }}">
-    </div>
-    <div class="produto-thumbs">
-      <img class="thumb is-active" src="{{ img_src(produto.imagem) }}" data-full="{{ img_src(produto.imagem) }}" alt="{{ produto.nome }} - capa">
-      {% for extra in produto.imagens|sort(attribute='ordem') %}
-        <img class="thumb" src="{{ img_src(extra.filename) }}" data-full="{{ img_src(extra.filename) }}" alt="{{ produto.nome }} - imagem extra {{ loop.index }}">
-      {% endfor %}
-    </div>
-  </div>
+<section class="page-product">
+  <div class="product-container">
+    <nav class="breadcrumb" aria-label="Você está em">
+      <a href="{{ url_for('loja.index') }}">Loja</a>
+      <span>/</span>
+      <span>{{ produto.nome }}</span>
+    </nav>
 
-  <div class="detail-info">
-    <span class="detail-badge">Disponível{% if produto.estoque == 0 %} em breve{% endif %}</span>
-    <h1>{{ produto.nome }}</h1>
-    <div class="detail-meta">
-      <span class="price">R$ {{ '%.2f'|format(produto.preco) }}</span>
-      <span class="brand">Marca: {{ produto.marca or 'Imperium' }}</span>
-    </div>
-    <p class="stock">{% if produto.estoque > 0 %}{{ produto.estoque }} unidades em estoque{% else %}<span>Esgotado</span>{% endif %}</p>
-
-    <div class="detail-actions">
-      {% if produto.estoque > 0 %}
-        <a class="buy-button" href="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}">Adicionar ao carrinho</a>
-      {% else %}
-        <button class="buy-button" disabled>Indisponível</button>
-      {% endif %}
-    </div>
-
-    {% if produto.descricao %}
-      <div class="detail-description">
-        <h2>Descrição</h2>
-        <ul>
-          {% for linha in produto.descricao.split('\n') %}
-            {% if linha.strip() %}
-              <li>{{ linha }}</li>
-            {% endif %}
+    <div class="product-content">
+      <div class="product-gallery">
+        <div class="product-thumbs" role="list" aria-label="Imagens do produto {{ produto.nome }}">
+          <button type="button" class="is-active" data-full="{{ img_src(produto.imagem) }}" aria-label="Imagem principal" role="listitem">
+            <img src="{{ img_src(produto.imagem) }}" alt="{{ produto.nome }} - imagem principal">
+          </button>
+          {% for extra in produto.imagens|sort(attribute='ordem') %}
+            <button type="button" data-full="{{ img_src(extra.filename) }}" aria-label="Imagem complementar {{ loop.index }}" role="listitem">
+              <img src="{{ img_src(extra.filename) }}" alt="{{ produto.nome }} - imagem complementar {{ loop.index }}">
+            </button>
           {% endfor %}
-        </ul>
+        </div>
+        <figure class="product-main-image">
+          <img id="img-principal" src="{{ img_src(produto.imagem) }}" alt="{{ produto.nome }}" loading="eager">
+        </figure>
       </div>
-    {% endif %}
+
+      <aside class="product-summary">
+        <div>
+          <h1>{{ produto.nome }}</h1>
+          <p class="brand">{{ produto.marca or 'Imperium' }}</p>
+        </div>
+
+        <div class="price-line">
+          <span class="price">R$ {{ '%.2f'|format(produto.preco) }}</span>
+          <span class="brand">Parcelamento em até 10x sem juros</span>
+        </div>
+
+        <p class="stock {% if produto.estoque <= 0 %}is-out{% endif %}">
+          {% if produto.estoque > 0 %}
+            {{ produto.estoque }} unidades disponíveis para envio imediato
+          {% else %}
+            Produto indisponível no momento
+          {% endif %}
+        </p>
+
+        <div class="purchase-actions">
+          {% if produto.estoque > 0 %}
+            <a href="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}">Adicionar ao carrinho</a>
+          {% else %}
+            <button disabled>Indisponível</button>
+          {% endif %}
+          <a class="outline" href="{{ url_for('loja.index') }}#contato">Duvidas? Ir para a área aprender</a>
+        </div>
+
+        <p class="summary-description">
+          Tecnologia selecionada pela Imperium com foco em desempenho consistente e construção confiável para o seu setup.
+        </p>
+
+        <div class="info-list" aria-label="Informações rápidas">
+          <div class="info-item">
+            <span>Frete</span>
+            <span>Envio para todo o Brasil</span>
+          </div>
+          <div class="info-item">
+            <span>Garantia</span>
+            <span>12 meses oficial</span>
+          </div>
+          <div class="info-item">
+            <span>Pagamento</span>
+            <span>Até 10x sem juros</span>
+          </div>
+        </div>
+
+        <div class="assist-links">
+          <span>Dúvidas?</span>
+          <a href="{{ url_for('loja.index') }}#contato">Fale conosco</a>
+          <a href="{{ url_for('loja.index') }}#faq">Ver perguntas frequentes</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="product-details">
+      {% if produto.descricao %}
+        <section>
+          <h2>Descrição</h2>
+          <ul>
+            {% for linha in produto.descricao.split('\n') %}
+              {% if linha.strip() %}
+                <li>{{ linha }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+
+      <section>
+        <h2>Na caixa</h2>
+        <ul>
+          <li>{{ produto.nome }}{% if produto.marca %} da {{ produto.marca }}{% endif %}</li>
+          <li>Documentação e guia rápido</li>
+          <li>Cabo(s) e acessórios originais</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Envio e suporte</h2>
+        <p>Oferecemos rastreamento em tempo real, embalagem reforçada e atendimento dedicado caso precise de ajuda com instalação ou dúvidas sobre o produto.</p>
+      </section>
+    </div>
   </div>
 </section>
 {% endblock %}
 {% block extra_scripts %}
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', () => {
     const mainImage = document.getElementById('img-principal');
-    document.querySelectorAll('.produto-thumbs .thumb').forEach(function (thumb) {
-      thumb.addEventListener('click', function () {
+    const thumbs = Array.from(document.querySelectorAll('.product-thumbs button'));
+
+    if (!mainImage || thumbs.length === 0) return;
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
         const full = thumb.getAttribute('data-full');
-        if (full && mainImage) {
-          mainImage.src = full;
-          document.querySelectorAll('.produto-thumbs .thumb').forEach(function (img) {
-            img.classList.remove('is-active');
-          });
-          thumb.classList.add('is-active');
+        if (!full || mainImage.src === full) return;
+
+        mainImage.src = full;
+        const thumbAlt = thumb.querySelector('img')?.getAttribute('alt');
+        if (thumbAlt) {
+          mainImage.alt = thumbAlt;
         }
+        thumbs.forEach((button) => button.classList.remove('is-active'));
+        thumb.classList.add('is-active');
       });
     });
   });

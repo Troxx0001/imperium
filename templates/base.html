@@ -60,16 +60,21 @@
       <button class="drawer-close" type="button" aria-label="Fechar menu" id="drawerClose">&times;</button>
     </div>
     <ul class="drawer-links">
+      <li><a href="{{ url_for('loja.aprender') }}">Aprender</a></li>
       <li><a href="{{ url_for('loja.meus_pedidos') }}">Meus pedidos</a></li>
-      <li><a href="{{ url_for('loja.index') }}#aprender-intro">Aprender</a></li>
-      <li>
-        <button id="theme-toggle-drawer" class="btn" data-theme-toggle type="button" onclick="__toggleTheme()" aria-label="Trocar tema"></button>
-      </li>
+
+     
       {% if current_user.is_authenticated %}
         <li><a href="{{ url_for('loja.meus_pedidos') }}">Minha conta</a></li>
+         <li>
+        <button id="theme-toggle-drawer" class="btn" data-theme-toggle type="button" onclick="__toggleTheme()" aria-label="Trocar tema"></button>
+      </li>
         <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
       {% else %}
         <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+         <li>
+        <button id="theme-toggle-drawer" class="btn" data-theme-toggle type="button" onclick="__toggleTheme()" aria-label="Trocar tema"></button>
+      </li>
         <li><a href="{{ url_for('auth.cadastro') }}">Cadastro</a></li>
       {% endif %}
       {% if current_user.is_authenticated and current_user.admin %}
