@@ -9,7 +9,6 @@
   </header>
   <div class="learning-detail-body">
     <div class="learning-video">
-      <!-- Placeholder para embed de vídeo de componentes -->
       <div class="video-placeholder">Vídeo sobre componentes</div>
     </div>
     <div class="learning-text">
@@ -21,117 +20,410 @@
         <li><strong>Memórias:</strong> verifique compatibilidade, frequências e latências.</li>
         <li><strong>Armazenamento:</strong> diferencie SSD, NVMe e HDD.</li>
       </ul>
-      <button class="account-action-btn ghost" type="button">
-        <!-- Placeholder para download de material -->
-        Baixar checklist completo
-      </button>
+
     </div>
   </div>
 </section>
 
 <section class="learning-modules">
-    <article>
-    <div class="module-video-placeholder">
-      <div class="module-video-frame">
-        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-    <h3>Processador/CPU</h3>
-    <p>O processador, também conhecido como CPU (Central Processing Unit), é o componente responsável por interpretar e executar instruções dentro de um sistema computacional. Ele atua como o “cérebro” do computador, processando dados provenientes da memória e coordenando todas as operações lógicas, aritméticas e de controle necessárias para o funcionamento do sistema. Seu funcionamento baseia-se no ciclo de instrução, dividido em três etapas principais: busca (fetch), decodificação (decode) e execução (execute). Na fase de busca, a CPU localiza a instrução na memória; em seguida, decodifica o comando, determinando a operação que deve ser realizada; por fim, executa a tarefa, podendo envolver cálculos, movimentação de dados ou tomada de decisões lógicas.
-
-O desempenho de um processador depende de fatores como frequência de clock, medida em gigahertz (GHz), que define quantas operações podem ser realizadas por segundo, e o número de núcleos e threads, que permite o processamento paralelo de múltiplas instruções. Além disso, a presença de memórias cache (L1, L2 e L3) acelera o acesso a dados frequentemente utilizados, reduzindo o tempo de espera entre o processador e a RAM.
-
-Com arquiteturas modernas, como as da Intel e AMD, os processadores incorporam tecnologias de otimização energética, instruções vetoriais e suporte à virtualização. Em resumo, o processador é um sistema altamente sofisticado, projetado para maximizar desempenho, eficiência e compatibilidade com diferentes tipos de aplicações, desde tarefas básicas até simulações complexas e jogos de alta performance.</p>
-  </article>
-    <article>
-    <div class="module-video-placeholder">
-      <div class="module-video-frame">
-        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-    <h3>Placa mãe</h3>
-    <p>A placa-mãe é o backplane eletrônico que interliga CPU, memória, armazenamento e periféricos, coordenando sinais de dados, clock e energia. No centro lógico está o chipset (PCH), que agrega e distribui linhas PCIe vindas do processador para slots PCIe, soquetes M.2 (NVMe), portas SATA e USB. O soquete (LGA/AMx) abriga a CPU; ao redor, o VRM — fases com MOSFETs, indutores e capacitores — converte 12 V da fonte para tensões baixas e estáveis (≈0,9–1,3 V) com alta resposta transitória, sustentando boost/overclock. A qualidade do VRM (número de fases, componentes e dissipadores) impacta diretamente estabilidade térmica e headroom de desempenho.
-
-A topologia de memória (daisy-chain ou T-topology) e a disposição dos slots DIMM influenciam compatibilidade e frequências máximas. Ao ativar XMP/EXPO na UEFI/BIOS, a placa aplica automaticamente frequência, timings e voltagem do kit. Para preservar integridade de sinal em buses rápidos (PCIe, NVMe, USB), o roteamento em múltiplas camadas do PCB usa impedância controlada, pares diferenciais casados e planos de referência. O gerador de clock, a árvore de reset e barramentos auxiliares (SMBus, SPI/TPM) sustentam a inicialização; o firmware em flash SPI oferece recursos de recovery (Flashback) e políticas como Secure Boot.
-
-Na conectividade, a CPU expõe linhas PCIe diretas (tipicamente para a GPU e um M.2 principal), enquanto demais dispositivos trafegam via PCH pelo link DMI, compartilhando largura de banda. Saídas de vídeo traseiras funcionam apenas se a CPU tiver iGPU. Controladoras integradas (LAN 2.5G, Wi-Fi/Bluetooth, códigos de áudio ALC), headers PWM/DC para ventoinhas/bombas, USB-C frontal, ARGB e LEDs de diagnóstico completam o conjunto. Form factors (ATX, mATX, ITX) definem dimensões, slots e layout. Em suma, a placa-mãe distribui energia com precisão, sincroniza sinais de alta velocidade e fornece o ecossistema que habilita desempenho, estabilidade e expansão.</p>
-  </article>
-    <article>
-    <div class="module-video-placeholder">
-      <div class="module-video-frame">
-        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-    <h3>Memória RAM</h3>
-    <p>A memória RAM (Random Access Memory) é o componente responsável por armazenar temporariamente os dados e instruções em uso pelo processador, permitindo acesso extremamente rápido e eficiente. Ao contrário de discos rígidos ou SSDs, a RAM é volátil, ou seja, perde todas as informações quando o computador é desligado. Seu papel é garantir que o processador não precise buscar dados diretamente no armazenamento secundário, o que seria muito mais lento, mantendo o sistema ágil durante multitarefas, jogos e aplicações pesadas.
-
-Tecnicamente, a RAM funciona como um conjunto de células organizadas em linhas e colunas, acessadas por endereços binários. Cada célula armazena bits de dados controlados por capacitores e transistores. As memórias modernas utilizam a tecnologia DDR (Double Data Rate), que transfere dados na subida e na descida do pulso de clock, dobrando a taxa de transferência. Versões mais recentes, como DDR4 e DDR5, aumentam a largura de banda e reduzem o consumo energético.
-
-O desempenho da RAM depende de fatores como frequência (MHz), latência (CL) e largura do barramento (bits). A combinação adequada entre eles define a taxa real de transferência, medida em gigabytes por segundo (GB/s). Além disso, o canal duplo (Dual Channel) ou quádruplo (Quad Channel) permite maior paralelismo, duplicando ou quadruplicando o fluxo de dados.
-
-Em suma, a memória RAM é essencial para o desempenho global do sistema, servindo como ponte dinâmica entre o processador e o armazenamento, garantindo fluidez e eficiência em todas as operações computacionais.</p>
-  </article>
-    <article>
-    <div class="module-video-placeholder">
-      <div class="module-video-frame">
-        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-    <h3>Fontes</h3>
-    <p>A fonte de alimentação (ou PSU – Power Supply Unit) é o componente responsável por converter a energia elétrica da rede em tensões e correntes estáveis utilizadas pelos circuitos do computador. Sua função é essencial: fornecer energia limpa e contínua para a placa-mãe, processador, placa de vídeo, drives e demais periféricos, garantindo estabilidade e segurança ao sistema.
-
-Internamente, a fonte opera por meio de um conversor AC/DC, que transforma a corrente alternada (geralmente 110 V ou 220 V) em corrente contínua (DC). Essa conversão passa por várias etapas: retificação, filtragem, chaveamento em alta frequência e regulação de tensão, controladas por circuitos PWM e MOSFETs. As saídas principais são +12 V, +5 V e +3,3 V, cada uma destinada a componentes específicos — o processador e a GPU, por exemplo, dependem fortemente da linha de 12 V.
-
-A eficiência energética é um fator crucial, classificada pelo selo 80 Plus (Bronze, Silver, Gold, Platinum, Titanium), que indica o percentual de energia efetivamente convertida em potência útil. Fontes de alta eficiência reduzem o calor gerado e o consumo elétrico. Outro aspecto importante é o PFC ativo (Power Factor Correction), que otimiza o uso da energia e reduz interferências na rede elétrica.
-
-A construção e os conectores também variam conforme o padrão: ATX, SFX e modulares, que permitem conectar apenas os cabos necessários, melhorando o fluxo de ar. Em resumo, a fonte de alimentação é o coração elétrico do PC, convertendo e estabilizando energia com precisão para garantir desempenho confiável e longevidade aos componentes.</p>
-  </article>
-    <article>
-    <div class="module-video-placeholder">
-      <div class="module-video-frame">
-        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-    <h3>Gabinete/Resfriamento</h3>
-    <p>O gabinete é a estrutura física que abriga todos os componentes de um computador, servindo não apenas como proteção, mas também como parte fundamental do sistema de resfriamento e gerenciamento térmico. Seu design influencia diretamente o desempenho e a durabilidade do hardware, pois garante ventilação adequada e fluxo de ar eficiente.
-
-Internamente, o gabinete é projetado com baias e compartimentos para acomodar a placa-mãe, fonte de alimentação, armazenamento e placas de expansão. O layout deve permitir organização dos cabos (cable management) e circulação de ar livre entre os componentes. Gabinetes modernos utilizam padrões ATX, Micro-ATX e ITX, além de painéis laterais em vidro temperado e estruturas com aço reforçado ou alumínio.
-
-O resfriamento é dividido entre fluxo de ar ativo e passivo. No ativo, ventoinhas posicionadas estrategicamente criam um fluxo que entra pela frente (ar frio) e sai pela traseira e parte superior (ar quente). Já no passivo, o próprio formato interno auxilia na dissipação do calor. Em sistemas mais avançados, o resfriamento líquido (water cooler) é empregado, usando bombas, radiadores e tubos para transferir o calor da CPU e GPU de forma mais eficiente.
-
-A eficiência térmica depende da pressão positiva ou negativa do ar, do número de fans PWM/DC, do uso de filtros de poeira e da correta manutenção. Em resumo, o gabinete e o sistema de resfriamento formam o ambiente controlado que assegura estabilidade elétrica, temperaturas ideais e estética moderna, unindo funcionalidade, desempenho e proteção ao hardware.</p>
-  </article>
-    <article>
-    <div class="module-video-placeholder">
-      <div class="module-video-frame">
-        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-    <h3>Armazenamento</h3>
-    <p>Os dispositivos de armazenamento são responsáveis por gravar e manter os dados do sistema operacional, programas e arquivos do usuário, mesmo após o desligamento do computador. Eles evoluíram significativamente ao longo do tempo, passando dos tradicionais HDs (Hard Disk Drives) aos modernos SSDs (Solid State Drives) e NVMe (Non-Volatile Memory Express), cada um com características técnicas distintas que afetam diretamente o desempenho e a confiabilidade do sistema.
-
-O HD utiliza discos magnéticos giratórios e um braço mecânico com cabeças de leitura/gravação. Apesar da grande capacidade e baixo custo por gigabyte, sua limitação está na latência e velocidade de acesso, que dependem da rotação dos pratos (medida em RPM) e do tempo mecânico de busca.
-
-Já o SSD substitui partes móveis por memórias NAND Flash, acessadas eletronicamente, o que reduz drasticamente o tempo de resposta. Ele utiliza o protocolo SATA III, com taxas de até 600 MB/s, sendo muito mais rápido e resistente a impactos que o HD.
-
-O NVMe, por sua vez, representa a tecnologia mais avançada, conectando-se diretamente às linhas PCIe da placa-mãe, eliminando gargalos do protocolo SATA. Suas velocidades ultrapassam 7.000 MB/s, tornando-o ideal para aplicações que exigem alta taxa de leitura e escrita, como renderização, jogos e virtualização.
-
-Em resumo, HDs priorizam capacidade e custo-benefício, SSDs equilibram velocidade e durabilidade, e NVMe entrega desempenho extremo. A escolha ideal depende do tipo de uso, mas a tendência atual é combinar tecnologias: usar SSD ou NVMe para o sistema e HDs para armazenamento massivo.</p>
-  </article>
   <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-    <h3>Placa de Video</h3>
-    <p>A placa de vídeo, também chamada de GPU (Graphics Processing Unit), é o componente responsável por processar e gerar todas as imagens, vídeos e animações exibidas na tela do computador. Diferente do processador central (CPU), que executa tarefas gerais, a GPU é especializada em cálculos gráficos complexos e em operações que envolvem paralelismo, ou seja, consegue processar milhares de informações visuais ao mesmo tempo.
+    <h3>Processador/CPU</h3>
+    <p class="clamped">Em resumo: desempenho de CPU resulta de IPC, frequência sustentada e paralelismo (núcleos/threads), dentro dos limites de temperatura e energia da plataforma.
+A CPU é o componente de propósito geral que executa instruções do sistema e dos aplicativos. Ela busca, decodifica, executa e grava resultados repetidas bilhões de vezes por segundo. Esse fluxo contínuo é coordenado por um relógio interno cujo ritmo definimos como frequência.
+A frequência, medida em gigahertz (GHz), indica quantos ciclos por segundo o processador tenta completar. Modelos atuais trabalham com frequências base e modos de boost que elevam temporariamente o clock quando há margem térmica e elétrica. Na prática, interessa menos o pico anunciado e mais a frequência efetiva sustentada sob a sua carga, já que thermal/power throttling reduz o clock quando o resfriamento ou a entrega de energia não acompanham.
+O IPC (instructions per cycle) representa quanto trabalho útil a CPU aposenta em cada ciclo. Ele varia por geração e por arquitetura. Por isso, uma CPU com IPC maior e mesma frequência tende a ser mais rápida. Em termos simples: desempenho ≈ IPC × frequência sustentada × paralelismo aproveitado.
+Núcleos são unidades completas de execução dentro do processador. Mais núcleos ampliam o throughput em cargas paralelas. Threads lógicas (SMT/Hyper-Threading) ajudam a ocupar melhor os recursos do núcleo quando há ociosidade, mas o ganho depende da aplicação. Em jogos, o que pesa é desempenho por núcleo e boa placa de vídeo; em edição/renderização, compilação e VMs, o fator decisivo costuma ser quantidade de núcleos/threads.
+A cache é uma hierarquia de memórias rápidas integradas ao processador. L1 tem latência baixíssima e tamanho reduzido, L2 é intermediária e L3 é maior e compartilhada entre núcleos. Caches bem dimensionadas reduzem acessos à RAM e melhoram latência em jogos e aplicações sensíveis a reuso de dados.
+O controlador de memória (IMC) da CPU define suporte a DDR4 ou DDR5, número de canais e frequências oficiais. O desempenho de memória combina largura de banda e latência. Perfis XMP/EXPO elevam as frequências acima do padrão, mas exigem verificação de estabilidade. Plataformas com gráficos integrados (iGPU) dependem fortemente da banda de memória do sistema para desempenho 3D e de vídeo.
+TDP é um parâmetro térmico planejado para dimensionamento do cooler, não um limite fixo de consumo. Fabricantes e placas-mãe aplicam limites dinâmicos de potência para definir quanto tempo a CPU pode sustentar o boost. Em gabinetes bem ventilados e com refrigeração adequada, o processador mantém clocks mais altos por mais tempo.
+Compatibilidade envolve socket físico (ex.: AM5, LGA1700), chipset e BIOS/UEFI. Antes de adquirir ou atualizar, confirme na lista de compatibilidade da fabricante da placa-mãe se a versão de BIOS suporta aquela CPU. Verifique também o suporte a DDR4/DDR5, a capacidade do VRM e a compatibilidade mecânica do cooler com o socket e o espaço do gabinete.
+Como escolher, na prática: defina o uso principal e busque equilíbrio entre CPU, GPU, RAM e armazenamento. Para estudo, escritório e multimídia, uma CPU eficiente com iGPU e 4–6 núcleos é suficiente. Para jogos, priorize alto desempenho por núcleo, 6–8 núcleos e uma GPU à altura. Para criação de conteúdo e cargas pesadas, escale para mais núcleos/threads, aumente a RAM e invista em refrigeração.
+Erros comuns a evitar: focar apenas em GHz e ignorar IPC; desconsiderar compatibilidade de socket/BIOS/RAM; subdimensionar o cooler e o fluxo de ar do gabinete; desequilibrar o orçamento (CPU muito forte com GPU fraca, ou o contrário).
+Upgrade com cuidado: faça backup, atualize a BIOS quando necessário, observe procedimentos antiestáticos, aplique pasta térmica corretamente e verifique temperaturas após a primeira inicialização. Ajustar as curvas das ventoinhas ajuda a manter desempenho e ruído sob controle.
 
-Seu funcionamento se baseia na conversão de dados binários em sinais visuais compreensíveis. Quando um programa ou jogo solicita a renderização de uma imagem, a placa de vídeo calcula cada pixel, textura, luz e sombra necessários para compor a cena. Essa capacidade de processamento é medida em núcleos CUDA (NVIDIA) ou Stream Processors (AMD), e quanto mais núcleos e maior a frequência de operação (MHz ou GHz), mais rápida é a renderização.
 
-A GPU possui sua própria memória dedicada (VRAM), que armazena texturas, modelos 3D e outros dados gráficos temporariamente, reduzindo o uso da RAM principal e garantindo mais fluidez em tarefas visuais. Além disso, atua em conjunto com APIs gráficas como DirectX, OpenGL e Vulkan, que otimizam a comunicação entre o software e o hardware.
+</p>
+    <button class="expand-btn">Ver mais!</button>
+  </article>
 
-No uso prático, a placa de vídeo é essencial não só para jogos, mas também para edição de vídeo, modelagem 3D, inteligência artificial e computação científica, já que sua arquitetura paralela acelera cálculos pesados. Assim, ela transforma dados em imagens, garantindo desempenho, qualidade visual e eficiência no processamento gráfico.</p>
+  <article>
+    <div class="module-video-placeholder">
+      <div class="module-video-frame">
+        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <h3>Placa mãe</h3>
+    <p class="clamped">Em resumo: a placa-mãe define compatibilidade, I/O e margem de desempenho do seu sistema. Escolha é baseada em socket, chipset, qualidade do VRM, suporte de memória, vias/lanes PCIe e M.2, rede/USB/áudio e recursos de BIOS/UEFI. Um bom projeto térmico e firmware atualizado sustentam clocks e estabilidade.
+A placa-mãe é a base elétrica e lógica do PC: interliga CPU, RAM, GPU, armazenamento e periféricos, distribui energia e oferece as interfaces. Modelos que compartilham o mesmo socket podem ter comportamentos bem diferentes em estabilidade, temperatura e recursos, por causa do VRM, do roteamento de sinais, do chipset e do BIOS/UEFI.
+Socket, chipset e plataforma: O socket precisa coincidir com o processador. O chipset determina recursos: número e geração de portas PCIe expandidas, M.2/SATA disponíveis, USBs, rede e suporte a overclock (quando aplicável). Suporte a novas gerações depende de BIOS/UEFI e microcódigo (ex.: AGESA no ecossistema AMD). Antes de comprar, valide o processador na lista de compatibilidade da fabricante e verifique a versão mínima de BIOS.
+Fator de forma e layout: ATX oferece mais slots e headers; micro-ATX reduz tamanho mantendo bom custo/benefício; Mini-ITX prioriza compacidade com menos expansão. Confira compatibilidade com o gabinete, posição de headers frontais e espaço físico para placas longas, coolers altos e radiadores.
+VRM e alimentação: O módulo regulador de tensão converte a energia da fonte para níveis estáveis da CPU. Não é só contagem de “fases”: importa a capacidade de corrente dos estágios, a qualidade dos MOSFETs/DrMOS, o controle PWM e a dissipação do VRM. Bons dissipadores evitam estrangulamento térmico em turbos prolongados, especialmente com CPUs de muitos núcleos. Conectores ATX 24-pin e EPS 8-pin (ou 8+4) fornecem energia; garanta cabos adequados na sua fonte.
+Memória (IMC, DDR e topologia): A placa define DDR4 ou DDR5, número de slots e capacidade máxima. O desempenho depende de largura de banda e latência; perfis XMP/EXPO habilitam frequências acima do JEDEC e exigem estabilidade verificada. Em placas com 4 slots, a topologia de trilhas (daisy-chain vs T-topology) influencia a facilidade de atingir altas frequências com 2 ou 4 DIMMs. Consulte a QVL de memória da fabricante. Para sistemas com iGPU, priorize dual-channel e frequências mais altas.
+PCIe e expansão: A CPU fornece as lanes principais (ex.: x16 para GPU e algumas M.2); o chipset acrescenta I/O adicionais por um link dedicado. Verifique geração de PCIe (3.0/4.0/5.0), largura elétrica dos slots (x16/x8/x4/x1) e compartilhamentos: instalar um NVMe pode reduzir a velocidade de um slot PCIe ou desabilitar portas SATA conforme o mapeamento da placa. Alguns slots usam bifurcação (x16→x8/x8) para múltiplas placas. Em Mini-ITX, a expansão costuma se limitar a um x16 e 1–2 M.2.
+Armazenamento: Soquetes M.2 M-Key aceitam SSDs NVMe (PCIe) e, em alguns casos, SATA M.2. Heatsinks para M.2 ajudam a manter o desempenho sob carga contínua. Conte o número de SATA disponíveis e verifique se há RAID por chipset, caso precise. Leia o diagrama de compartilhamento para evitar desabilitar portas ao povoar todos os M.2.
+Rede, USB e áudio: Ethernet 1 GbE atende a maioria; 2.5 GbE agrega margem; 10 GbE aparece em modelos entusiastas. Wi-Fi integrado varia entre Wi-Fi 5/6/6E com Bluetooth correspondente. Em USB, observe gerações e velocidades (USB 3.2 Gen1, Gen2, Gen2x2), presença de Type-C traseiro e header frontal Type-C para o gabinete. Em áudio, o codec (ex.: linhas Realtek ALC) e o isolamento do circuito impactam ruído e dinâmica; para uso profissional, considere interfaces externas dedicadas.
+BIOS/UEFI e recursos de serviço: Atualizações de BIOS trazem microcódigos e correções de estabilidade. Recursos como Flashback/Q-Flash/BIOS Flashback permitem atualizar sem CPU instalada (útil para novos processadores). Clear CMOS, dual BIOS, LEDs/debug code e botões on-board facilitam diagnóstico. Verifique também fTPM/PTT (TPM 2.0), Secure Boot e suporte a Resizable BAR/Above 4G Decoding.
+Headers e conectividade interna. Conte fan headers e a presença de PUMP para watercooler, ARGB 5V e RGB 12V para iluminação, headers de USB 3.x/Type-C frontais e portas para sensores. Certifique-se de que há conectores suficientes para o seu conjunto de ventoinhas e acessórios.
+Compatibilidade: Confirmar socket e versão de BIOS para a sua CPU; tipo de DDR suportado e capacidade/slots; espaço para cooler e placa de vídeo; número e geração de M.2/PCIe; necessidade de Wi-Fi/BT; headers frontais que o seu gabinete exige; qualidade e resfriamento do VRM; e a distribuição de lanes que você realmente vai usar.
+Como escolher, na prática: Para estudo, escritório e builds compactos, uma placa confiável com bom I/O e VRM básico é suficiente. Para jogos, priorize PCIe adequado para GPU, ao menos um M.2 PCIe 4.0, VRM com dissipadores decentes e front panel Type-C, se precisar. Para criação de conteúdo/estação de trabalho, foque em VRM robusto, múltiplos M.2 com bom mapeamento, rede de maior banda e maior número de USBs velozes.
+Erros comuns a evitar: Pagar por recursos não usados (overkill de I/O), ignorar QVL de memória, confundir nomenclatura de USB, subestimar o VRM para CPUs exigentes, comprar gabinete/placa incompatíveis em tamanho, e lotar M.2/SATA sem verificar os compartilhamentos que desativam portas.
+Upgrade com cuidado: Se a placa permitir, atualize o BIOS antes de instalar uma CPU de geração mais nova. Monte com standoffs corretos para evitar curto no gabinete, conecte 24-pin e EPS firmemente, aplique thermal pads nos M.2 quando previsto, organize cabos para fluxo de ar e valide tudo com testes de estabilidade e monitoramento de temperatura/tensão.
+
+</p>
+    <button class="expand-btn">Ver mais!</button>
+  </article>
+
+  <article>
+    <div class="module-video-placeholder">
+      <div class="module-video-frame">
+        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <h3>Memória RAM</h3>
+    <p class="clamped">Em resumo: a RAM fornece armazenamento volátil de alta velocidade para os dados/instruções ativos. Desempenho real decorre de capacidade suficiente, largura de banda (freq/MT/s × canais) e latência (timings), condicionado pelo IMC da CPU, topologia da placa-mãe e perfil XMP/EXPO. Estabilidade é mandatória; misturar kits é fonte frequente de problemas.
+A RAM (Random Access Memory) é onde o sistema mantém o que está em uso imediato. Se a capacidade é insuficiente, o sistema passa a trocar dados com o disco (swap/paging), o que derruba o desempenho até mesmo em SSDs NVMe. Portanto, capacidade vem primeiro, depois frequência e timings.
+Capacidade recomendada: Para uso geral e estudos, 16 GB é o novo mínimo confortável. Para jogos atuais, 16–32 GB; para edição de vídeo, 3D, VMs e multitarefa pesada, 32–64 GB (ou mais conforme o caso). Em plataformas DDR5, capacidades ímpares como 24/48 GB por módulo são comuns e válidas.
+DDR4 vs DDR5: DDR5 eleva a largura de banda por módulo (duas sub-canais de 32 bits por DIMM) e integra PMIC no próprio módulo, além de melhorias de eficiência. Em contrapartida, latências em ciclos (CL, tRCD, tRP) tendem a números mais altos; o que importa é a latência absoluta em nanossegundos. Como regra prática, mais banda favorece iGPU, jogos com streaming de assets e cargas paralelas; menor latência ajuda jogos sensíveis a resposta e aplicações de reuso de dados.
+Frequência (MT/s) e timings: A frequência da RAM é usualmente expressa em MT/s (ex.: 3200, 3600, 6000). Os timings (CL-tRCD-tRP-tRAS) indicam atrasos em ciclos. Para comparar latência absoluta aproximada, use: latência(ns) ≈ (2000 × CL) / MT/s. Exemplo: CL16 @ 3200 → ~10 ns; CL30 @ 6000 → ~10 ns. Observe o conjunto: uma RAM de MT/s mais alto com CL proporcional pode manter latência similar e entregar maior banda.
+Canais, ranks e topologia: Operar em dual-channel (dois módulos) dobra a largura de banda efetiva frente a single-channel, impacto relevante em iGPUs. Ranks (single/dual rank) influenciam desempenho e overclock: dual rank pode melhorar o throughput por melhor ocupação do controlador, a custo de menor headroom de frequência. A topologia da placa-mãe (daisy-chain vs T-topology) afeta a facilidade de atingir altas frequências com 2 ou 4 DIMMs.
+Perfis XMP/EXPO e IMC: Módulos trazem perfis XMP (Intel) ou EXPO (AMD) para aplicar frequência e timings acima do padrão JEDEC. A estabilidade depende do IMC da CPU, da qualidade do VRM e do roteamento de memória da placa. Sempre valide com testes (MemTest86, TM5, HCI MemTest) após habilitar XMP/EXPO. Em plataformas AMD, busque combinações conhecidas (ex.: DDR5-6000 com relação de clocks equilibrada) conforme recomendações do fabricante.
+DIMMs e compatibilidade: Em desktops usamos UDIMM; em notebooks, SO-DIMM. Módulos ECC (UDIMM ECC/RDIMM) são específicos para plataformas que suportam ECC; on-die ECC de DDR5 não substitui ECC de sistema. Consulte a QVL (lista de memórias testadas) da placa-mãe para reduzir risco de incompatibilidade.
+Boas práticas de escolha: Defina a capacidade pelo seu perfil, depois selecione frequência/timings compatíveis com a plataforma e o orçamento. Para DDR4 em jogos, 3200–3600 MT/s com CL baixo é um bom alvo; para DDR5, faixas como 5600–6400 MT/s são comuns e entregam boa banda. Prefira kits fechados (2×8, 2×16, 2×24, 2×32) em vez de somar módulos distintos.
+Erros comuns a evitar: Comprar pouca RAM e depender de swap; Misturar marcas/latências/capacidades e culpar a placa-mãe; Habilitar XMP/EXPO sem testar estabilidade; Ignorar o modo single-channel por instalar apenas um módulo; Forçar quatro DIMMs de alta frequência em placas que escalam melhor com dois.
+Upgrade com cuidado: Desenergize o sistema, descarregue estática, instale os módulos nos slots recomendados (A2/B2 na maioria das placas) para dual-channel, habilite XMP/EXPO na BIOS e rode testes de memória. Se houver instabilidade, reduza levemente a frequência, relaxe timings ou aumente a tensão DRAM dentro do especificado.
+
+</p>
+    <button class="expand-btn">Ver mais!</button>
+  </article>
+
+  <article>
+    <div class="module-video-placeholder">
+      <div class="module-video-frame">
+        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <h3>Fontes</h3>
+    <p class="clamped">Em resumo: a fonte converte corrente alternada (AC) da rede em corrente contínua (DC) estável nas linhas de +12 V, +5 V e +3,3 V, alimentando CPU, GPU, drives e periféricos. É o coração elétrico do sistema — estabilidade, eficiência e qualidade de componentes determinam desempenho, segurança e longevidade de todo o hardware.
+
+Eficiência e selo 80 Plus: A certificação 80 Plus indica o percentual de energia elétrica efetivamente convertida em potência útil (sem desperdício em calor). Níveis: Bronze (≈82–85%), Silver (85–88%), Gold (88–91%), Platinum (91–94%), Titanium (92–96%), medidos em 20/50/100% de carga e 115 V. Quanto maior a eficiência, menor o calor e o ruído, e maior a durabilidade dos componentes internos. Em fontes de qualidade, a eficiência real mantém-se próxima do pico (~90%) em cargas médias (40–60%), onde o sistema opera a maior parte do tempo.
+
+Topologias e componentes internos: Fontes modernas usam retificação ativa PFC (Power Factor Correction), que estabiliza o fator de potência e reduz interferência na rede. As topologias mais comuns são LLC resonante e DC-DC converter nas linhas menores, garantindo tensão estável mesmo sob variação de carga da GPU/CPU. Modelos antigos ou genéricos usam conversão group-regulated, menos estável e ineficiente. Capacitores japoneses 105 °C (Nippon Chemi-Con, Nichicon, Rubycon) são sinal de qualidade; capacitores genéricos chineses tendem a falhar sob alta temperatura. Indutores toroidais bem dimensionados e MOSFETs de baixa resistência (RDS(on)) indicam construção robusta.
+
+Potência e distribuição: A potência nominal (em watts) deve considerar o consumo combinado de CPU + GPU + periféricos com folga de 30–40%. O valor crítico é a capacidade da linha de +12 V, que alimenta praticamente todo o hardware pesado. Exemplo: uma GPU de 300 W + CPU de 150 W requerem ao menos 550–600 W reais em 12 V. Fontes de 650–750 W Gold atendem a maioria dos sistemas com sobras térmicas e eficiência ideal. Evite fontes “rotuladas” (genéricas) com potência de pico fictícia.
+
+Cabos e modularidade: Fontes modulares permitem conectar apenas os cabos necessários, melhorando o fluxo de ar e estética. Semi-modulares mantêm o cabo ATX 24 pinos e CPU 8 pinos fixos, removendo o restante. Não-modulares são mais baratas, mas acumulam cabos inúteis. Prefira cabos sleeved (malha individual) ou flat para melhor roteamento. Conectores principais:
+
+ATX 24 pinos (placa-mãe);
+
+EPS 4+4 pinos (CPU);
+
+PCIe 6+2 pinos ou 12VHPWR (GPU);
+
+SATA/Molex (drives e periféricos).
+Ao usar GPUs modernas (RTX 4000, RX 7000), verifique se a fonte inclui 12VHPWR nativo (PCIe 5.0) ou adaptador oficial do fabricante — evite dobrar cabos em ângulo extremo.
+
+Regulação, ripple e ruído: Uma boa fonte mantém regulação ≤ ±2% e ripple (ondulação AC) inferior a 40–50 mV nas linhas principais. Ripple alto gera instabilidade e degrada capacitores da placa-mãe e GPU. Ventoinhas de 120/135 mm com rolamento FDB (Fluid Dynamic Bearing) oferecem maior vida útil e ruído reduzido. Curvas térmicas inteligentes (Zero RPM ou modo semi-passivo) mantêm a ventoinha desligada até ~40–50% de carga, reduzindo ruído em uso leve.
+
+Dimensionamento e carga ideal: O ponto ótimo de eficiência situa-se entre 40–70% de carga total. Por isso, para um PC que consome 450 W em pico, uma fonte de 750 W Gold trabalhará fria, silenciosa e dentro da faixa ideal. Fontes subdimensionadas operam sob alta carga contínua (ineficiência, ruído, desgaste precoce), enquanto superdimensionadas tendem a sair do ponto ótimo, mas ainda são preferíveis.
+
+Proteções essenciais (OCP/OVP/UVP/OTP/OPP/SCP):
+
+OCP (Over Current Protection): corta corrente em caso de curto na linha.
+
+OVP/UVP: protegem contra sobretensão/subtensão.
+
+OTP: desliga a fonte em superaquecimento.
+
+OPP: impede sobrecarga além da potência nominal.
+
+SCP: evita danos em curtos-circuitos diretos.
+Fontes sem essas proteções podem queimar hardware em falhas.
+
+Erros comuns:
+
+Usar fontes genéricas “500 W reais” de R$ 100 — potência falsa, ausência de PFC, risco elétrico.
+
+Instalar a ventoinha virada para cima em gabinetes com entrada inferior filtrada — restringe fluxo e acumula calor.
+
+Dividir adaptadores Molex-para-PCIe em GPUs modernas — risco de derretimento.
+
+Usar extensões ou adaptadores sem certificação 16AWG.
+
+Escolha prática:
+
+Básico: 450–550 W Bronze, PFC ativo, marca confiável (Corsair CV, EVGA BQ, Cooler Master MWE).
+
+Intermediário: 650–750 W Gold, modular, baixo ruído (Corsair RMx, XPG Core Reactor, Seasonic Focus).
+
+Entusiasta: 850–1200 W Platinum/Titanium, 100% modular, fan semi-passivo, suporte ATX 3.0 + 12VHPWR (Seasonic Prime, Corsair HXi, SuperFlower Leadex).
+
+Manutenção e longevidade: Use estabilizadores apenas se certificados de onda senoidal pura; preferencialmente conecte via filtro de linha com proteção contra surtos (Clamper, APC). Limpe a grelha e filtro de ar da ventoinha periodicamente. Substitua fontes após 5–7 anos ou sinais de ruído elétrico/instabilidade sob carga.
+
+Em síntese:
+A fonte define a base elétrica de todo o sistema: converte, estabiliza e protege. Eficiência alta (Gold +), componentes de qualidade e boas proteções garantem energia limpa e silenciosa. Dimensione pela carga total × 1,4, privilegie 12 V forte e certificação 80 Plus real. Uma PSU confiável não aumenta FPS — mas evita que tudo o que você ama queime.</p>
+    <button class="expand-btn">Ver mais!</button>
+  </article>
+
+  <article>
+    <div class="module-video-placeholder">
+      <div class="module-video-frame">
+        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <h3>Gabinete/Resfriamento</h3>
+    <p class="clamped">Em resumo: o gabinete define fluxo de ar, ruído e compatibilidade física; o sistema de resfriamento (ar/AIO) garante frequências sustentadas evitando throttling. A escolha combina tamanho (ATX/mATX/ITX), malha/aberturas, slots de ventoinha/radiador, clearance para GPU/cooler/PSU, e controle de ventoinhas (PWM/DC) com curvas bem ajustadas.
+O gabinete é uma caixa de gestão térmica: direciona entradas/saídas de ar, filtra poeira e acomoda cabos e hardware. Maior área de malha frontal e dutos claros tendem a reduzir temperaturas, enquanto frentes sólidas/vidro exigem ventoinhas mais rápidas (mais ruído) para compensar.
+Tamanhos e compatibilidade física: ATX oferece mais expansão; micro-ATX equilibra custo e volume; Mini-ITX prioriza compacidade e exige planejamento térmico rigoroso. Verifique: altura do cooler de CPU, comprimento/espessura da GPU (nº de slots), comprimento da PSU, espaço para radiadores (topo/frente/lateral) e folga atrás da bandeja para cabos.
+Fluxo de ar e pressão: O padrão é frente → trás e baixo → topo. Use entrada (intake) na frente/baixo e saída (exhaust) atrás/topo. Pressão levemente positiva (mais intake filtrado do que exhaust) ajuda a conter poeira; filtros removíveis nas entradas são essenciais. Evite obstruções na frente (baias sólidas) e garanta colchão de ar sob gabinetes apoiados em carpete.
+Ventoinhas: 120 vs 140, CFM vs pressão. Tamanhos 140 mm movem mais ar no mesmo ruído. Em radiadores/finas restritivas, priorize ventoinhas com alta pressão estática (mmH₂O); em frentes mesh livres, foque em CFM. PWM (4-pinos) dá controle fino de rotação; DC (3-pinos) responde por tensão. Posicionamento típico: 2–3 intakes frontais + 1 exhaust traseiro; complemente com 1–2 no topo conforme a GPU/CPU.
+Coolers a ar: Torres com heatpipes e ventoinha de 120/140 mm oferecem alta confiabilidade, baixa manutenção e bom resfriamento de VRM próximo pela movimentação de ar. Atenção ao peso e à altura sob painéis laterais. Modelos top-down favorecem VRM/slots M.2, mas costumam ter desempenho inferior a torres altas sob TDPs elevados.
+AIO (radiador líquido selado): Radiadores 240/280/360 mm aumentam área de dissipação. Topo como exhaust privilegia temperaturas de CPU; frente como intake reduz CPU alguns °C, porém injeta ar mais quente no interior, podendo elevar temperaturas de GPU/VRM. Se montar na frente, prefira tubos para baixo para manter eventual bolha longe da bomba; evite que a bomba seja o ponto mais alto do circuito. Garanta espaço para ventoinhas em push (ou push/pull quando necessário) e siga orientação de fluxo do fabricante.
+Pasta térmica e contato: Aplique quantidade moderada (ponto central) e garanta pressão uniforme do cooler. Substitua após remoções frequentes ou em ciclos de alguns anos, conforme ambiente.
+GPU e airflow: Placas com triple-fan e 2.5–3 slots requerem intake forte e espaço para recirculação; vertical mount pode restringir a admissão se muito próximo ao vidro lateral. Mantenha slots PCI sem tampas quando necessário para facilitar exaustão e use suporte anti-sag para não tensionar o PCIe.
+Acústica e poeira: 
+Malha aberta tende a menor temperatura e maior ruído; painéis sólidos/dampening fazem o oposto. Filtros devem ser limpos periodicamente; pressão positiva ajuda a acumular poeira apenas onde há filtro. Prefira pés altos e entradas inferiores filtradas.
+Controle e headers: Some os fan headers da placa-mãe (CPU_FAN, CPU_OPT/PUMP, CHA/SYS_FANs). Hubs PWM e splitters permitem sincronizar múltiplas ventoinhas. Separe curvas por sensor (CPU vs temperatura de GPU via software) para evitar ruído desnecessário. AIOs costumam ligar a bomba em PUMP/AIO_PUMP a 100% ou em faixa recomendada pelo fabricante.
+Ambiente e posicionamento: Temperatura ambiente define piso térmico. Evite nichos fechados sem respiro traseiro/superior. Mantenha clearance frontal para intakes e distância da parede para exaustão. Em regiões muito empoeiradas/úmidas, encurte intervalos de limpeza.
+Compatibilidade: Malha/frente ventilada; espaço para radiador 240/280/360 no topo/frente; altura de cooler de CPU; comprimento/espessura da GPU; comprimento da PSU e espaço para cabos; número/posição de fan mounts; filtros removíveis; headers de ventoinha e headers ARGB 5V/RGB 12V; espaço para drives e roteamento de cabos.
+Como escolher, na prática: Para builds gerais, um mid-tower mesh com 2×140 mm intake + 1×120/140 mm exhaust resolve bem. Para ITX, foque em cases com entrada direta para GPU e suporte a AIO 240/280 se usar CPUs densas. Para estações de trabalho/GPUs topo, procure gabinetes com frente/topo totalmente perfurados, múltiplos M.2 com heatsinks e espaço para radiador 360 mm sem conflito com VRM.
+Erros comuns a evitar: Montar AIO na frente com bomba acima do radiador; usar pressão negativa sem filtros; escolher vidro frontal sem aberturas laterais; subestimar o espaço para cabo EPS/topo e para radiador + ventoinhas; bloquear intakes com cabos; ignorar clearance do cooler de CPU ou da GPU.
+Instalação e validação: Monte o hardware, defina curvas PWM por sensor, rode testes combinados (jogo + stress leve de CPU) e monitore temperaturas e ruído. Ajuste a prioridade de GPU (mais intake) ou CPU (mais exaustão/topo) conforme o gargalo térmico observado. Limpe filtros periodicamente e revise parafusos do cooler/radiador após ciclos térmicos.</p>
+    <button class="expand-btn">Ver mais!</button>
+  </article>
+
+  <article>
+    <div class="module-video-placeholder">
+      <div class="module-video-frame">
+        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <h3>Armazenamento</h3>
+    <p class="clamped">Em resumo: escolha de armazenamento equilibra latência, IOPS e throughput, endurance (TBW/DWPD), capacidade e confiabilidade. HDD entrega custo/GB e grande volume; SSD SATA reduz drasticamente a latência e acelera o sistema; SSD NVMe maximiza IOPS e banda. Planeje backups (3-2-1) e monitore SMART/health.
+
+Tipos e interfaces
+HDD (disco rígido): armazenamento magnético com latência alta (ms) e IOPS baixos. Bom para arquivos grandes e backup. Interface: SATA 6 Gb/s (≈ 550 MB/s limite prático do barramento, HDD não satura).
+SSD SATA (2,5" ou M.2 SATA): memórias NAND + controlador AHCI. Ganho massivo em latência (~100 µs) e IOPS versus HDD. Largura de banda limitada ao SATA (≈ 500–560 MB/s sequencial).
+SSD NVMe (M.2/NVMe em PCIe): comunica direto via PCIe (NVMe). Desempenho típico:
+PCIe 3.0 x4: até ~3,5 GB/s;
+PCIe 4.0 x4: até ~7,0 GB/s;
+PCIe 5.0 x4: ~10–14 GB/s em modelos topo. Latência ainda menor e filas múltiplas (paralelismo). Formatos comuns: M.2 2280 (checar Key M), além de add-in card (AIC).
+
+Métricas de desempenho
+Sequencial (MB/s): copia arquivos grandes/contínuos.
+Aleatório 4K (IOPS/MB/s): abre apps/sistema; fila (QD) baixa reflete uso real.
+Latência: HDD (ms) ≫ SSD SATA (centenas de µs) > NVMe (dezenas de µs).
+SLC cache: buffer que acelera gravações; quando esgota, SSD TLC/QLC reduzem a taxa sustentada (especialmente QLC). Caches podem ser dinâmicos (crescem com espaço livre) ou estáticos.
+
+NAND, DRAM e controladores
+Tipos de NAND: SLC (1 bit, rara em cache), MLC (2 bits, entusiasta/enterprise antiga), TLC (3 bits, padrão atual), QLC (4 bits, mais densa, endurance menor e escrita sustentada menor fora do SLC cache).
+DRAM vs DRAMless: SSDs com DRAM mantêm tabela de mapeamento (FTL) local → melhor latência aleatória e consistência. DRAMless usam HMB (Host Memory Buffer) via PCIe para reduzir custo, com leve perda em cargas mistas.
+Controlador: decide wear-leveling, garbage collection, TRIM, compressão e opções de energia (APST/ASPM). Firmware estável importa tanto quanto a ficha técnica.
+
+Endurance e vida útil
+TBW (Total Bytes Written) ou DWPD indicam resistência.
+Uso típico desktop raramente atinge o TBW antes da obsolescência; workloads pesados (captura de vídeo, VMs, compilações) exigem TLC com TBW maior (ou enterprise).
+Mantenha overprovisioning (5–10% livre) para performance/endurance estáveis.
+
+Térmica, throttling e heatsink
+NVMe esquenta; sem heatsink, pode ocorrer throttling em gravações longas. Placas-mãe atuais trazem heatsinks M.2; use thermal pad adequado. Em PCIe 5.0, dissipação é crítica.
+
+Compatibilidade e layout
+M.2: confirme Key (M ou B/M), comprimento (2230/2242/2260/2280/22110) e suporte SATA/NVMe (há slots que aceitam só um padrão).
+Compartilhamento de lanes: ocupar certos M.2 pode desativar portas SATA ou reduzir PCIe de outros slots — verifique o manual da placa-mãe.
+Boot NVMe requer UEFI (ativar CSM off quando necessário).
+Consoles:
+PS5: exige NVMe PCIe 4.0 x4 M.2 2280 com heatsink e banda mínima recomendada;
+Xbox Series: usa cartão proprietário (não é M.2 padrão).
+
+Particionamento, TRIM e saúde
+TRIM (ATA/NVMe Dataset Management) informa blocos livres → mantém desempenho.
+Use GPT/UEFI, alinhamento padrão de 1 MiB (Windows/macOS/Linux já fazem).
+Monitore SMART (percentual de vida útil, NAND writes, erros), temperaturas e realocações.
+Evite encher a 100% (queda de performance e desgaste acelerado).
+
+HDD: detalhes importantes
+CMR vs SMR: CMR para cargas mistas/NAS/RAIDs; SMR tem escrita sobreposta, bom para arquivamento, mas pode degradar em gravações aleatórias/RAID.
+RPM: 5400/5900 (silêncio/baixo consumo), 7200 rpm (melhor desempenho).
+Cache (MB) ajuda em rajadas. Helium e discos maiores (platters densos) reduzem turbulência e melhoram eficiência.
+Em NAS, prefira modelos com TLER/ERC (recuperação controlada) para não cair de arrays.
+
+Externos e docks
+SATA-USB com UASP melhora IOPS vs BOT.
+NVMe-USB: caixas 10 Gb/s (USB 3.2 Gen2) alcançam ~1 GB/s; 20 Gb/s (Gen2x2) até ~2 GB/s; 40 Gb/s (USB4/Thunderbolt) pode limitar pelo SSD. Cuidado com aquecimento em cases compactas.
+
+Como escolher, por uso
+Sistema/Apps/Jogos: NVMe TLC com DRAM para melhor responsividade; 500 GB–1 TB ou mais.
+Biblioteca de jogos grande: NVMe ou SATA TLC conforme orçamento; priorize capacidade.
+Edição de vídeo/projetos grandes: NVMe de alta banda (PCIe 4/5), TBW elevado, heatsink robusto.
+Backup/arquivamento: HDD CMR de grande capacidade (8–18 TB), preferencialmente em NAS com RAID/ZFS.
+Portabilidade: SSD NVMe + USB 10/20/40 Gb/s em case ventilada.
+
+Compatibilidade: checklist rápido
+Slot M.2 aceita NVMe? Ou é SATA-only?
+Comprimento/Key do M.2 e heatsink disponível.
+Lanes/portas que serão desativadas ao povoar M.2.
+UEFI habilitado para boot NVMe; CSM conforme necessidade.
+PSU e airflow suficientes para SSDs quentes (especialmente PCIe 5.0).
+
+Erros comuns a evitar
+Comprar M.2 SATA achando que é NVMe; ignorar heatsink em NVMe rápido; encher SSD a 100%; usar QLC para workloads de escrita intensa; colocar SMR em NAS/RAID e estranhar quedas de desempenho; não verificar lanes compartilhadas; desprezar backup.
+
+Instalação e validação
+Atualize BIOS/UEFI e firmware do SSD (se disponível); 
+Instale o M.2 com parafuso correto e thermal pad; 
+Ative AHCI (SATA) ou garanta NVMe nativo; 
+Formate em GPT e verifique TRIM; 
+Rode testes curtos (sequencial e 4K QD1), monitore temperatura e throttling; 
+Configure backups automáticos (3-2-1) e monitore SMART mensalmente.
+
+</p>
+    <button class="expand-btn">Ver mais!</button>
+  </article>
+
+  <article>
+    <div class="module-video-placeholder">
+      <div class="module-video-frame">
+        <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <h3>Placa de Vídeo</h3>
+    <p class="clamped">Em resumo: desempenho em jogos/apps 3D resulta de shader throughput (ALUs/CUDA/Stream/Compute Units), clock efetivo, largura de banda e latência de memória (VRAM), capacidade de VRAM e eficiência térmica/energética—além do driver. Recursos como RT cores/RT units, Tensor/AI cores e encoders AV1/H.264/H.265 impactam ray tracing, upscalers e streaming.
+
+Arquitetura e métricas principais
+Shaders/ALUs: executam operações de vetor/matriz e shading. Comparar contagens só dentro da mesma arquitetura/geração.
+Clock: GPUs variam dinamicamente (boost) conforme temperatura e limites de potência (TBP/TGP). Sustentação térmica define o clock real.
+RT/Tensor/Matrix: blocos dedicados para ray tracing e IA (DLSS/XeSS). Sem eles, o recurso roda via shaders, com maior custo.
+Cache (ex.: L2/L3): reduz idas à VRAM e melhora latência; em jogos, pode compensar bus mais estreito dependendo da carga.
+API: suporte a DirectX 12 Ultimate / Vulkan garante features modernas (Mesh Shaders, VRS, RT, Sampler Feedback).
+
+Memória de vídeo (VRAM): capacidade e largura de banda
+Capacidade define “orçamento” de texturas/buffers. Se estourar, ocorre paging para RAM/SSD e o FPS/frametime degrada.
+Banda depende de largura do barramento (bits) e velocidade da memória (Gbps), e do uso de cache/Infinity Cache.
+Fórmula (aprox.): Banda (GB/s) = (largura em bits ÷ 8) × velocidade (Gbps).
+Ex.: 256-bit × 18 Gbps ≈ 576 GB/s.
+Tipos: GDDR6/GDDR6X (desktop), HBM (profissional/IA). GDDR6X tem taxas mais altas e consumo maior.
+Regras de bolso (jogos):
+1080p: 6–8 GB (com folga para texturas altas, 8 GB+).
+1440p: 8–12 GB.
+4K: 12–16 GB+. Cargas com RT pesado e mods de textura elevam a demanda.
+
+Resolução, CPU bound e frametime
+Em 1080p e/ou jogos com lógica pesada de CPU, o gargalo pode ser a CPU (frametime irregular). Em 1440p/4K, geralmente o limite é a GPU.
+Mire estabilidade de frametime (pouco stutter), não só FPS médio. VRR do monitor suaviza picos e vales dentro da faixa suportada.
+
+Upscaling e frame generation
+DLSS/FSR/XeSS aumentam FPS renderizando em resolução menor e reconstruindo a imagem (temporal/ML). A qualidade depende de modo (Quality/Balanced/Performance) e da implementação no jogo.
+Frame Generation (ex.: DLSS 3/FSR 3 FG) insere frames sintéticos. Aumenta FPS percebido, mas não reduz input-lag por si só; combine com Reflex/Anti-Lag.
+
+Streaming, captura e codificadores
+Encoders AV1 (mais eficiente), H.264 e HEVC residem no NVENC/AMF/Quick Sync (GPU/CPU iGPU). Para streaming, AV1 entrega melhor qualidade por bitrate quando suportado pelo destino.
+Decoders por hardware aliviam CPU ao assistir/editar vídeo.
+
+Alimentação, conectores e fonte
+Verifique TBP/TGP e picos transitórios.
+Conectores: 8-pin PCIe (6+2), múltiplos cabos dedicados em GPUs exigentes; padrões recentes usam 12V-2x6 (evolução do 12VHPWR). Insira até o clique e evite dobras bruscas perto do conector.
+Dimensione a PSU com 30–50% de folga e priorize modelos ATX 3.0/3.1 para lidar com excursões.
+
+Interface PCIe e Resizable BAR
+PCIe x16 3.0/4.0/5.0: largura efetiva raramente é gargalo em x16; x4 3.0 pode limitar GPUs médias/altas.
+Resizable BAR/SAM permite à CPU acessar toda a VRAM; ganhos variam por jogo (0–10%+). Ative em BIOS (Above 4G + ReBAR) e driver.
+
+Resfriamento, ruído e estabilidade
+Coolers:
+Dual/triple-fan (abertos) recirculam no gabinete; dependem de bom airflow.
+Blower expele ar direto; útil em cases compactos, mais ruidoso.
+AIO (híbridas) movem calor para radiador; verifique espaço para 240/280/360 mm.
+Monitore temperatura do GPU die e hotspot/junction; throttling reduz clock. Ajuste curvas de fan; undervolt costuma reduzir ruído/consumo mantendo FPS.
+Coil whine (zumbido de indutores) varia por exemplar/carga; reduzindo FPS máximos (V-Sync/limitador) pode atenuar.
+
+Fator de forma e compatibilidade física
+Comprimento/altura/espessura (2–3.5 slots) e peso exigem suporte anti-sag.
+Verifique clearance com cabos e frente do gabinete; radiadores/AIOs podem conflitar com o topo.
+Saídas: HDMI 2.1 para 4K/120/VRR em TVs/consoles; DisplayPort 1.4/2.1 para 1440p/240 e 4K/144+ com DSC.
+
+Drivers e software
+Drivers atualizados corrigem bugs, melhoram performance e adicionam perfis. Use limpeza (DDU) ao trocar de fabricante.
+Ferramentas de controle (panel/overlay) permitem OC/UV, power limit, fan curve, ReBAR e cap de FPS.
+Perfis por jogo salvam escalonamento/RT/upscaler.
+
+Benchmark e validação
+Teste com jogos reais + benchs consistentes (com e sem RT/upscaler).
+Monitore FPS médio, 1%/0.1% lows e VRAM usada.
+Valide estabilidade (30–60 min) e temperaturas com log; cheque artefatos/driver crashes.
+
+Compatibilidade: checklist rápido
+PSU suficiente e conectores corretos (cabos dedicados!).
+Gabinete com espaço e airflow; número de slots.
+Monitor (resolução/Hz/VRR/entradas HDMI/DP) alinhado à GPU.
+PCIe livre (evitar x4 3.0 em GPUs altas), Resizable BAR ativo.
+CPU compatível com seu alvo de FPS (evitar gargalo severo em 1080p competitivo).
+Drivers/OS e BIOS atualizados.
+
+Como escolher, por uso
+1080p competitivo: priorize alto FPS e latência; GPU média com forte desempenho raster + CPU rápida; VRAM 8 GB+.
+1440p high/ultra: segmento intermediário-alto; 8–12 GB VRAM, bom upscaler.
+4K/RT: topo de linha; 12–16+ GB VRAM, alto throughput e RT dedicado; upscaler e FG ajudam.
+Criação (Premiere/DaVinci/Blender): VRAM 12–24 GB conforme projetos; encoders AV1/HEVC e drivers estáveis.
+
+Erros comuns a evitar
+Olhar só TFLOPS/shaders sem considerar cache/VRAM; ignorar PSU e picos; comprar GPU muito longa/espessa para o gabinete; focar em 4K sem monitor/CPU à altura; esquecer ReBAR; subestimar temperatura/ruído e depois limitar por throttling.
+
+Instalação e validação
+Atualize BIOS (Above 4G/ReBAR) e drivers; 
+Instale a GPU firmemente (x16) com parafusos e cabos separados;
+Configure limite de FPS/VRR, DLSS/FSR/XeSS conforme o jogo; 
+Valide temperaturas/hotspot em jogo real; 
+Ajuste fan curve/undervolt se necessário;
+Teste estabilidade por 30–60 min e monitore frametimes.</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
 </section>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closePopup">&times;</span>
+    <div class="popup-video" id="popupVideo"></div>
+    <div class="popup-text" id="popupText"></div>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('popup');
+  const popupVideo = document.getElementById('popupVideo');
+  const popupText = document.getElementById('popupText');
+  const closePopup = document.getElementById('closePopup');
+
+  document.querySelectorAll('.expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const article = btn.closest('article');
+      const video = article.querySelector('iframe').outerHTML;
+      const text = article.querySelector('p').innerText;
+
+      popupVideo.innerHTML = video;
+      popupText.innerText = text;
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  closePopup.addEventListener('click', () => {
+    popup.style.display = 'none';
+    popupVideo.innerHTML = '';
+    popupText.innerHTML = '';
+    document.body.style.overflow = 'auto';
+  });
+
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) closePopup.click();
+  });
+});
+</script>
 {% endblock %}

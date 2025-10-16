@@ -305,6 +305,19 @@ def produto_excluir(produto_id):
     return redirect(url_for('admin.produtos'))
 
 
+@admin_bp.route('/produtos/<int:produto_id>/toggle', methods=['POST'])
+@login_required
+def produto_toggle(produto_id):
+    if not current_user.admin:
+        return redirect(url_for('loja.index'))
+    produto = Produto.query.get_or_404(produto_id)
+    produto.ativo = not getattr(produto, 'ativo', True)
+    db.session.commit()
+    log_action(f'Alterou status de {produto.nome} para {produto.ativo}')
+    flash(f"Produto {'ativado' if produto.ativo else 'desativado'} com sucesso!", 'success')
+    return redirect(url_for('admin.produtos'))
+
+
 @admin_bp.route('/pedidos', methods=['GET', 'POST'])
 @login_required
 def pedidos():

@@ -8,11 +8,24 @@ from models import db
 
 carrinho_bp = Blueprint('carrinho', __name__)
 
-@carrinho_bp.route('/adicionar-carrinho/<int:id>')
+@carrinho_bp.route('/adicionar-carrinho/<int:id>', methods=['GET', 'POST'])
 def adicionar_ao_carrinho(id):
     carrinho = session.get('carrinho', {})
     carrinho[str(id)] = carrinho.get(str(id), 0) + 1
     session['carrinho'] = carrinho
+
+    try:
+        produto = Produto.query.get(int(id))
+        nome = produto.nome if produto else f'ID {id}'
+    except Exception:
+        nome = f'ID {id}'
+
+    quantidade = carrinho.get(str(id), 0)
+    flash(f'"{nome}" adicionado ao carrinho (quantidade: {quantidade}).', 'success')
+
+    referer = request.headers.get('Referer')
+    if referer:
+        return redirect(referer)
     return redirect(url_for('loja.index'))
 
 @carrinho_bp.route('/carrinho')

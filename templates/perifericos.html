@@ -9,7 +9,6 @@
   </header>
   <div class="learning-detail-body">
     <div class="learning-video">
-      <!-- Placeholder para embed de vídeo sobre periféricos -->
       <div class="video-placeholder">Vídeo sobre periféricos</div>
     </div>
     <div class="learning-text">
@@ -21,15 +20,12 @@
         <li><strong>Headsets:</strong> qualidade sonora e conforto prolongado.</li>
         <li><strong>Monitores:</strong> taxa de atualização e fidelidade de cores.</li>
       </ul>
-      <button class="account-action-btn ghost" type="button">
-        <!-- Placeholder para seleção personalizada -->
-        Montar setup ideal
-      </button>
     </div>
   </div>
 </section>
 
 <section class="learning-modules">
+
   <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
@@ -37,150 +33,481 @@
       </div>
     </div>
     <h3>Mouse</h3>
-    <p>O mouse é um periférico de entrada essencial para a interação com o computador, responsável por converter o movimento físico da mão do usuário em coordenadas na tela. Ele atua enviando sinais elétricos ao sistema operacional, permitindo selecionar, arrastar, clicar e interagir com elementos visuais da interface.
+    <p class="clamped">Em resumo: a experiência depende de formato/ergonomia e peso, sensor e métricas de rastreio (CPI/IPS/accel/L0D), latência e polling (USB/2,4 GHz/BLE), switches/scroll e superfície. Para jogos competitivos, priorize sensor estável (sem smoothing/angle snapping), 1000–8000 Hz quando fizer sentido e peso/forma adequados ao seu grip.
+O mouse transforma movimento físico em coordenadas digitais. O conjunto sensor → MCU/firmware → link (USB ou wireless) → SO/jogo define precisão e atraso de entrada. Qualquer elo fraco vira jitter, correções artificiais ou latência perceptível.
+Formato, ergonomia e peso: A escolha começa pela forma (simétrico/ergo-destro) e pelo grip: palm (apoio total), claw (arqueado) e fingertip (toque leve). Observe comprimento, largura frontal/traseira, altura do “hump” e sua posição. Um centro de massa bem posicionado reduz esforço em micro-ajustes. Pesos modernos variam de < 60 g (ultraleves) a 80–100 g; menor peso ajuda em FPS de baixa sensibilidade, mas estrutura e rigidez não podem sofrer.
+Sensor e rastreio:
+CPI/DPI efetivo: passos de resolução; avalie desvio real do nominal.
+IPS (in/s de rastreio livre de erro) e aceleração máxima (g): definem a velocidade de controle perfeita. Valores altos evitam perda de rastreio em flicks rápidos.
+Smoothing, angle snapping e jitter reduction: idealmente desligados para precisão 1:1 em jogos.
+Lift-off distance (LOD): altura em mm na qual o sensor para de ler; baixo LOD evita drift ao recentralizar.
+Calibração de superfície: ajuda a estabilizar LOD e rastreio em pads de tecido/duros/vidro.
+Polling e latência: 1000 Hz (1 ms teórico) é padrão competitivo atual. 2000/4000/8000 Hz reduzem jitter temporal, mas aumentam uso de CPU e consumo (em wireless). Em 2,4 GHz proprietário, a latência se aproxima do USB; Bluetooth tem maior atraso e variação (use para produtividade). Dongles próximos ao mouse via extensor mitigam interferências. Em USB, prefira cabos paracord maleáveis e leves.
+Switches e scroll: Botões principais podem ser mecânicos (folga de debounce e risco de double-click com o tempo) ou ópticos (sem contato físico, debounce virtual). Avalie força de atuação (gf), pré/pós-curso e consistência entre cliques. Side buttons devem ter curso curto e feedback claro. O encoder de scroll (notches vs rolagem livre com embreagem) influencia navegação; pressão do middle click não deve ser excessiva.
+Skates e superfície: Pés de PTFE puro (virgem) reduzem atrito e são substituíveis; superfícies cloth (controle), hybrid (balance) e hard/glass (velocidade) alteram frenagem e micro-controle. Combine forma/peso com o coeficiente de atrito do mousepad para atingir seu cm/360 desejado sem forçar punhos.
+Bateria e construção: Em wireless, capacidade (mAh) e gestão (sleep, sensor “motion-sync”) determinam autonomia. Polling alto e RGB consomem mais. Procure USB-C, shell rígido sem flex, separação clara das teclas e ausência de wobble no scroll. Verifique coating (textura) para evitar suor/escorregões.
+Software e firmware. Procure memória on-board para DPI steps, LOD, polling, macros e binds sem software residente. Ajustes finos: debounce time, angle snapping (off), smoothing (mínimo), etapas de DPI bem espaçadas (ex.: 400/800/1600) e profiles por jogo.
+Compatibilidade:
+Mão/grip: forma simétrica/ergo e dimensões que combinem com sua mão.
+Peso e centro de massa: alvo conforme sensibilidade e tipo de jogo.
+Sensor: alta IPS/accel, baixo LOD, sem smoothing/angle snapping ativo.
+Link: USB/2,4 GHz (competitivo) vs Bluetooth (produtividade/multidispositivo).
+Polling: 1000 Hz mínimo para jogos; avaliar 2–8K se a plataforma suportar.
+Switches: ópticos ou mecânicos confiáveis; side buttons firmes; encoder estável.
+Skates/pad: PTFE e superfície compatível com seu estilo.
+On-board: perfis, DPI/LOD/polling sem software residente.
+Como escolher, por uso.
+FPS/E-sports: leve (≈55–70 g), simétrico/ergo com laterais seguras, sensor topo, 1000–4000 Hz, skates de PTFE e pad control/híbrido.
+MOBA/RTS: forma estável para macros, latência baixa; múltiplos side buttons ajudam.
+MMO: grid lateral dedicado, memória on-board robusta, foco em ergonomia e alcance de botões.
+Produtividade/estudos: conforto prolongado, Bluetooth multi-host, rolagem livre, bateria longa.
+Mobilidade: compacto, leve, dobra de energia eficiente, cabo/estojo.
+Erros comuns a evitar. Escolher só por DPI de marketing; usar Bluetooth em FPS; ignorar tamanho/grip e sofrer com desconforto; buscar 8K Hz sem necessidade (overhead/consumo); basear-se em peso ultrabaixo com shell frágil; não considerar pad/skates.
+Validação e ajuste. Atualize firmware, defina Windows 6/11 e Enhance Pointer Precision OFF (para jogos), selecione DPI e polling, ajuste debounce e LOD, posicione o dongle perto do mouse, teste consistência de micro-movimentos e faça tracking lines para verificar jitter/angle snapping. Ajuste sua sensibilidade (cm/360) e curvas de ventoinha do PC para ruído mínimo durante treino/jogo.
 
-Existem diferentes tipos de sensores usados nos mouses modernos, sendo os principais o óptico e o a laser.
-O sensor óptico utiliza um LED vermelho ou infravermelho que ilumina a superfície e uma câmera interna que captura centenas de imagens por segundo. A GPU do mouse analisa essas imagens para detectar o movimento. Já o sensor a laser funciona de forma semelhante, mas com um feixe de laser, que é mais preciso e funciona em uma variedade maior de superfícies, incluindo vidros e mesas brilhantes.
 
-A precisão do mouse é medida em DPI (dots per inch), que indica quantos pontos o cursor percorre na tela por polegada de movimento físico. Mouses comuns têm entre 800 e 1600 DPI, enquanto modelos gamers ou profissionais podem ultrapassar 20.000 DPI, oferecendo extrema sensibilidade.
-
-Além disso, há mouses com fio (USB), que oferecem resposta imediata e estável, e sem fio (wireless), que utilizam tecnologias como Bluetooth ou receptores de 2.4 GHz. Também existem modelos ergonômicos, projetados para conforto prolongado, e mouses gamers, com sensores de alta taxa de atualização e botões programáveis.
-
-Em resumo, o mouse traduz o movimento e os cliques do usuário em comandos digitais, sendo um dos dispositivos mais precisos e versáteis para controle e navegação em sistemas computacionais.</p>
+</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
-    <article>
+
+  <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <h3>Teclado</h3>
-    <p>O teclado é um periférico de entrada fundamental, responsável por enviar comandos e informações ao computador por meio da digitação de caracteres e teclas de função. Ele é composto por uma matriz de teclas eletrônicas, cada uma conectada a um circuito que identifica qual tecla foi pressionada e envia o respectivo sinal ao processador do sistema.
-
-Existem diferentes tipos de teclados conforme o mecanismo das teclas. Os teclados de membrana utilizam camadas flexíveis que fecham o circuito elétrico quando pressionadas, sendo mais silenciosos e baratos, porém com menor durabilidade e resposta. Já os teclados mecânicos usam switches individuais em cada tecla, compostos por molas e contatos metálicos. Eles oferecem maior precisão, resposta tátil e vida útil — por isso, são preferidos por programadores e gamers.
-
-Os switches mecânicos podem variar em comportamento: lineares (suaves e rápidos), táteis (com leve resistência) e clicky (com som audível de clique). Essa diversidade permite personalização conforme o tipo de uso.
-
-Outro fator importante é o layout (como ABNT2 no Brasil, com “Ç”) e o tipo de conexão, que pode ser USB com fio ou sem fio via Bluetooth ou receptor 2.4 GHz. Há ainda teclados ergonômicos, projetados para reduzir fadiga, e retroiluminados, que utilizam LEDs para facilitar o uso em ambientes escuros.
-
-Em resumo, o teclado é o principal meio de comunicação textual com o computador, combinando tecnologia eletrônica e design para oferecer conforto, precisão e eficiência em diferentes contextos de uso.</p>
+    <p class="clamped">Em resumo: escolha de teclado combina layout (ABNT2/ANSI), fator de forma (100%/TKL/75/65/60), switches (mecânico linear/tátil/clicky, óptico, Hall), latência/polling (USB/2,4 GHz/Bluetooth), keycaps (perfil e material), firmware (QMK/VIA) e ergonomia. Para jogos competitivos, priorize baixa latência e switches consistentes; para digitação, tátil/linear de acordo com preferência, ruído e conforto.
+Layout e fator de forma: No Brasil, ABNT2 traz “Ç” e diferenças em Enter/Shift; ANSI é comum em keycaps importadas. Confirme bottom row (padrão vs não-padrão) para compatibilidade de keycaps. Fatores de forma cortam grupos: 100% mantém numérico; TKL (87/88%) remove numérico e melhora ergonomia do mouse; 75/65% compactam setas e navegação; 60% sacrifica setas/del/pg; split/ergonômicos permitem tenting e menor ulnar deviation.
+Switches (mecanismo de acionamento).
+Mecânicos:
+Lineares: curso uniforme; foco em jogos e rapidez; exemplos por faixa de força ~35–60 gf.
+Táteis: “bump” perceptível; bom feedback para digitação.
+Clicky: som e feedback nítidos; pouco indicados para ambientes compartilhados. Parâmetros: pré-curso (~1,8–2,2 mm), curso total (~3,5–4,0 mm), força de atuação (gf) e histerese.
+Ópticos: atuação por feixe de luz; debounce virtual quase nulo; baixa latência.
+Hall effect/analógico: sensor magnético com atuação ajustável e leitura analógica (ideal para aceleração gradual em games).
+Membrana: custo baixo, maior chatter com o tempo; curso esponjoso.
+Hot-swap e compatibilidade de switches. Placas hot-swap (soquetes 3/5 pinos) facilitam troca sem solda. Verifique orientação LED (north vs south-facing) para evitar interferência com keycaps perfil Cherry. Estabilizadores (stabs) podem ser plate-mount ou screw-in; os últimos tendem a menos folga/ruído.
+Keycaps: material e perfil. PBT é mais resistente a brilho; ABS aceita doubleshot translúcido mais nítido (RGB), mas brilha com o uso. Técnicas: double-shot (legenda injetada), dye-sub (tingimento), pad-print (piora com o tempo). Perfis (altura/curvatura): OEM, Cherry, SA, DSA, XDA; perfis altos (SA) soam mais “ocos” e cansam alguns usuários; Cherry/OEM são versáteis. Em ABNT2, kits completos são menos comuns — confirme compatibilidade antes de comprar.
+Latência, polling e NKRO: Polling rate define a taxa de leitura (1000 Hz = 1 ms teórico; 8K reduz jitter em cenários extremos). 2,4 GHz dedicado normalmente tem latência similar ao USB; Bluetooth prioriza autonomia (maior latência, variando por stack/OS). NKRO permite múltiplas teclas simultâneas; 6KRO limita combinações. Debounce por hardware/firmware impacta input-lag; switches ópticos/Hall minimizam essa etapa.
+Conectividade e bateria: USB-C com cabo destacável é padrão atual. Em wireless, procure 2,4 GHz + dongle para jogos e BLE para múltiplos dispositivos. Avalie capacidade (mAh) e gerenciamento (sleep, desligar RGB). USB-C com hub/KVM no monitor simplifica setup multi-PC.
+Firmware e remapeamento: QMK/VIA/Vial permitem layers, macros, tap-dance e remapeamento on-board (funciona sem software residente). Firmwares proprietários variam; verifique armazenamento de perfis na memória do teclado e suporte a macOS/Linux/Windows.
+Acústica e construção: Som final depende de case (alumínio/plástico), método de montagem (tray/top/gasket/plateless), plate (alumínio, aço, PC, POM, FR4), espumas e estabilizadores. Montagens gasket reduzem ressonância e trazem sensação mais macia. Mods populares (lubrificação de stabs/switches, tape/PE-foam) ajustam timbre, mas exigem cuidado para não afetar confiabilidade.
+Ergonomia: Altura e inclinação influenciam tensão de punho; perfis altos podem exigir wrist rest. Teclados split/ergonômicos com tenting e columnar/ortholinear reduzem desvios ulnar/radial. Use pausas e ajuste a altura da mesa/cadeira.
+Iluminação e extras: RGB por tecla, underglow, roda de volume, joystick/knob, portas USB passthrough e dial são conveniências. Para trabalho, retroiluminação branca de baixo brilho é mais confortável e reduz distração.
+Compatibilidade: checklist rápido. Layout ABNT2 vs ANSI; fator de forma e necessidade de setas/numpad; hot-swap e padrão de switch (3/5 pinos); stabs screw-in; keycaps compatíveis com bottom-row; USB-C destacável; 2,4 GHz se jogar sem fio; bateria e modos multi-host; suporte QMK/VIA; polling ≥ 1000 Hz para jogos; NKRO;
+Como escolher, na prática: Jogos competitivos: layout compacto 65–75% para mouse-room, switches lineares estáveis, 2,4 GHz/USB com 1000–8000 Hz, keycaps PBT de boa textura. Digitação/trabalho: tátil ou linear leve, TKL/75% para setas, QMK/VIA para atalhos, ruído contido (lubrificação/stabs sólidos). Escritório compartilhado: switches silent (almofadados) e sem clicky; Bluetooth para alternar entre notebook/desktop.
+Erros comuns a evitar: Comprar ANSI esperando ABNT2; ignorar latência usando apenas Bluetooth para FPS; pegar bottom-row não-padrão e depois descobrir que o kit de keycaps não serve; subestimar estabilizadores (rattle nas teclas longas); escolher perfil de keycap incompatível com LEDs north-facing (choque em Cherry profile).
+Instalação e validação: Atualize firmware, configure polling rate, ative NKRO se disponível, remapeie camadas no VIA/QMK, teste ghosting e latência (testes on-line/OSD), verifique bateria/sleep em wireless e ajuste altura/apoio de punho. Limpeza periódica com extrator de keycaps e ar comprimido preserva a sensação e o som.
+</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
-    <article>
+
+  <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <h3>Monitores</h3>
-    <p>O monitor é o dispositivo de saída de vídeo responsável por exibir as informações processadas pelo computador em forma de imagens, vídeos e interfaces gráficas. Ele atua em conjunto com a placa de vídeo (GPU), que envia os sinais elétricos convertidos em dados visuais através de cabos como HDMI, DisplayPort ou VGA.
+    <p class="clamped">Em resumo: escolha de monitor equilibra resolução/tamanho (PPI), taxa de atualização e tempo de resposta, tipo de painel (IPS/TN/VA/OLED/mini-LED), VRR (FreeSync/G-SYNC), HDR/brilho/contraste/local dimming, gama de cores/profundidade de cor, conectividade/banda (DP/HDMI/USB-C) e ergonomia. A combinação certa depende do uso: jogos competitivos, single-player cinematográfico, trabalho/estudos ou criação de conteúdo.
+A resolução define quantos pixels existem; o tamanho determina a densidade (PPI). Em termos práticos, 24″ 1080p é nítido para uso geral; 27″ casa bem com 1440p; 32″ é ideal para 4K. Densidade maior rende textos/imagens mais definidos, mas pode exigir escala no sistema (125–150% em 4K 27–32″) para conforto visual.
+Taxa de atualização (Hz) e tempo de resposta afetam fluidez e nitidez em movimento. 60 Hz serve para uso básico; 120–144 Hz é o novo padrão gamer; 240–360 Hz atende e-sports. Diferencie GtG (cinza-a-cinza) de MPRT (percepção de borrão com strobe). Input lag baixo é essencial para competitivos; fabricantes sérios informam valores < 10 ms em 120–144 Hz.
+Tipos de painel:
+IPS: cores consistentes, ângulos amplos, resposta rápida; contraste típico 1000:1.
+TN: resposta muito rápida e baixo lag; cores/ângulos mais fracos; uso focado em e-sports.
+VA: contraste alto (2000–4000:1), pretos melhores; pode haver black smearing (arrasto em tons escuros) em modelos mais lentos.
+OLED/QD-OLED: preto perfeito (emissão por pixel), tempo de resposta muito baixo, ótimo HDR; limite de brilho sustentado e risco gerenciável de retenção/queima com proteções (pixel refresh, deslocamento). Subpixel em alguns QD-OLED pode causar leve fringing em texto.
+LCD com mini-LED/FALD: eleva brilho e contraste dinâmico via local dimming por centenas a milhares de zonas; depende da qualidade do algoritmo (blooming).
+VRR (Variable Refresh Rate), FreeSync/Adaptive-Sync e G-SYNC Compatible/Module sincronizam o painel à GPU, reduzindo tearing/stutter. Verifique faixa de VRR (ex.: 48–144 Hz) e LFC (Low Framerate Compensation). Strobing/ULMB/ELMB reduz borrão, mas geralmente não combina com VRR simultâneo.
+HDR na prática: Busque brilho de pico alto (em nits), contraste real e cobertura de cores. Selos VESA DisplayHDR dão pista mínima: 400 (entrada), 600 (melhor mapeamento com local dimming), 1000+ (alto brilho; ideal com mini-LED) e True Black para OLED. 10-bit nativo ou 8-bit+FRC é o esperado; sem dimming efetivo/pretos profundos, o ganho de HDR é limitado.
+Cores e precisão: sRGB cobre web/Windows; DCI-P3 é comum em mídia moderna; Adobe RGB interessa a fotografia impressa. Procure cobertura (ex.: 99% sRGB, 95% DCI-P3) e ΔE baixo após calibração. Monitores com LUT interna e uniformity compensation são melhores para trabalho crítico de cor.
+Conectividade e banda. DisplayPort 1.4 (HBR3) leva 1440p@240 ou 4K@144 com DSC; DP 2.1 amplia margem para 4K/240 e 8K. HDMI 2.1 (FRL) é relevante para consoles 4K@120 com VRR/ALLM. USB-C (DP Alt Mode) pode carregar o notebook (PD 65–100 W), atuar como hub e, em alguns modelos, KVM; confirme a largura de banda do link. MST (daisy-chain por DP) simplifica múltiplos monitores.
+Ergonomia e construção: Base com altura/tilt/swivel/pivot, suporte VESA (75/100 mm), revestimento (fosco anti-glare vs vidro), flicker-free (sem PWM visível), modos de low blue light e curvatura (ex.: 1000R/1500R em ultrawide VA). Verifique uniformidade de brilho e sangramento de luz (IPS glow/backlight bleed) em salas escuras.
+Como escolher, por uso:
+E-sports/FPS: 24–27″ 1080p/1440p, 240–360 Hz, TN/rápido IPS, input-lag mínimo; VRR estável.
+Jogos single-player e imersão: 27″ 1440p@144–165 Hz (IPS) ou 34″ UWQHD 3440×1440@144 Hz; para pretos profundos e HDR, OLED ou mini-LED.
+Trabalho/estudos: 27″ 1440p é “ponto doce” para texto; 32″ 4K para espaço de tela; base ergonômica, USB-C com PD e hub são diferenciais.
+Criação de conteúdo: 27–32″, 4K/60–144 Hz, ampla cobertura DCI-P3/Adobe RGB, 10-bit (nativo ou FRC), calibração e uniformidade.
+Consoles (PS5/XSX): HDMI 2.1, 4K@120, VRR/ALLM, bom HDR (mini-LED/OLED preferíveis).
+Compatibilidade: checklist rápido. Saídas da GPU (DP/HDMI) e padrão do monitor; cabos adequados (DP 1.4/2.1, HDMI 2.1 certificado); faixa de VRR suportada pela sua placa/console; USB-C com PD se for notebook; VESA e espaço da mesa; KVM/hub se alternar entre PCs.
+Erros comuns a evitar: Comprar 4K pequeno sem considerar escala; buscar Hz altíssimo com GPU insuficiente; supor que “HDR400” entrega experiência HDR robusta; ignorar VRR para jogos; subestimar ergonomia; usar cabos antigos sem banda para 1440p/240 ou 4K/120.
+Validação e ajustes: Atualize firmware, use cabo correto, habilite VRR (driver/OS/Jogo), selecione a faixa de Hz máxima, ajuste overdrive para evitar overshoot/ghosting, calibre cores (ao menos pelo OSD), e avalie uniformidade/bleed em ambientes com iluminação controlada.
 
-Os monitores modernos utilizam painéis eletrônicos formados por milhões de pixels — pequenos pontos luminosos compostos pelas cores primárias vermelho, verde e azul (RGB). A combinação dessas cores em diferentes intensidades cria toda a imagem exibida na tela.
-
-Existem diversos tipos de painéis, cada um com características específicas:
-
-TN (Twisted Nematic): rápido e econômico, ideal para jogos competitivos, mas com menor fidelidade de cores.
-
-IPS (In-Plane Switching): oferece cores mais precisas e ângulos de visão amplos, muito usado em design e edição.
-
-VA (Vertical Alignment): equilibra contraste alto com boa reprodução de cores.
-Além disso, há tecnologias como OLED e Mini-LED, que oferecem pretos profundos e brilho intenso, elevando a qualidade visual.
-
-A fluidez das imagens é determinada pela taxa de atualização (Hz), que indica quantas vezes por segundo a tela é atualizada. Monitores de 60 Hz são comuns, enquanto modelos gamers chegam a 144 Hz, 240 Hz ou mais.
-
-Outros fatores importantes incluem a resolução (Full HD, 2K, 4K), tempo de resposta, HDR e sincronização adaptativa (G-Sync/Freesync).
-
-Em síntese, o monitor transforma sinais digitais em imagens visíveis, sendo peça essencial para garantir nitidez, fidelidade de cores e desempenho visual em qualquer sistema computacional.</p>
+</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
-    <article>
+
+  <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <h3>Mouse pad</h3>
-    <p>O mouse pad é um acessório projetado para oferecer uma superfície estável e precisa ao movimento do mouse, melhorando a exatidão e o conforto durante o uso. Embora pareça simples, ele exerce um papel importante no desempenho dos sensores ópticos e a laser, garantindo que o rastreamento do movimento seja fiel e sem falhas.
+    <p class="clamped">Em resumo: o desempenho de um mousepad resulta da combinação entre coeficiente de atrito estático (parada/primeiro movimento) e dinâmico (deslize contínuo), textura/micro-rugosidade, material da superfície (cloth/hard/híbrido/vidro), espessura (amortecimento) e base anti-derrapante. O casamento com skates do mouse, peso/forma e sensibilidade (cm/360) define controle e consistência.
+O mousepad é um sistema mecânico de atrito controlado para o sensor e os pés (skates) do mouse. Buscamos baixa variação de atrito nos eixos X/Y, estabilidade ao parar o cursor e previsibilidade sob mudanças de temperatura/umidade. Sensor, firmware e superfície precisam trabalhar em conjunto.
+Métricas que importam
+Atrito estático (μs): resistência para iniciar o movimento; quanto menor, mais fácil “tirar do zero”.
+Atrito dinâmico (μk): resistência durante o deslizamento; define a sensação de “velocidade/controle”.
+Isotropia: consistência de atrito em X/Y; preferível para micro-ajustes precisos.
+Consistência ambiental: variação de atrito com umidade/temperatura; cloth costuma variar mais.
+Tipos de superfície
+Cloth (tecido): conforto, boa relação controle/parada; sensível a umidade/óleos (pode “grudar” com o tempo). Excelente para FPS low-sens. Requer limpeza periódica.
+Hard (plástico/compostos): menor μs/μk, mais “veloz” e com parada ligeiramente mais longa; estabilidade melhor em ambientes úmidos; maior ruído e desgaste de skates.
+Híbridos (tecido + coating/laminação): tentam unir controle de cloth com glide mais alto; dependem muito da qualidade do coating e tendem a “assentar” com o uso.
+Vidro/cerâmica: μs muito baixo e μk consistente; extremamente duráveis e estáveis ao clima; ruído alto, exigem skates adequados (PTFE espesso/cerâmica) e podem alterar LOD em sensores antigos.
+Espessura, base e construção
+Espessura (≈2–5 mm): mais espesso amortece e aumenta controle na parada; mais fino é mais rápido e transmite a irregularidade da mesa.
+Base: borracha natural/poron com boa aderência evita “andar” na mesa; fuja de bases lisas que deslizam.
+Bordas: costura (stitched) aumenta durabilidade; borda alta pode incomodar se não for bem nivelada.
+Skates (pés) e sinergia
+PTFE virgem com bordas chanfradas reduz arrasto e evita “enganchar” na malha.
+Espessura do skate (≈0,7–1,0 mm) altera sensação e LOD; em hard/vidro, skates cerâmicos ou PTFE espesso aumentam glide e durabilidade.
+O peso do mouse e o revestimento do pad determinam a força de frenagem necessária para parar na mira.
+Sensor e compatibilidade
+Sensores modernos possuem calibração por superfície e mantêm angle snapping/smoothing desativados por padrão em modo “gamer”.
+LOD (Lift-off distance) deve ser baixo para evitar drift ao recentralizar; pads muito reflexivos (vidro) podem exigir ajuste de LOD ou firmware com “glass mode”.
+Tamanho e ergonomia
+L/XL (deskmat) para baixa sensibilidade e braços longos.
+M para alta sensibilidade ou mesas pequenas.
+Prefira bordas rebaixadas e superfície uniforme; a mão/punho deve deslizar sem pontos de atrito.
+Ambiente e manutenção
+Cloth: lave a frio com sabão neutro, sem fricção agressiva; enxágue bem e seque plano (sem sol direto). Aplique limpeza leve mensal em uso intenso.
+Hard/híbridos: pano microfibra levemente umedecido; evite solventes que ataquem o coating.
+Vidro: limpa-vidros e microfibra; verifique pés de borracha para não patinar na mesa.
+Evite enrolar apertado (deforma), calor direto e sujeira na base que cause “ondulações”.
+Compatibilidade:
+Espaço de mesa para L/XL se jogar low-sens.
+Clima: alto índice de umidade favorece hard/híbrido pela estabilidade.
+Skates: PTFE chanfrado; considerar cerâmica em vidro.
+Espessura conforme conforto/controle; base com alto grip.
+Ruído aceitável (hard/vidro são mais ruidosos).
+Como escolher, por uso
+FPS competitivo (low-sens): cloth de controle ou híbrido control (3–4 mm), XL/deskmat; skates PTFE chanfrados.
+FPS/third-person (mid/high-sens): híbrido ou hard com μk estável; espessura 2–3 mm.
+MOBA/RTS/MMO: priorize consistência e baixa fadiga — híbrido/hard de baixa rugosidade.
+Produtividade/estudos: conforto e espaço; deskmat macio com bordas bem acabadas.
+Ambientes úmidos: hard/híbrido para manter glide constante ao longo do dia.
+Erros comuns a evitar
+Comprar tamanho pequeno para low-sens; ignorar umidade do ambiente; escolher bordas altas que irritam o punho; usar hard/vidro sem skates adequados; base escorregadia; negligenciar limpeza (cloth “vidra” com óleo/poeira e perde controle).
+Validação e ajustes
+Ajuste DPI (ex.: 400/800/1600), polling e cm/360; realize linhas de teste para checar jitter/consistência; monitore LOD após troca de skates/pad. Se o glide variar ao longo do dia, revise umidade e limpeza.
 
-Os modelos mais comuns são os mouse pads de tecido, que proporcionam uma textura uniforme e boa aderência, ideais para sensores ópticos. Já os mouse pads rígidos, feitos de materiais como plástico, alumínio ou vidro tratado, oferecem menor atrito e maior velocidade, favorecendo movimentos rápidos e precisos — preferidos por gamers ou profissionais de design.
 
-A textura da superfície influencia diretamente o desempenho do sensor. Superfícies lisas reduzem resistência, enquanto as mais ásperas oferecem maior controle. Muitos modelos modernos contam com base emborrachada para evitar deslizamentos e bordas costuradas, que aumentam a durabilidade.
 
-Há também mouse pads com RGB, que utilizam iluminação LED personalizável, e versões com apoio ergonômico, feitas com gel ou espuma para sustentar o punho e prevenir desconfortos em longas sessões de uso.
 
-Além disso, alguns modelos foram projetados para carregamento sem fio de mouses compatíveis, integrando tecnologia indutiva.
-
-Em resumo, o mouse pad não é apenas um acessório estético, mas um componente funcional que melhora a precisão do sensor, o conforto do usuário e a eficiência dos movimentos, contribuindo diretamente para uma experiência de uso mais fluida e profissional.</p>
+</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
-    <article>
+
+  <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <h3>Mesa digitalizadora</h3>
-    <p>A mesa digitalizadora é um periférico de entrada gráfica que permite desenhar, escrever ou editar diretamente no computador com o uso de uma caneta sensível à pressão, substituindo o mouse em tarefas que exigem precisão. É amplamente utilizada por designers, ilustradores, arquitetos e profissionais de edição, por oferecer controle detalhado semelhante ao desenho no papel.
+    <p class="clamped">Em resumo: a experiência depende de tamanho da área ativa, tecnologia da caneta (EMR/AES), IAF (força de ativação), níveis de pressão/curva, taxa de relatório (Hz), resolução (LPI) e drivers. Em pen displays, avalie também parallax/laminação, textura do vidro, brilho/cores e conectividade (USB-C Alt Mode/HDMI). Ergonomia (altura/ângulo) e estabilidade de driver importam tanto quanto especificações.
 
-Seu funcionamento baseia-se em uma superfície sensível, capaz de detectar os movimentos e a pressão exercida pela caneta. Essa superfície envia sinais elétricos ao computador, convertendo o traço físico em coordenadas digitais. Quanto maior a resolução da mesa (medida em LPI – lines per inch), mais precisa é a captura dos movimentos.
+Tipos de dispositivo
+Pen tablet (sem tela): superfície ativa + monitor externo. Menor custo, leve, sem aquecimento. Requer coordenação mão-olho.
+Pen display (com tela): desenha diretamente sobre a imagem. Avaliar parallax (distância vidro-pixel) e laminação (vidro colado ao painel reduz parallax). Consome mais energia e aquece mais.
+Pen computer/tablet OS: computador completo com caneta (ex.: tablets dedicados). Avaliar CPU/GPU, autonomia e suporte a apps desktop.
 
-A caneta da mesa digitalizadora contém sensores que registram níveis de pressão (geralmente entre 2048 e 8192), inclinação e até rotação, permitindo variações naturais de espessura e opacidade nos traços. Alguns modelos também incluem botões personalizáveis na caneta e na mesa para agilizar comandos de software.
+Caneta e digitalização
+Tecnologia
+EMR (ressonância eletromagnética): caneta sem bateria, hover estável, IAF geralmente baixo.
+AES/Active (eletrostática): caneta com bateria; bom desempenho, porém IAF pode ser maior conforme o fornecedor.
+Parâmetros chave
+IAF (Initial Activation Force): força mínima para iniciar traço. Menor IAF = traços finos sem “quebrar”.
+Níveis de pressão (ex.: 4096/8192): mais níveis refinam a curva, mas curva bem ajustada importa mais que o número absoluto.
+Inclinação (tilt): registra ângulo (graus) para sombreamento; útil em brushes.
+Taxa de relatório: medições por segundo (Hz). ≥200 Hz oferece latência baixa; implementação do driver conta muito.
+Resolução (LPI): densidade de leitura. Valores altos ajudam em precisão, mas linearidade/jitter do hardware e firmware são decisivos.
+Precisão: erro médio da ponta em mm; importante em pen displays (calibração 9/16 pontos ajuda).
+Hover distance: altura em que o cursor segue a caneta; útil para navegação e posicionamento.
 
-Existem dois principais tipos: as mesas sem tela, que exigem olhar para o monitor enquanto desenha na superfície, e as mesas com display integrado, onde o artista desenha diretamente sobre a imagem exibida — mais intuitivas, porém mais caras.
+Superfície, nibs e textura
+Textura: superfícies “paper-like” dão controle; vidro liso tem menos desgaste, porém menos atrito.
+Nibs: plásticas (duráveis) ou felt (maior atrito/controle). Nibs gastas geram imprecisão; mantenha sobressalentes.
+Ruído e desgaste: texturas ásperas gastam nibs mais rápido; vidro sem película pode ser escorregadio.
 
-A conexão é geralmente via USB ou Bluetooth, e a mesa é compatível com programas como Photoshop, Illustrator, Krita e Blender.
+Pen display: tela e imagem
+Laminação: vidro colado ao painel reduz parallax e reflexos.
+Revestimento: fosco anti-glare reduz reflexos e dá “grip”; verifica perda de nitidez.
+Cores/brilho: cobertura sRGB/DCI-P3 e brilho (nits) para ambiente iluminado; uniformidade é fundamental para pintura.
+Resolução e tamanho: 13–16″ são portáteis; 22–24″ dão espaço similar a folhas A3. Combine com escala do sistema para nitidez.
 
-Em resumo, a mesa digitalizadora traduz movimentos manuais em dados digitais com extrema precisão, sendo uma ferramenta essencial para arte digital, modelagem, edição e design profissional.</p>
+Conectividade e compatibilidade
+USB-C Alt Mode (DP): vídeo+dados por um cabo (pode exigir energia externa).
+HDMI + USB: dois cabos (vídeo e dados); atenção a cabos/portas.
+Alimentação: alguns modelos usam hub/alimentador; verifique voltagem.
+SO/Drivers: suporte estável a Windows Ink/Wintab, macOS e Linux (ex.: projetos comunitários). Drivers permitem curva de pressão, mapeamento, tilt, botões da caneta/tablet e área ativa por monitor.
+
+Ergonomia e controles
+Ângulo/altura: suporte/stand firme evita tensão no punho e pescoço; 15–30° é comum para traço; posições mais altas para pintura prolongada.
+Express keys/dials/touch: atalho de ferramentas/zoom/rotar; poupam teclado.
+Luva de desenho: reduz atrito e evita toques involuntários em pen displays.
+
+Fluxo de trabalho e apps
+Compatibilidade ampla com Photoshop, Illustrator, Krita, Clip Studio, GIMP, Inkscape, Blender (Grease Pencil/ZBrush via tablet), Affinity. Em 3D, a caneta melhora escultura e masking. Ajuste estabilização de traço no app caso haja tremor/jitter.
+
+Como escolher, na prática
+Ilustração 2D/estudo: pen tablet médio (≈ 8–10″ de área ativa), EMR, IAF baixo, 8–12 express keys.
+Pintura digital/edição avançada: pen display laminado 16–24″, boa cobertura sRGB/DCI-P3, brilho confortável, stand estável, USB-C Alt Mode quando possível.
+Mobilidade: pen tablet compacto + notebook/tablet com caneta; priorize peso/espessura.
+CAD/anotação: foco em precisão, baixa latência e boa calibração; tecla dedicada para pan/zoom.
+
+Compatibilidade:
+Área ativa proporcional ao seu(s) monitor(es).
+EMR/AES, IAF baixo, tilt e taxa de relatório adequada.
+Drivers maduros (Windows Ink/Wintab), curva de pressão editável.
+Pen display: laminação, anti-glare, parallax baixo, brilho/cobertura de cor.
+Conexões: USB-C Alt Mode ou HDMI+USB; energia e comprimento de cabos.
+Ergonomia: stand/ajuste de ângulo, express keys, caneta confortável.
+
+Erros comuns a evitar
+Comprar área pequena para monitor grande (perde precisão); ignorar parallax/laminação em pen display; usar vidro muito liso e estranhar falta de controle; depender de drivers instáveis; mapear todos os monitores na mesma área (sensibilidade vira micro-movimento); não ajustar curva de pressão.
+</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
-    <article>
+
+  <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <h3>Impressora</h3>
-    <p>A impressora é um periférico de saída responsável por transferir informações digitais para o papel. Existem três principais tipos amplamente utilizados: térmica, a tinta e a laser, cada uma com tecnologias e aplicações distintas.
+    <p class="clamped">Em resumo: escolha de impressora equilibra tecnologia de impressão (jato de tinta/tanque, laser/LED, térmica, sublimação), custo por página e ciclo mensal, qualidade/velocidade (ISO ppm, dpi/retícula), manuseio de papel (duplex, ADF, gramaturas) e conectividade/driver (USB/Ethernet/Wi-Fi, IPP/PCL/PS/PDF). Para escritório, priorize laser mono com ADF/duplex e baixo custo por página; para fotos, inkjet fotográfica com perfis de cor e papéis adequados; para etiquetas, térmica (direta ou por transferência).
 
-A impressora térmica utiliza calor para gerar a imagem. Em modelos diretos, o papel sensível ao calor escurece nos pontos aquecidos pelo cabeçote, dispensando tinta. Já na térmica por transferência, o calor derrete uma fita de cera ou resina, transferindo o pigmento para o papel. São comuns em caixas registradoras, cupons fiscais e etiquetas, por serem rápidas e de baixa manutenção.
+Tecnologias de impressão
+Jato de tinta (cartridge/tanque): bom para cores e fotos; qualidade alta (dye/pigmento). Tanque (CISS) reduz custo por página e lixo de cartucho. Limitações: risco de entupimento se ficar parada e velocidade menor em blocos longos.
+Laser/LED (mono/cor): alto throughput, texto nítido, ppm estáveis, menor custo por página em preto. Em cor, toner e drum encarecem. Partes: toner, drum, fusor, transfer belt (em alguns modelos). Sem ressecamento, ótima para uso intermitente.
+Térmica (direta) para etiquetas/recibos: não usa tinta, papel sensível ao calor; impressões podem desbotar com calor/UV. Térmica por transferência usa ribbon (resina/cera): etiquetas duráveis para logística/indústria.
+Sublimação/dye-sub fotográfica: excelente gradação e consistência de cor; mídia e consumíveis específicos.
 
-A impressora a tinta (inkjet) funciona disparando microgotas de tinta líquida sobre o papel por meio de bicos (nozzles). As tintas podem ser dye-based (baseadas em corante, com cores vivas) ou pigmentadas (mais resistentes à água e à luz). Esse tipo de impressora é popular em ambientes domésticos e escritórios pequenos, por oferecer boa qualidade fotográfica e custo inicial acessível, embora tenha manutenção mais frequente.
+Qualidade e velocidade
+Resolução (dpi): marketing alto nem sempre = melhor; importa a retícula/gotas (inkjet) e o raster/tamanho do ponto (laser). Velocidade (ISO ppm): compare ISO/IEC 24734 (texto) e 24735 (cópia); fotos usam tempos por foto (10×15 cm). Modo duplex: automático AD economiza papel e tempo; manual exige reinserção.
 
-Já a impressora a laser utiliza um feixe de laser para desenhar a imagem eletricamente em um tambor fotossensível. Esse tambor atrai o toner (pó de tinta seca), que é fixado ao papel por calor e pressão. O resultado é uma impressão rápida, precisa e econômica em grandes volumes, ideal para escritórios e empresas.
+Tinta/toner e custo por página (CPP)
+Calcule CPP: preço do insumo ÷ rendimento (ISO/IEC 19752 mono; 19798 cor; 24711 inkjet). Rendimento assume 5% de cobertura; páginas com gráficos/fotos consomem muito mais. Em laser, some drum/fuser quando vendidos à parte. Em inkjet, dye tem cores vivas e menor resistência à água; pigmento tem pretos densos e melhor permanência.
 
-Em resumo, enquanto a impressora térmica é prática e econômica, a de tinta oferece qualidade visual superior e a laser se destaca em velocidade e eficiência — cada uma adequada a necessidades específicas de impressão.</p>
+Manuseio de papel
+Bandejas (capacidade/expansão), bypass para mídia espessa, gramatura suportada (g/m²), formatos (A4/Ofício/Foto 10×15/Envelopes), traçado reto para papel grosso. Em multifuncionais, ADF (alimentador) acelera digitalização/cópia de pilhas; ADF duplex (DADF) digitaliza frente e verso em uma passada.
+
+Scanner e cópia (MFP)
+CIS: compacto, bom para documentos; pior em originais ondulados. CCD: melhor profundidade de campo, útil para fotos/livros. Observe resolução óptica (verdadeira) e velocidade (ipm). Recursos: OCR, cópia N-em-1, digitalização para e-mail/SMB/FTP/USB.
+
+Conectividade e drivers
+USB/Ethernet/Wi-Fi/Wi-Fi Direct; AirPrint/Mopria/IPP Everywhere (driverless), eSCL para scan. Protocolos/linguagens: PCL, PostScript (PS) e PDF direto aumentam compatibilidade em ambientes profissionais. Em Windows, IPP Class Driver/WSD; em Linux, CUPS/IPP. Apps móveis facilitam digitalizar/mandar imprimir. Verifique firmware atualizável.
+
+Segurança (redes)
+Defina senha de admin, atualize firmware, desative serviços não usados (FTP/Telnet), use IPPS/HTTPS, ACLs/VLAN quando aplicável, limpe jobs armazenados e dados do disco/flash ao descartar. Relatórios de uso ajudam a controlar custos.
+
+Gestão e ambiente
+Ciclo mensal (recomendado vs máximo) deve exceder seu volume real. Energia: modos sleep/auto-off; selos Energy Star/Blue Angel. Para reduzir resíduos: tanques (inkjet), duplex, rascunho quando possível e reciclagem de cartuchos/toners.
+
+Compatibilidade:
+Tecnologia adequada ao uso (texto/foto/etiqueta).
+CPP real com seu volume; disponibilidade de insumos originais/alternativos.
+Duplex (impressão/cópia/scan) e ADF/DADF.
+Gramatura/formato do papel que você usa.
+Linguagens (PCL/PS/PDF) e IPP/AirPrint/Mopria.
+Rede (Ethernet/Wi-Fi) e segurança.
+Ciclo mensal e garantias.
+
+Como escolher, por uso
+Estudos/Home office: inkjet tanque (baixo CPP), duplex e Wi-Fi/AirPrint; se intermitente, laser mono evita ressecamento.
+Escritório com volume: laser mono ou laser color com ADF/DADF, PCL/PS, bandejas extras, Ethernet, baixo CPP.
+Fotos/álbuns: inkjet fotográfica (6+ cores, perfis ICC, papéis fine-art); evite papéis comuns para fotos.
+Etiquetas/logística: térmica direta (curto prazo) ou transferência (durável) com largura adequada e drivers para seu ERP.
+
+Erros comuns a evitar
+Olhar só dpi; ignorar CPP e ciclo; comprar inkjet para uso esporádico (risco de entupir); esquecer ADF/duplex quando digitaliza pilhas; usar papel fora da gramatura e culpar a impressora por atolamento; não checar drivers/IPP para seu SO.
+
+
+</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
-    <article>
+
+  <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <h3>Headset/Caixa de som</h3>
-    <p>Os fones de ouvido, headsets e caixas de som são dispositivos de saída de áudio responsáveis por transformar sinais elétricos em ondas sonoras audíveis, permitindo ao usuário ouvir músicas, vídeos, jogos ou comunicações com clareza. Apesar de cumprirem funções semelhantes, cada um possui características próprias e diferentes aplicações.
+    <p class="clamped">Em resumo: qualidade depende do transdutor (dinâmico/planar/condensador), da cadeia (fonte → DAC/amp → fones/caixas/mic) e da acústica (cabeça/orelha/sala). Para jogos e chamadas, priorize latência, inteligibilidade e posicionamento; para música/criação, priorize resposta em frequência controlada e baixo ruído.
 
-Os fones de ouvido são dispositivos compactos, usados diretamente nos ouvidos. Podem ser in-ear (inseridos no canal auditivo), on-ear (sobre as orelhas) ou over-ear (envolvendo toda a orelha). Já os headsets combinam fones com microfone embutido, permitindo comunicação bidirecional — ideais para jogos online, videoconferências e call centers.
+Headset / Fone de ouvido
+Arquitetura e transdutor:
+Dinâmico (driver móvel): robusto, boa extensão de graves.
+Planar magnético: diafragma leve, distorção baixa, exige mais corrente.
+Armadura balanceada (IEMs híbridos): excelente detalhe em agudos; dependem de bom crossover.
+Construção e acoplamento:
+Over-ear (circumaural) sela ao redor da orelha; mais confortável em uso prolongado.
+On-ear (supra-aural) pressiona a orelha; portátil, porém mais cansativo.
+Aberto vs. fechado: aberto ventila e amplia soundstage, vaza som; fechado isola e reforça graves, soundstage menor.
+Parâmetros elétricos:
+Impedância (Ω) e sensibilidade (dB SPL/mW ou dB SPL/V) determinam necessidade de amplificação. Sensibilidade baixa + impedância alta → amp dedicado (desktop, dongle DAC/amp).
+THD (distorção), resposta e impedância vs. frequência afetam timbre.
+Conectividade e latência:
+Cabo analógico (3,5 mm/TRRS ou dual 3,5 mm) → latência desprezível.
+USB (DAC interno) padroniza som e iluminação/controles.
+2,4 GHz proprietário: latência baixa (nível competitivo) e estabilidade.
+Bluetooth: maior latência; codecs aptX LL/Adaptive, LC3 reduzem, mas ainda atrás de 2,4 GHz/USB.
+Espacialização e software:
+HRTF/virtual surround (Windows Sonic, Dolby Atmos, DTS Headphone:X) melhora posicionamento em jogos. Resultados dependem do ajuste HRTF e do conteúdo.
+Microfone de headset:
+Boom dedicado captura fala com SNR melhor que embutidos; beamforming ajuda a suprimir ruído. Em wireless, o uplink pode usar codec mais comprimido, preze por 2,4 GHz.
+Conforto e vedação:
+Clamp moderado e earpads corretos mantêm graves e reduzem fadiga. Trocas de almofadas alteram a resposta (espuma/veludo/couro sintético).
+Como escolher (headset).
+Competitivo: fechado leve, 2,4 GHz/USB, microfone boom nítido, bom palco lateral.
+Single-player/música: aberto/planar para soundstage; DAC/amp simples se preciso.
+Chamadas/estudo: leve, USB/2,4 GHz, microfone claro, conforto para horas.
 
-Esses dispositivos funcionam por meio de drivers, pequenos alto-falantes internos que convertem a corrente elétrica em vibrações. O tamanho dos drivers (geralmente entre 20 e 50 mm) influencia diretamente na qualidade do som, especialmente nos graves. Há também tecnologias como surround virtual, cancelamento ativo de ruído (ANC) e Bluetooth, que aumentam a imersão e o conforto.
+Caixas de som (desktop/nearfield)
+Monitores de estúdio (ativos, nearfield): resposta mais plana, entradas balanceadas (XLR/TRS), amplificação dedicada por via (bi-amp).
+Multimídia 2.0/2.1: foco em praticidade; 2.1 adiciona subwoofer (cuidado com crossover alto e “boom”).
+Soundbars: integração fácil; palco amplo virtual; úteis para TV, menos precisas em nearfield estreito.
+Parâmetros importantes:
+Resposta em frequência e THD; sensibilidade (dB/W/m) em passivos; em ativos, avalie potência contínua (RMS) real.
+Crossover e alinhamento (selada/reflex) influenciam graves e fase.
+Posicionamento e sala:
+Forme triângulo equilátero com a cabeça; tweeters na altura do ouvido; afastar de paredes reduz reforço de graves.
+Use espumas/isoladores para desacoplar da mesa e minimizar reflexões (colocar levemente toe-in).
+Subwoofer:
+Integração com crossover em 70–90 Hz costuma funcionar bem em nearfield; ajuste fase/ganho para transição suave.
+Conectividade.
+Analógico: 3,5 mm/RCA;
+Balanceado: XLR/TRS (imunidade a ruído);
+Digital: USB (DAC embutido) ou BT (praticidade, latência maior).
+Como escolher (caixas).
+Trabalho/música: monitores nearfield 2.0 ativos, resposta controlada, entradas balanceadas.
+Jogos/entretenimento: 2.0 com bom palco ou 2.1 discreto; soundbar se a mesa não comportar posicionamento ideal.
 
-As caixas de som, por sua vez, são projetadas para uso externo, com alto-falantes maiores capazes de reproduzir sons em volumes altos e com ampla faixa de frequências. Podem ser analógicas (P2, RCA) ou digitais (USB, Bluetooth, Wi-Fi), e variam de modelos portáteis a sistemas de som profissionais.
+Microfone
+Tipos de cápsula:
+Dinâmico: menos sensível ao ambiente; ideal para salas não tratadas/streaming.
+Condensador: maior sensibilidade e detalhe; requer phantom 48 V (em XLR) e sala mais silenciosa.
+Lavalier: prático em vídeo; atenção a ruído de roupa.
+Padrões polares.
+Cardioide: capta à frente, rejeita atrás; padrão geral.
+Super/hipercardioide: feixe mais estreito; melhor rejeição lateral.
+Omni: capta em 360°; útil para grupos, ruim para ambientes ruidosos.
+Figura-8: capta frente/trás; entrevistas/duetos.
+Conexão e cadeia.
+USB: simplicidade, ADC/preamps integrados; bom para streaming/chamadas.
+XLR + interface: ganho limpo, preamps melhores, expansão futura; necessário aprendizado (níveis, drivers ASIO).
+Dinâmicos podem precisar de booster (Cloudlifter/inline preamp).
+Métricas.
+Sensibilidade (mV/Pa), SNR/ruído equivalente (dBA), max SPL, resposta em frequência. Para voz, evite picos duros em 6–10 kHz (sibilância).
+Acessórios e montagem.
+Shock mount reduz ruído de mesa; pop filter/windscreen controla plosivas; boom arm posiciona fora do campo de visão. Fale de lado/ângulo para reduzir sibilância e plosivas; use proximity effect com moderação.
+Latência e monitoramento:
+Prefira monitoramento direto (hardware) na interface/USB para retorno sem atraso. Configurações típicas: 24-bit/48 kHz, buffer ajustado ao PC.
+Como escolher (microfone)
+Streaming/sala comum: dinâmico cardioide USB ou XLR + interface; boom arm e pop filter.
+Chamadas/aulas: USB cardioide compacto, suporte de mesa e gate/NR leve.
+Voz/canto em ambiente tratado: condensador grande diafragma + interface silenciosa.
 
-Em termos técnicos, todos esses dispositivos trabalham com parâmetros como impedância (Ω), sensibilidade (dB) e frequência de resposta (Hz), que determinam potência e qualidade sonora.
+Compatibilidade:
+Headset/Fones: impedância x sensibilidade; necessidade de DAC/amp; aberto/fechado; cabo/USB/2,4 GHz/BT; conforto (peso/clamp/earpads); software HRTF.
+Caixas: espaço na mesa; nearfield 2.0 vs 2.1; entradas (RCA/XLR/USB/BT); isolação/espumas; possibilidade de sub.
+Mic: USB vs XLR; padrão polar; ruído da sala; necessidade de 48 V/booster; suporte/boom e pop filter; monitoramento direto.
 
-Em resumo, fones, headsets e caixas de som transformam sinais elétricos em áudio, sendo essenciais para comunicação, entretenimento e experiências imersivas no ambiente digital.</p>
+Erros comuns a evitar
+Escolher Bluetooth para competitivo esperando latência de 2,4 GHz/USB.
+Comprar headset “tudo-em-um” e esperar microfone de estúdio.
+Posicionar caixas encostadas em parede e estranhar graves exagerados/embolados.
+Usar condensador sensível em ambiente barulhento (teclado/ventilador) e culpar o microfone.
+Ignorar impedância/sensibilidade e culpar “áudio baixo” sem amp.
+
+
+</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
-    <article>
+
+  <article>
     <div class="module-video-placeholder">
       <div class="module-video-frame">
         <iframe src="https://www.youtube.com/embed/ouUGwegAshg" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <h3>Webcam</h3>
-    <p>A webcam é um dispositivo de entrada de vídeo responsável por capturar imagens em tempo real e transmiti-las ao computador. Ela converte sinais ópticos (luz) em sinais digitais, permitindo o uso em chamadas de vídeo, transmissões ao vivo, gravações, reconhecimento facial e diversas outras aplicações multimídia.
+    <p class="clamped">Em resumo: qualidade de imagem depende de sensor (tamanho/ruído/dinâmica), lente (nitidez/abertura/FOV), processamento (exposição, WB, NR) e banda (USB 2.0/3.0, compressão). Para uso real, priorize 1080p/60 ou 4K/30 estáveis, autofoco rápido (ou foco fixo calibrado a 50–80 cm), cores consistentes e iluminação adequada. Para streaming/produção, prefira UVC 1.1+ em USB 3.0, opções de MJPEG/H.264/YPbPr e controle manual por software.
+Sensor e óptica. Tamanhos típicos de sensor (ex.: 1/2.8", 1/3", 1/4") impactam ruído e faixa dinâmica: maiores → melhor baixo-luz. Lentes com abertura ampla (f/2.0–f/2.4) ajudam em ISO menor. FOV (campo de visão) entre 65–78° favorece enquadre de rosto; 85–95° para múltiplas pessoas/quadros amplos. Vidro com coating tende a nitidez superior a plásticos; elementos asféricos reduzem aberrações.
+Resolução, FPS e codificação. Em desktop, 1080p@60 oferece movimento natural para aulas/jogos; 4K@30 prioriza detalhe (cuidado com banda/CPU). USB 2.0 limita formatos sem compressão em altas taxas; USB 3.0 libera 4K e 1080p@60 com menos compressão. Formatos comuns via UVC: YUY2 (4:2:2 sem compressão leve), MJPEG (intra-frame, CPU decodifica), H.264 (quando a webcam codifica em hardware, reduz carga do PC). Verifique suporte a HDR e 10-bit (raro; maioria é 8-bit).
+Foco, exposição e cor.
+AF (autofoco) por contraste é comum; priorize modelos com AF rápido e silencioso; foco fixo funciona bem a distâncias típicas, mas não para objetos próximos.
+Exposição: controle de shutter/ISO/ganho evita motion blur (mantenha 1/60–1/125 s a 60 Hz). Ative anti-flicker 60 Hz no Brasil.
+WB (white balance): fixe em Kelvin ou use travamento para evitar “piscadas” quando a tela muda.
+HDR e baixo-luz. HDR real (multi-exposição) é raro; a maioria aplica tonemapping. Em ambientes escuros, evite ganho alto (ruído/NR agressivo); adicione key light lateral 500–1500 lúmens, 4000–5600 K, CRI alto.
+Microfones integrados: Úteis para chamadas, mas limitados: SNR e rejeição a ruído de teclado/ventoinhas são modestos. Prefira headset ou mic externo para qualidade/consistência. Array estéreo/beamforming ajuda na inteligibilidade.
+Conectividade e compatibilidade:
+Classe UVC (video)/UAC (áudio) garante plug-and-play em Windows/macOS/Linux.
+USB 3.0 recomendado para 4K; cabos longos exigem ativos ou hubs alimentados.
+Verifique firmware atualizável e suporte oficial a OBS/Zoom/Teams (resoluções/formatos expostos).
+Montagem e ergonomia: Suportes de clip para topo de monitor ou rosca 1/4" para tripé/boom. Centralize ao nível dos olhos e alinhe com a linha média do rosto para evitar distorção. Use shutter físico para privacidade.
+Software e controles. Ajustes desejáveis: ganho/shutter/ISO, WB em Kelvin, AF on/off e área de foco, zoom/crop sem re-amostrar, Denoise/Sharpen moderados, Ae Lock/AWB Lock. Recursos de IA (auto-framing, background blur) variam; prefira quando forem on-device para reduzir carga do PC.
+Como escolher, por uso:
+Aulas/reuniões: 1080p@30–60, AF estável, bom microfone ou headset, FOV 70–80°, UVC puro.
+Streaming/YouTube: 1080p@60 ou 4K@30 via USB 3.0, controles manuais, cores neutras, prioridade à iluminação e mic externo.
+Sala de reunião: FOV amplo 90–120°, auto-framing confiável, microfone array, suporte a H.264 para banda menor.
+Conteúdo de mesa (top-down/macro): foco próximo (10–15 cm) ou modo macro, braço/articulação estável.
+Compatibilidade: checklist rápido. UVC/UAC; USB 3.0 para altas resoluções/fps; anti-flicker 60 Hz; rosca 1/4"; software com WB/Exposição/AF lock; cabo suficiente; HDR útil vs marketing; suporte em OBS.
+Erros comuns a evitar. Comprar 4K e usar USB 2.0 (vira 1080p/30 comprimido); confiar em microfone da webcam para streaming; usar auto WB/AE sem travar (imagem “respira”); enquadrar acima/abaixo do olhar; ignorar iluminação e culpar a câmera; esquecer anti-flicker 60 Hz.
+Instalação e validação. Atualize firmware/driver (se houver), selecione formato/bitrate no OBS, fixe WB e exposição (1/60–1/125 s), desative filtros agressivos, teste foco/LOD em distância real, configure key light e revise a compressão da plataforma (Zoom/Meet/Discord). Gravações curtas de teste expõem flicker, banding e ruído.
 
-Seu funcionamento baseia-se em um sensor de imagem, geralmente do tipo CMOS (Complementary Metal-Oxide Semiconductor), que capta a luz através de uma lente e a transforma em dados eletrônicos. A qualidade da imagem depende da resolução do sensor — medida em megapixels (MP) — e da taxa de quadros por segundo (FPS), que define a fluidez do vídeo. Por exemplo, webcams de 1080p a 30 FPS são comuns, enquanto modelos profissionais podem alcançar 4K a 60 FPS.
-
-A lente da webcam pode ser fixa ou ajustável, e muitas possuem autofoco, controle automático de exposição e correção de luz, o que melhora a imagem em ambientes variados. Além disso, há modelos com microfone embutido, permitindo captura simultânea de som e imagem.
-
-As conexões podem ser USB (mais comum), integradas em notebooks, ou wireless, via Wi-Fi ou Bluetooth. Algumas webcams modernas contam ainda com recursos de IA, como enquadramento automático e desfoque de fundo, ideais para videoconferências e streaming.
-
-Em síntese, a webcam é um sensor visual digital que transforma luz em dados de imagem, tornando possível a comunicação visual em tempo real e desempenhando papel essencial em educação, trabalho remoto, segurança e entretenimento digital.</p>
+</p>
+    <button class="expand-btn">Ver mais!</button>
   </article>
+
 </section>
+
+<!-- POPUP GLOBAL -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closePopup">&times;</span>
+    <div class="popup-video" id="popupVideo"></div>
+    <div class="popup-text" id="popupText"></div>
+  </div>
+</div>
+
+<!-- SCRIPT DE INTERAÇÃO -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('popup');
+  const popupVideo = document.getElementById('popupVideo');
+  const popupText = document.getElementById('popupText');
+  const closePopup = document.getElementById('closePopup');
+
+  document.querySelectorAll('.expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const article = btn.closest('article');
+      const video = article.querySelector('iframe').outerHTML;
+      const text = article.querySelector('p').innerText;
+
+      popupVideo.innerHTML = video;
+      popupText.innerText = text;
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  closePopup.addEventListener('click', () => {
+    popup.style.display = 'none';
+    popupVideo.innerHTML = '';
+    popupText.innerHTML = '';
+    document.body.style.overflow = 'auto';
+  });
+
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) closePopup.click();
+  });
+});
+</script>
 {% endblock %}
