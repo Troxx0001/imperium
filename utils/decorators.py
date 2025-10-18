@@ -15,6 +15,6 @@ def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not current_user.is_authenticated or not current_user.admin:
-            abort(403)  # Ou: return redirect(url_for('loja.index'))
+            abort(403) 
         return f(*args, **kwargs)
     return decorated_function

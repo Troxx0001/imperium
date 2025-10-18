@@ -78,7 +78,7 @@
         <li><a href="{{ url_for('auth.cadastro') }}">Cadastro</a></li>
       {% endif %}
       {% if current_user.is_authenticated and current_user.admin %}
-        <!-- Exibe o atalho administrativo apenas quando o usuário logado possui a flag de admin -->
+
         <li class="admin-link"><a href="{{ url_for('admin.dashboard') }}">Área administrativa</a></li>
       {% endif %}
     </ul>

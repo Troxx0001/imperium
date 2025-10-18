@@ -232,7 +232,6 @@ def produto_editar(produto_id):
         produto.estoque = form.estoque.data
 
         extras_inputs = _collect_extra_inputs(form)
-        # apenas imagem principal é suportada nesta versão; evita erro se 'imagens' não existir
         available_slots = 0
         if hasattr(produto, "imagens"):
             available_slots = max(0, MAX_EXTRA_IMAGES - len(produto.imagens))

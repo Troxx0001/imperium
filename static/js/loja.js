@@ -3,7 +3,7 @@
   const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Flash messages fade out after a delay
+
     const flashes = qsa('.flash-message');
     if (flashes.length) {
       setTimeout(() => {
@@ -15,7 +15,6 @@
       }, 3000);
     }
 
-    // Drawer toggle
     const menuToggle = qs('#menuToggle');
     const drawer = qs('#mainDrawer');
     const closeDrawer = qs('#drawerClose');
@@ -39,7 +38,6 @@
       }
     });
 
-    // Hero slider logic
     const slider = qs('#heroSlider');
     if (slider) {
       const slides = qsa('.hero-slide', slider);
@@ -78,7 +76,6 @@
       }
     }
 
-    // Reveal animation for product cards
     qsa('.product-card').forEach((card, index) => {
       card.style.opacity = '0';
       card.style.transform = 'translateY(12px)';

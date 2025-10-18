@@ -2,7 +2,6 @@ from app import app, db
 from models.produto import Produto
 
 with app.app_context():
-    # Criando produtos
     p1 = Produto(
         nome="Mouse Gamer RGB",
         marca="Redragon",
@@ -21,7 +20,6 @@ with app.app_context():
         imagem="https://via.placeholder.com/200x200?text=Teclado"
     )
 
-    # Inserindo no banco
     db.session.add_all([p1, p2])
     db.session.commit()
     print("Produtos adicionados com sucesso.")

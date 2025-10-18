@@ -8,7 +8,7 @@ class Produto(db.Model):
     descricao = db.Column(db.Text, nullable=False)
     preco = db.Column(db.Float, nullable=False)
     estoque = db.Column(db.Integer, nullable=False)
-    imagem = db.Column(db.String(255))  # capa (url ou nome de arquivo)
+    imagem = db.Column(db.String(255))  
     ativo = db.Column(db.Boolean, nullable=False, server_default=db.text('true'))
     
     imagens = db.relationship(

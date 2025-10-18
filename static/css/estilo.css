@@ -1,5 +1,3 @@
-/* SEÇÃO: Paleta - variáveis CSS centrais
-  Função: contém tokens de cores, raios e fonte usados em todo o arquivo. */
 :root {
   --palette-bg-0: #FFFFFF;
   --palette-bg-1: #F8FAFC;
@@ -53,8 +51,6 @@
   --body-bg-end: var(--palette-bg-dark-2);
 }
 
-/* SEÇÃO: Tokens de tema - conjuntos light/dark/deuteranomaly
-  Função: substituições de variáveis por tema usadas pelo seletor de tema. */
 :root {
   --light-bg: #FFFFFF;
   --light-surface: #F8FAFC;
@@ -145,7 +141,6 @@ a {
   border: 0;
 }
 
-/* Header */
 .top-shell {
   position: sticky;
   top: 0;
@@ -178,13 +173,12 @@ a {
   color: black;
 }
 
-/* Icon inside menu-toggle (when using inline SVG) */
 .menu-toggle svg {
   width: 22px;
   height: 22px;
   display: block;
   color: white;
-  fill: currentColor; /* garante que SVG seja preenchido pela cor atual */
+  fill: currentColor; 
 }
 
 .menu-toggle svg :hover {
@@ -201,7 +195,6 @@ a {
   text-transform: uppercase;
 }
 
-/* Prevent global a:hover underline from affecting the brand link */
 .brand:hover {
   text-decoration: none;
 }
@@ -220,20 +213,19 @@ a {
   min-width: 0;
 }
 
-/* New wrappers for brand layout */
 .brand-media {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 auto; /* keep logo size stable */
+  flex: 0 0 auto; 
 }
 
 .brand-text {
   display: flex;
   text-decoration: none;
   align-items: center;
-  min-width: 0; /* allow truncation inside flex/grid */
-  max-width: 18rem; /* prevent brand text from occupying entire header on wide screens */
+  min-width: 0; 
+  max-width: 18rem; 
 }
 
 .search {
@@ -340,7 +332,6 @@ a {
 .primary-cta {
   background: var(--primary);
   color: var(--light-on-primary, #111);
-  /* subtler, more centered shadow */
   box-shadow: 0 6px 12px var(--accent-025);
 }
 
@@ -407,7 +398,6 @@ a {
   width: 100%;
 }
 
-/* Drawer */
 .drawer {
   position: fixed;
   inset: 0 auto 0 0;
@@ -484,7 +474,6 @@ a {
   visibility: visible;
 }
 
-/* Layout */
 .page {
   padding: 2.5rem 2.5rem 3.5rem;
 }
@@ -503,7 +492,6 @@ a {
   border: 1px solid var(--accent-025);
 }
 
-/* Hero */
 .hero {
   margin-bottom: 2.5rem;
 }
@@ -546,7 +534,7 @@ a {
 }
 
 .hero-control {
-  z-index: 2; /* keep controls above slides */
+  z-index: 2; 
 }
 
 .hero-overlay {
@@ -628,7 +616,6 @@ a {
 .hero-control.prev { left: 1rem; }
 .hero-control.next { right: 1rem; }
 
-/* Quick actions */
 .quick-actions {
   display: grid;
   gap: 1.5rem;
@@ -645,6 +632,7 @@ a {
   gap: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
+
 .category-toolbar-header {
   display: flex;
   flex-direction: column;
@@ -742,8 +730,6 @@ a {
   gap: 0.75rem;
 }
 
-
-/* Catalog */
 .catalog-header {
   display: flex;
   flex-direction: column;
@@ -801,13 +787,13 @@ a {
 }
 
 .product-thumb {
-  background-color: #FFFFFF !important; /* Força branco mesmo no modo escuro */
+  background-color: #FFFFFF !important; 
   padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Borda sutil para separar do fundo */
+  border: 1px solid rgba(0, 0, 0, 0.1); 
 }
 
 .product-thumb img {
@@ -817,14 +803,13 @@ a {
   mix-blend-mode: multiply;
 }
 
-/* Para o modo escuro */
 [data-theme="dark"] .product-thumb {
-  border-color: rgba(255, 255, 255, 0.1); /* Borda mais suave no modo escuro */
+  border-color: rgba(255, 255, 255, 0.1); 
 }
 
 [data-theme="dark"] .product-thumb img {
-  mix-blend-mode: multiply; /* Mantém o blend mode mesmo no dark */
-  filter: brightness(1.1); /* Opcional: ajusta o brilho no modo escuro se necessário */
+  mix-blend-mode: multiply; 
+  filter: brightness(1.1); 
 }
 
 .product-info {
@@ -971,7 +956,6 @@ a {
   min-width: 280px;
   padding: 1.25rem;
   border-radius: var(--radius-md);
-  /* Use theme-aware variables with sensible defaults */
   background: var(--popover-bg, rgba(20, 20, 24, 0.98));
   border: 1px solid var(--popover-border, rgba(255, 255, 255, 0.08));
   box-shadow: 0 18px 36px var(--popover-shadow, rgba(0, 0, 0, 0.45));
@@ -1019,18 +1003,6 @@ a {
   font-size: 0.92rem;
 }
 
-/* Theme overrides for account popover */
-/*
-  Variáveis usadas para controlar a aparência do popover de conta:
-  --popover-bg: fundo do popover
-  --popover-border: cor da borda
-  --popover-shadow: sombra do popover
-  --popover-input-bg: fundo de inputs dentro do popover
-  --popover-input-color: cor do texto dos inputs
-
-  Para adicionar novos temas, defina essas variáveis no seletor
-  html[data-theme="<nome>"] .account-popover.
-*/
 html[data-theme="light"] .account-popover {
   --popover-bg: #ffffff;
   --popover-border: rgba(16, 22, 26, 0.06);
@@ -1048,7 +1020,6 @@ html[data-theme="dark"] .account-popover {
 }
 
 html[data-theme="deuteranomaly"] .account-popover {
-  /* Deuteranomaly: keep high contrast and avoid problematic greens */
   --popover-bg: #ffffff;
   --popover-border: rgba(16, 22, 26, 0.06);
   --popover-shadow: rgba(16, 22, 26, 0.08);
@@ -1288,7 +1259,6 @@ html[data-theme="deuteranomaly"] .account-popover {
   display: grid;
   gap: 0.75rem;
   padding: 1rem;
-  /* center stack: align all header children vertically and horizontally */
   place-items: center;
   text-align: center;
 }
@@ -1299,7 +1269,6 @@ html[data-theme="deuteranomaly"] .account-popover {
   max-width: 620px;
 }
 
-/* helper class to center arbitrary stacks inside learning sections */
 .centered-stack {
   display: grid;
   place-items: center;
@@ -1435,7 +1404,6 @@ html[data-theme="deuteranomaly"] .account-popover {
 }
 
 .learning-detail > header {
-  /* make the page header centered and give it a comfortable padding */
   padding: 1rem;
   place-items: center;
   display: grid;
@@ -1483,7 +1451,6 @@ html[data-theme="deuteranomaly"] .account-popover {
   color: var(--text-muted);
 }
 
-/* Auth pages */
 .auth-section {
   display: grid;
   place-items: center;
@@ -1591,7 +1558,6 @@ html[data-theme="deuteranomaly"] .account-popover {
   color: var(--accent);
 }
 
-/* Product detail */
 .product-detail {
   display: grid;
   gap: 2.5rem;
@@ -1738,7 +1704,6 @@ html[data-theme="deuteranomaly"] .account-popover {
   line-height: 1.7;
 }
 
-/* Cart */
 .cart {
   max-width: 860px;
   margin: 0 auto;
@@ -1840,7 +1805,6 @@ html[data-theme="deuteranomaly"] .account-popover {
   background: var(--surface);
 }
 
-/* Footer */
 .site-footer {
   padding: 2.5rem;
   background: var(--bg-darker);
@@ -1891,7 +1855,6 @@ html[data-theme="deuteranomaly"] .account-popover {
   box-shadow: 0 4px 24px 0 #0002;
 }
 
-/* Responsive */
 @media (max-width: 1280px) {
   .product-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2040,13 +2003,10 @@ html[data-theme="deuteranomaly"] .account-popover {
   }
 }
 
-/* === Início: conteúdo mesclado de theme.css (tokens de tema e resets) === */
-/* Reset básico (não destrutivo) */
 :root {
   color-scheme: light dark;
 }
 
-/* Fallback inicial */
 html {
   --bg: #FFFFFF;
   --surface: #F8FAFC;
@@ -2074,7 +2034,6 @@ html {
   color: var(--text);
 }
 
-/* Tema claro */
 html[data-theme="light"] {
   --bg: var(--light-bg);
   --surface: var(--light-surface);
@@ -2097,7 +2056,6 @@ html[data-theme="light"] {
   color-scheme: light;
 }
 
-/* Tema escuro */
 html[data-theme="dark"] {
   --bg: var(--dark-bg);
   --surface: var(--dark-surface);
@@ -2120,7 +2078,6 @@ html[data-theme="dark"] {
   color-scheme: dark;
 }
 
-/* Modo deuteranomalia */
 html[data-theme="deuteranomaly"] {
   --bg: var(--deut-bg);
   --surface: var(--deut-surface);
@@ -2143,7 +2100,6 @@ html[data-theme="deuteranomaly"] {
   color-scheme: light;
 }
 
-/* Aplicação geral */
 body {
   background: var(--bg);
   color: var(--text);
@@ -2177,7 +2133,6 @@ a:focus {
   text-decoration: underline;
 }
 
-/* No modo deuteranomia, sempre sublinhar links */
 html[data-theme="deuteranomaly"] a {
   text-decoration: underline;
 }
@@ -2215,9 +2170,7 @@ hr {
   color: var(--muted);
 }
 
-/* Layout do cabeçalho e navegação */
 .top-shell {
-  /* garante que o cabeçalho receba sempre o background de superfície e um desfoque */
   background: var(--surface) !important;
   border-bottom: 1px solid var(--border);
   color: var(--text);
@@ -2225,7 +2178,6 @@ hr {
   box-shadow: none;
 }
 
-/* Be explicit per-theme as a safety net */
 html[data-theme="dark"] .top-shell,
 html[data-theme="deuteranomaly"] .top-shell,
 html[data-theme="light"] .top-shell {
@@ -2266,7 +2218,6 @@ html[data-theme="light"] .top-shell {
   background: var(--surface-light);
 }
 
-/* Images (fallback) and SVG icons in header actions */
 .btn-cart img,
 .icon-link img,
 .btn-cart svg,
@@ -2278,7 +2229,7 @@ html[data-theme="light"] .top-shell {
 
 .btn-cart svg,
 .icon-link svg {
-  fill: currentColor; /* garante que ícone use a cor do elemento */
+  fill: currentColor; 
 }
 
 html[data-theme="dark"] .btn-cart img {
@@ -2315,7 +2266,6 @@ html[data-theme="dark"] .btn-cart img {
   background: rgba(15, 23, 42, 0.32);
 }
 
-/* Conteúdo principal */
 .page {
   background: var(--bg);
 }
@@ -2480,11 +2430,6 @@ html[data-theme="deuteranomaly"] .drawer a {
   text-decoration: underline;
 }
 
-/* === End merged content from theme.css === */
-
-/* Garante que os hover de hero e CTAs principais prevaleçam sobre resets de tema.
-  Alguns blocos de tema removem box-shadow; esta regra reaplica sombra e transform
-  para todos os temas. Deve ficar após os tokens de tema para garantir precedência. */
 .hero-cta:hover,
 .primary-cta:hover,
 .add-to-cart:hover {
@@ -2493,7 +2438,6 @@ html[data-theme="deuteranomaly"] .drawer a {
   text-decoration: none;
 }
 
-/* Garante que SVGs inline nos controles do hero herdem cor e tenham tamanho uniforme */
 .hero-control svg {
   width: 20px;
   height: 20px;
@@ -2501,15 +2445,12 @@ html[data-theme="deuteranomaly"] .drawer a {
   fill: currentColor;
 }
 
-/* Ícones ligeiramente maiores e centragem garantida nos seus contêineres */
-/* Mantém .menu-toggle como flex (para barras empilhadas) e aumenta levemente o svg */
 .menu-toggle svg {
   width: 26px;
   height: 26px;
   fill: currentColor;
 }
 
-/* Garante que contêineres de ações do cabeçalho centralizem seus ícones */
 .icon-link,
 .btn-cart,
 .hero-control {
@@ -2517,7 +2458,6 @@ html[data-theme="deuteranomaly"] .drawer a {
   place-items: center;
 }
 
-/* Ícones do cabeçalho/ações um pouco maiores */
 .icon-link svg,
 .btn-cart svg,
 hero-control svg {
@@ -2526,30 +2466,23 @@ hero-control svg {
   fill: currentColor;
 }
 
-/* Classe unificada para ícones dos controles do hero: tamanho e centralização consistentes */
 .hero-control-icon {
-  width: 26px; /* um pouco maior que outros ícones do cabeçalho para visibilidade */
+  width: 26px; 
   height: 26px;
   display: block;
   fill: currentColor;
 }
 
-
-
-/* === Limpeza e ajustes finais (específicos e não destrutivos) === */
-/* Garante que o link da marca no cabeçalho não receba sublinhado global */
 header.top-shell a.brand,
 header.top-shell a.brand:hover,
 header.top-shell a.brand:focus {
   text-decoration: none;
 }
 
-/* Normalização pequena para o ícone do menu seguir a cor do tema */
 .menu-toggle {
   color: var(--text);
 }
 
-/* Fim dos ajustes finais */
 .clamped {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -2558,11 +2491,9 @@ header.top-shell a.brand:focus {
   text-overflow: ellipsis;
 }
 
-/* === Botão Ver Mais === */
 .expand-btn {
   width: 100%;
   height: 2.5rem;
-  /* use theme-aware text color by default; per-theme overrides follow */
   color: var(--text);
   border: none;
   border-radius: 0 0 10px 10px;
@@ -2570,8 +2501,7 @@ header.top-shell a.brand:focus {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(6px); /* leve blur geral no fundo */
-  /* fallback neutral gradient; theme-specific variants below will override for better contrast */
+  backdrop-filter: blur(6px); 
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.08) 0%,
@@ -2583,11 +2513,9 @@ header.top-shell a.brand:focus {
 
 .expand-btn:hover {
   backdrop-filter: blur(10px);
-  /* hover color uses theme text but slightly emphasized */
   color: var(--text-light, var(--text));
 }
 
-/* Theme-specific variants to ensure the gradient and text contrast in each theme */
 html[data-theme="dark"] .expand-btn {
   color: #fff;
   background: linear-gradient(to top, rgb(141 141 141 / 25%) 0%, rgb(117 117 117 / 5%) 70%, rgba(255, 255, 255, 0) 100%);
@@ -2604,7 +2532,6 @@ html[data-theme="dark"] .expand-btn:hover {
 }
 
 html[data-theme="light"] .expand-btn {
-  /* in light theme use dark-tinted gradient for contrast */
   color: var(--text);
   background: linear-gradient(to top, rgb(136 153 215 / 38%) 0%, rgb(111 113 185 / 2%) 70%, rgba(0, 0, 0, 0) 100%);
 }
@@ -2619,14 +2546,12 @@ html[data-theme="light"] .expand-btn:hover {
   color: var(--text);
 }
 
-/* === Popup (modal) === */
 .popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* keep overlay dark for both themes but can be tuned per-theme if needed */
   background: rgba(15, 15, 15, 0.8);
   display: none;
   justify-content: center;
@@ -2635,7 +2560,6 @@ html[data-theme="light"] .expand-btn:hover {
 }
 
 .popup-content {
-  /* use surface/text tokens so popup matches each theme */
   background: var(--surface);
   color: var(--text);
   max-width: 900px;

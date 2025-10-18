@@ -33,7 +33,6 @@ def login():
                 flash('Você precisa confirmar seu e-mail antes de fazer login.', 'warning')
                 return redirect(url_for('auth.login'))
             login_user(user)
-            # --- LOG DE IP E LOCALIZAÇÃO ---
             ip = request.remote_addr
             localizacao = obter_localizacao_por_ip(ip)
             log = AdminLog(
@@ -45,7 +44,6 @@ def login():
             )
             db.session.add(log)
             db.session.commit()
-            # --- FIM DO LOG ---
             flash("Login realizado com sucesso!", "success")
             return redirect(url_for('loja.index'))
         flash('E-mail ou senha inválidos.', 'danger')
@@ -56,7 +54,7 @@ def login():
 def cadastro():
     form = RegisterForm()
     if form.validate_on_submit():
-        from app import serializer  # Importa dentro da função para evitar import circular
+        from app import serializer  
 
         nome = form.nome.data.strip()
         email = form.email.data.strip().lower()
@@ -74,7 +72,6 @@ def cadastro():
         db.session.add(novo_usuario)
         db.session.commit()
 
-        # Gera token de confirmação
         token = serializer.dumps(email, salt='email-confirmacao')
         link_confirmacao = url_for('auth.confirmar_email', token=token, _external=True)
         corpo_email = f'''

@@ -54,18 +54,15 @@ def finalizar_compra():
         flash("Seu carrinho está vazio.", "warning")
         return redirect(url_for('loja.index'))
 
-    # Calcular o total do pedido
     total = 0
     for produto_id, qtd in carrinho.items():
         produto = Produto.query.get(int(produto_id))
         total += produto.preco * int(qtd)
 
-    # Criar o pedido com o total
     pedido = Pedido(usuario_id=current_user.id, data=datetime.now(), total=total)
     db.session.add(pedido)
     db.session.commit()
 
-    # Criar itens do pedido
     for produto_id, qtd in carrinho.items():
         item = ItemPedido(
             pedido_id=pedido.id,
@@ -76,7 +73,6 @@ def finalizar_compra():
 
     db.session.commit()
 
-    # Esvaziar o carrinho
     session.pop('carrinho', None)
     flash("Pedido realizado com sucesso!", "success")
     return redirect(url_for('loja.index'))

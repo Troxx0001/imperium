@@ -5,7 +5,7 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
-from models import db  # db do models
+from models import db  
 from models.usuario import Usuario
 from routes import loja_routes, auth_routes, api_routes
 from routes.admin_routes import admin_bp
@@ -21,7 +21,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
-app.secret_key = 'sua-chave-secreta' # Define a chave secreta
+app.secret_key = 'sua-chave-secreta' 
 
 def _bool_env(name: str, default: str = 'False') -> bool:
     return os.getenv(name, default).lower() in {'true', '1', 't', 'yes'}
@@ -45,7 +45,6 @@ login_manager.login_view = 'auth.login'
 def load_user(user_id):
     return Usuario.query.get(int(user_id))
 
-# Registra os blueprints
 app.register_blueprint(auth_routes.bp)
 app.register_blueprint(api_routes.bp)
 app.register_blueprint(loja)
