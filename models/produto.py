@@ -10,7 +10,7 @@ class Produto(db.Model):
     estoque = db.Column(db.Integer, nullable=False)
     imagem = db.Column(db.String(255))  # capa (url ou nome de arquivo)
     ativo = db.Column(db.Boolean, nullable=False, server_default=db.text('true'))
-
+    
     imagens = db.relationship(
         'ProdutoImagem',
         backref='produto',
