@@ -74,7 +74,7 @@
                     <div class="border rounded p-2 h-100 d-flex flex-column align-items-center justify-content-between">
                         <img src="{{ img_src(extra.filename) }}" alt="{{ produto.nome }}" style="max-width:100%;max-height:100px;object-fit:contain;">
                         <form method="POST" action="{{ url_for('admin.produto_imagem_remover', produto_id=produto.id, imagem_id=extra.id) }}" class="mt-2">
-                            {{ csrf_token() }}
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <button type="submit" class="btn btn-sm btn-outline-danger">Remover</button>
                         </form>
                     </div>

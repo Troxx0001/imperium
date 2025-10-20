@@ -102,3 +102,11 @@
     }
   });
 })();
+window.buscarCategoria = function(categoria) {
+  try {
+    const termo = encodeURIComponent(categoria);
+    window.location.href = `/buscar?q=${termo}`;
+  } catch (e) {
+    window.location.href = '/buscar';
+  }
+};

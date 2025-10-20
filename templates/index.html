@@ -59,11 +59,11 @@
     <p>Escolha um segmento para explorar componentes específicos.</p>
   </header>
   <nav class="category-toolbar-actions" aria-label="Categorias de hardware">
-    <a class="category-chip" href="#produtos" data-category="placas-de-video">Placas de vídeo</a>
-    <a class="category-chip" href="#produtos" data-category="processadores">Processadores</a>
-    <a class="category-chip" href="#produtos" data-category="memoria-ram">Memória RAM</a>
-    <a class="category-chip" href="#produtos" data-category="armazenamento">Armazenamento</a>
-    <a class="category-chip" href="#produtos" data-category="perifericos">Periféricos</a>
+      <a class="category-chip" href="#produtos" data-category="placas-de-video" onclick="buscarCategoria('placa de vídeo'); return false;">Placas de vídeo</a>
+  <a class="category-chip" href="#produtos" data-category="processadores" onclick="buscarCategoria('processador'); return false;">Processadores</a>
+  <a class="category-chip" href="#produtos" data-category="memoria-ram" onclick="buscarCategoria('memória RAM'); return false;">Memória RAM</a>
+  <a class="category-chip" href="#produtos" data-category="armazenamento" onclick="buscarCategoria('armazenamento'); return false;">Armazenamento</a>
+  <a class="category-chip" href="#produtos" data-category="perifericos" onclick="buscarCategoria('periférico'); return false;">Periféricos</a>
   </nav>
 </section>
 
@@ -102,6 +102,7 @@
             <span class="product-stock">{% if produto.estoque > 0 %}{{ produto.estoque }} em estoque{% else %}Esgotado{% endif %}</span>
           </div>
           <form action="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}" method="post" class="product-actions">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <button type="submit" class="add-to-cart">Adicionar ao carrinho</button>
           </form>
         </div>

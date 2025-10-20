@@ -16,6 +16,7 @@
             <span class="cart-price">Subtotal: R$ {{ '%.2f'|format(item.subtotal) }}</span>
           </div>
           <form action="{{ url_for('carrinho.remover_do_carrinho') }}" method="post" class="cart-remove">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="produto_id" value="{{ item.produto.id }}">
             <button type="submit">Remover</button>
           </form>
@@ -27,6 +28,7 @@
       <strong>R$ {{ '%.2f'|format(total) }}</strong>
     </div>
     <form action="{{ url_for('carrinho.finalizar_compra') }}" method="post" class="cart-checkout">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <button type="submit">Finalizar compra</button>
     </form>
   {% else %}

@@ -30,6 +30,7 @@
           hidden
         >
           <form class="account-popover-form" action="{{ url_for('auth.update_name') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <label for="novo_nome">Trocar o nome</label>
             <input
               type="text"

@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_login import LoginManager
+from flask_wtf import CSRFProtect
 from flask_mail import Mail
 from flask_migrate import Migrate
 from models import db  
@@ -21,7 +22,8 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
-app.secret_key = 'sua-chave-secreta' 
+app.secret_key = 'sua-chave-secreta'
+app.config['SECRET_KEY'] = app.secret_key
 
 def _bool_env(name: str, default: str = 'False') -> bool:
     return os.getenv(name, default).lower() in {'true', '1', 't', 'yes'}
@@ -40,6 +42,8 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'auth.login'
+csrf = CSRFProtect()
+csrf.init_app(app)
 
 @login_manager.user_loader
 def load_user(user_id):
