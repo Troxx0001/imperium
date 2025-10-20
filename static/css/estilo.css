@@ -53,7 +53,7 @@
 
 :root {
   --light-bg: #FFFFFF;
-  --light-surface: #F8FAFC;
+  --light-surface: #eeeeee;
   --light-text: #0F172A;
   --light-muted: #475569;
   --light-border: #E2E8F0;
@@ -91,7 +91,7 @@
   --dark-shadow: rgba(2, 6, 23, 0.4);
 
   --deut-bg: #FFFFFF;
-  --deut-surface: #F5F7FA;
+  --deut-surface: #eeeeee;
   --deut-text: #0B1220;
   --deut-muted: #374151;
   --deut-border: #CBD5E1;
@@ -1035,7 +1035,7 @@ html[data-theme="deuteranomaly"] .account-popover {
 }
 
 .account-panel {
-  background: rgba(78, 78, 78, 0.04);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 2rem;
@@ -1280,8 +1280,11 @@ html[data-theme="deuteranomaly"] .account-popover {
   border-radius: var(--radius-lg);
   border: 1px dashed rgba(255, 255, 255, 0.18);
   padding: 2.5rem;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .video-placeholder {
@@ -1308,9 +1311,11 @@ html[data-theme="deuteranomaly"] .account-popover {
 }
 
 .module-video-frame {
-  width: 100%;
-  height: 100%;
+  width: min(100%, 720px);
+  aspect-ratio: 16 / 9;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .module-video-frame iframe {
@@ -1319,6 +1324,7 @@ html[data-theme="deuteranomaly"] .account-popover {
   border: none;
   border-radius: 8px;
   background: #232329;
+  aspect-ratio: 16 / 9;
 }
 
 .learning-actions {
@@ -2183,6 +2189,15 @@ html[data-theme="deuteranomaly"] .top-shell,
 html[data-theme="light"] .top-shell {
   background: var(--surface) !important;
   backdrop-filter: blur(18px) !important;
+}
+
+/* Make deuteranomaly header fully opaque and remove blur when scrolling */
+html[data-theme="deuteranomaly"] .top-shell {
+  background: var(--surface) !important;
+  background-color: var(--surface) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid var(--border);
 }
 
 .brand {

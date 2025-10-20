@@ -36,7 +36,6 @@
 
   .product-content {
     display: grid;
-    /* increased left column max so main image can be wider */
     grid-template-columns: minmax(0, 680px) minmax(0, 1fr);
     gap: 2.5rem;
     align-items: start;
@@ -44,7 +43,6 @@
 
   .product-gallery {
     display: grid;
-    /* slightly larger thumb column and bigger main image column */
     grid-template-columns: 100px 1fr;
     gap: 1.5rem;
     align-items: start;
@@ -91,7 +89,6 @@
 
   .product-main-image img {
     max-width: 100%;
-    /* allow taller image so it appears larger inside the widened column */
     max-height: 420px;
     object-fit: contain;
   }
@@ -266,9 +263,8 @@
   }
 </style>
 <style>
-  /* Dark-mode overrides for product detail page */
   html[data-theme="dark"] .page-product {
-    background: #0b1116; /* page background in dark */
+    background: #0b1116;
   }
 
   html[data-theme="dark"] .product-container {
@@ -281,7 +277,7 @@
 
   html[data-theme="dark"] .product-main-image {
     border-color: rgba(255,255,255,0.04);
-    background: #0f1720; /* slightly elevated panel */
+    background: #0f1720;
   }
 
   html[data-theme="dark"] .product-thumbs button {
@@ -291,13 +287,13 @@
   }
 
   html[data-theme="dark"] .product-thumbs button.is-active {
-    border-color: #60a5fa; /* accent for active thumb */
+    border-color: #60a5fa; 
     box-shadow: 0 0 0 2px rgba(96,165,250,0.09);
   }
 
   html[data-theme="dark"] .product-main-image img,
   html[data-theme="dark"] .product-thumbs img {
-    filter: none; /* show images normally on dark bg */
+    filter: none; 
   }
 
   html[data-theme="dark"] .product-summary h1 {
@@ -319,7 +315,7 @@
 
   html[data-theme="dark"] .purchase-actions a,
   html[data-theme="dark"] .purchase-actions button {
-    background: #111827; /* dark button */
+    background: #111827; 
     color: #fff;
     border-color: rgba(255,255,255,0.06);
   }
@@ -335,7 +331,6 @@
     color: #9ca3af;
   }
 
-  /* Ensure product details text is readable */
   html[data-theme="dark"] .product-details h2,
   html[data-theme="dark"] .product-details p,
   html[data-theme="dark"] .product-details li {

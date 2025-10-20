@@ -7,24 +7,28 @@
     <h1>Domine cada componente do seu setup</h1>
     <p>Guias curtos, vídeos introdutórios e recomendações para quem quer montar, atualizar ou entender os detalhes do hardware.</p>
   </header>
-  <div class="learning-video" role="presentation">
-
-    <div class="video-placeholder">Vídeo introdutório</div>
+  
+  <div class="learning-video">
+      <div class="module-video-frame">
+        <iframe src="https://www.youtube.com/embed/e5iqCTr2GgE" frameborder="0" allowfullscreen></iframe>
+      </div>
   </div>
+
 </section>
 
 <section class="learning-actions">
   <h2>Comece pelo que mais importa</h2>
   <div class="learning-buttons">
-    <a class="primary-cta" href="{{ url_for('loja.componentes') }}#produtos" data-target="componentes">Componentes</a>
     <a class="primary-cta" href="{{ url_for('loja.perifericos') }}#produtos" data-target="perifericos">Periféricos</a>
+    <a class="primary-cta" href="{{ url_for('loja.componentes') }}#produtos" data-target="componentes">Componentes</a>
   </div>
 </section>
 
 <section class="learning-grid">
+
+
   <article class="learning-card">
-    <div class="learning-card-media" aria-label="Espaço para vídeo Perifericos">
-      <span>Guia de Periféricos</span>
+    <div class="learning-card-media" aria-label="Espaço para vídeo Perifericos" style="background-image: url('/static/img/perifericosperifericos.png'); background-size: cover; background-position: center;">
     </div>
     <div class="learning-card-body">
       <h3>Guia de Periféricos</h3>
@@ -32,9 +36,9 @@
       <a href="{{ url_for('loja.perifericos') }}" class="ghost-cta">ir aos vídeos</a>
     </div>
   </article>
+
   <article class="learning-card">
-    <div class="learning-card-media" aria-label="Espaço para vídeo Recomendações por perfil">
-      <span>Guia de Componentes</span>
+    <div class="learning-card-media" aria-label="Espaço para vídeo Recomendações por perfil" style="background-image: url('/static/img/Componentes de Computador em Detalhes.png'); background-size: cover; background-position: center;">
     </div>
     <div class="learning-card-body">
       <h3>Guia de Componentes</h3>
@@ -42,5 +46,7 @@
       <a href="{{ url_for('loja.componentes') }}" class="ghost-cta">ir aos vídeos</a>
     </div>
   </article>
+
+
 </section>
 {% endblock %}
