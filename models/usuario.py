@@ -6,7 +6,7 @@ class Usuario(db.Model, UserMixin):
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     senha = db.Column(db.String(200), nullable=False)
-    admin = db.Column(db.Boolean, default=False)  # NOVO CAMPO
+    admin = db.Column(db.Boolean, default=False)  
     verificado = db.Column(db.Boolean, default=False)
     ativo = db.Column(db.Boolean, default=True)
 

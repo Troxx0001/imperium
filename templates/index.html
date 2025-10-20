@@ -1,19 +1,115 @@
 {% extends 'base.html' %}
+{% from 'macros/img.j2' import img_src %}
+{% block title %}Imperium Tech - Loja{% endblock %}
 {% block content %}
-{% if search_query %}
-<h1>Resultados para "{{ search_query }}"</h1>
-{% else %}
-<h1>Produtos disponíveis</h1>
-{% endif %}
-<div class="produtos">
-  {% for produto in produtos %}
-    <div class="produto">
-      <a href="{{ url_for('loja.produto_detalhe', id=produto.id) }}">
-        <img src="{{ produto.imagem }}" alt="Imagem de {{ produto.nome }}">
-        <h3>{{ produto.nome }}</h3>
-        <p class="preco">R$ {{ "%.2f"|format(produto.preco) }}</p>
+<section class="hero">
+  <div class="hero-slider" id="heroSlider">
+    {% set slides = [
+      {'title': 'Imperium', 'subtitle': 'Tecnologia para dominar o seu dia a dia', 'tag': 'Novidades'},
+      {'title': 'Aprenda', 'subtitle': 'Sane suas duvidas', 'tag': 'Estudos'},
+      {'title': 'Performance', 'subtitle': 'Setup pronto para jogar em alto nível', 'tag': 'Gamer'}
+    ] %}
+    {% for slide in slides %}
+      <article class="hero-slide{% if loop.first %} is-active{% endif %}">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-tag">{{ slide.tag }}</span>
+          <h1>{{ slide.title }}</h1>
+          <p>{{ slide.subtitle }}</p>
+          <a class="hero-ctaet" href="{{ url_for('loja.index') }}#produtos">Ver ofertas</a>
+        </div>
+      </article>
+    {% endfor %}
+    <button class="hero-control prev" type="button" aria-label="Slide anterior" data-direction="prev">
+      <svg class="hero-control-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+        <path fill-rule="evenodd" d="M15.03 5.03a.75.75 0 0 1 0 1.06L10.06 11l4.97 4.91a.75.75 0 1 1-1.06 1.08l-5.5-5.44a1.66 1.66 0 0 1 0-2.36l5.5-5.44a.75.75 0 0 1 1.06 0z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+    <button class="hero-control next" type="button" aria-label="Próximo slide" data-direction="next">
+      <svg class="hero-control-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+        <path fill-rule="evenodd" d="M8.97 18.97a.75.75 0 0 1 0-1.06L13.94 13 8.97 8.09a.75.75 0 1 1 1.06-1.08l5.5 5.44c.65.64.65 1.67 0 2.31l-5.5 5.44a.75.75 0 0 1-1.06 0z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<section class="learn-banner" id="aprender-intro">
+  <div class="learn-banner-content">
+    <header class="centered-stack">
+      <span class="section-tag">Aprender</span>
+      <h2>Entenda o Essencial</h2>
+      <p>Explicações com vídeos e textos sobre Periféricos e Hardware</p>
+    </header>
+    <div class="learn-actions">
+      <a class="primary-cta learn-main-cta" href="{{ url_for('loja.aprender') }}">
+        Ir para a área Aprender
       </a>
     </div>
-  {% endfor %}
-</div>
+  </div>
+  <div class="learn-banner-link">
+    <a href="{{ url_for('loja.index') }}#aprender-intro" data-target="aprender">
+      de seu feedback sobre essa área
+    </a>
+  </div>
+</section>
+
+<section class="category-toolbar" id="categorias">
+  <header class="category-toolbar-header">
+    <h2>Categorias em destaque</h2>
+    <p>Escolha um segmento para explorar componentes específicos.</p>
+  </header>
+  <nav class="category-toolbar-actions" aria-label="Categorias de hardware">
+      <a class="category-chip" href="#produtos" data-category="placas-de-video" onclick="buscarCategoria('placa de vídeo'); return false;">Placas de vídeo</a>
+  <a class="category-chip" href="#produtos" data-category="processadores" onclick="buscarCategoria('processador'); return false;">Processadores</a>
+  <a class="category-chip" href="#produtos" data-category="memoria-ram" onclick="buscarCategoria('memória RAM'); return false;">Memória RAM</a>
+  <a class="category-chip" href="#produtos" data-category="armazenamento" onclick="buscarCategoria('armazenamento'); return false;">Armazenamento</a>
+  <a class="category-chip" href="#produtos" data-category="perifericos" onclick="buscarCategoria('periférico'); return false;">Periféricos</a>
+  </nav>
+</section>
+
+<section class="catalog" id="produtos">
+  {% if search_query %}
+    <header class="catalog-header">
+      <h2>Resultados para "{{ search_query }}"</h2>
+      <a href="{{ url_for('loja.index') }}" class="clear-search">Limpar busca</a>
+    </header>
+  {% else %}
+    <header class="catalog-header">
+      <h2>Produtos em destaque</h2>
+      <p>Seleção atualizada com os componentes mais procurados.</p>
+    </header>
+  {% endif %} 
+
+  <div class="product-grid">
+    {% for produto in produtos %}
+      <article class="product-card">
+        <a href="{{ url_for('loja.produto_detalhe', id=produto.id) }}" class="product-link">
+          <div class="product-thumb">
+            <img src="{{ img_src(produto.imagem) }}" alt="{{ produto.nome }}" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">{{ produto.nome }}</h3>
+            {% if produto.descricao %}
+              <p class="product-description">{{ produto.descricao|truncate(96, True, '...') }}</p>
+            {% else %}
+              <p class="product-description product-description--placeholder">Descrição em breve.</p>
+            {% endif %}
+          </div>
+        </a>
+        <div class="product-footer">
+          <div class="product-meta">
+            <span class="product-price">R$ {{ '%.2f'|format(produto.preco) }}</span>
+            <span class="product-stock">{% if produto.estoque > 0 %}{{ produto.estoque }} em estoque{% else %}Esgotado{% endif %}</span>
+          </div>
+          <form action="{{ url_for('carrinho.adicionar_ao_carrinho', id=produto.id) }}" method="post" class="product-actions">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="add-to-cart">Adicionar ao carrinho</button>
+          </form>
+        </div>
+      </article>
+    {% else %}
+      <p class="empty-state">Nenhum produto encontrado no momento.</p>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}

@@ -8,11 +8,24 @@ from models import db
 
 carrinho_bp = Blueprint('carrinho', __name__)
 
-@carrinho_bp.route('/adicionar-carrinho/<int:id>')
+@carrinho_bp.route('/adicionar-carrinho/<int:id>', methods=['GET', 'POST'])
 def adicionar_ao_carrinho(id):
     carrinho = session.get('carrinho', {})
     carrinho[str(id)] = carrinho.get(str(id), 0) + 1
     session['carrinho'] = carrinho
+
+    try:
+        produto = Produto.query.get(int(id))
+        nome = produto.nome if produto else f'ID {id}'
+    except Exception:
+        nome = f'ID {id}'
+
+    quantidade = carrinho.get(str(id), 0)
+    flash(f'"{nome}" adicionado ao carrinho (quantidade: {quantidade}).', 'success')
+
+    referer = request.headers.get('Referer')
+    if referer:
+        return redirect(referer)
     return redirect(url_for('loja.index'))
 
 @carrinho_bp.route('/carrinho')
@@ -41,18 +54,15 @@ def finalizar_compra():
         flash("Seu carrinho está vazio.", "warning")
         return redirect(url_for('loja.index'))
 
-    # Calcular o total do pedido
     total = 0
     for produto_id, qtd in carrinho.items():
         produto = Produto.query.get(int(produto_id))
         total += produto.preco * int(qtd)
 
-    # Criar o pedido com o total
     pedido = Pedido(usuario_id=current_user.id, data=datetime.now(), total=total)
     db.session.add(pedido)
     db.session.commit()
 
-    # Criar itens do pedido
     for produto_id, qtd in carrinho.items():
         item = ItemPedido(
             pedido_id=pedido.id,
@@ -63,7 +73,6 @@ def finalizar_compra():
 
     db.session.commit()
 
-    # Esvaziar o carrinho
     session.pop('carrinho', None)
     flash("Pedido realizado com sucesso!", "success")
     return redirect(url_for('loja.index'))

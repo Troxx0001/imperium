@@ -7,9 +7,9 @@ with app.app_context():
         admin = Usuario(
             nome="Administrador",
             email="administrador@admin.com",
-            senha=generate_password_hash("123"),  # senha segura
-            admin=True,                # campo correto para admin
-            verificado=True            # campo correto para e-mail confirmado
+            senha=generate_password_hash("123"), 
+            admin=True,                
+            verificado=True            
         )   
         db.session.add(admin)
         db.session.commit()

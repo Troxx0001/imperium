@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% block title %}Minha conta - Imperium{% endblock %}
+{% block content %}
+<section class="account-shell">
+  <header class="account-header">
+    <div class="account-identity">
+      <div class="account-avatar" aria-hidden="true">{{ current_user.nome[:1]|default('U') }}</div>
+      <div>
+        <p class="account-welcome">Olá, {{ current_user.nome }}!</p>
+        <p class="account-email">{{ current_user.email }}</p>
+      </div>
+    </div>
+    <div class="account-actions">
+      <a class="account-action-btn" href="{{ url_for('loja.index') }}#produtos">Continuar comprando</a>
+      <div class="account-popover-wrapper">
+        <button
+          class="account-action-btn ghost"
+          type="button"
+          id="editProfileToggle"
+          aria-expanded="false"
+          aria-controls="editProfilePopover"
+        >
+          Editar perfil
+        </button>
+        <div
+          class="account-popover"
+          id="editProfilePopover"
+          role="dialog"
+          aria-label="Opções de edição de perfil"
+          hidden
+        >
+          <form class="account-popover-form" action="{{ url_for('auth.update_name') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label for="novo_nome">Trocar o nome</label>
+            <input
+              type="text"
+              id="novo_nome"
+              name="novo_nome"
+              placeholder="Como devemos te chamar?"
+              minlength="2"
+              required
+            >
+            <button type="submit" class="primary-cta small">Salvar nome</button>
+          </form>
+          <div class="account-popover-links" role="group" aria-label="Atalhos de senha">
+            <a href="{{ url_for('auth.reset_password_request') }}">Recuperar a senha</a>
+            <a href="{{ url_for('auth.change_password') }}">Trocar a senha</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="account-grid">
+    <section class="account-panel">
+      <header class="account-panel-header">
+        <h2>Meus dados</h2>
+        <p>Informações principais da sua conta.</p>
+      </header>
+      <dl class="account-details">
+        <div>
+          <dt>Nome completo</dt>
+          <dd>{{ current_user.nome }}</dd>
+        </div>
+        <div>
+          <dt>E-mail</dt>
+          <dd>{{ current_user.email }}</dd>
+        </div>
+      </dl>
+      <div class="account-security">
+        <p>Segurança da conta</p>
+        <a class="account-action-btn full" href="{{ url_for('auth.change_password') }}">
+          Alterar senha
+        </a>
+        <a class="account-action-btn link" href="{{ url_for('auth.reset_password_request') }}">
+          Recuperar acesso
+        </a>
+      </div>
+    </section>
+
+    <section class="account-panel">
+      <header class="account-panel-header">
+        <h2>Meus pedidos</h2>
+        <p>Acompanhe o status e o histórico de compras.</p>
+      </header>
+      <div class="orders-list">
+        {% if pedidos %}
+          {% for pedido in pedidos %}
+            <article class="order-card">
+              <header>
+                <span class="order-id">Pedido #{{ pedido.id }}</span>
+                <span class="order-date">{{ pedido.data.strftime('%d/%m/%Y %H:%M') }}</span>
+              </header>
+              <div class="order-body">
+                <p class="order-total">Total: R$ {{ '%.2f'|format(pedido.total) }}</p>
+                <ul>
+                  {% for item in pedido.itens %}
+                    <li>
+                      <span>{{ item.produto.nome }}</span>
+                      <span class="order-qty">{{ item.quantidade }}x</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <footer class="order-footer">
+                <a href="{{ url_for('loja.produto_detalhe', id=pedido.itens[0].produto.id) if pedido.itens else '#' }}" class="order-link{% if not pedido.itens %} is-disabled{% endif %}"{% if not pedido.itens %} aria-disabled="true"{% endif %}>
+                  Ver detalhes
+                </a>
+                <span class="order-status {{ pedido.status|default('processando') }}">{{ pedido.status|default('Processando') }}</span>
+              </footer>
+            </article>
+          {% endfor %}
+        {% else %}
+          <div class="empty-orders">
+            <p>Você ainda não fez nenhum pedido.</p>
+            <a class="account-action-btn" href="{{ url_for('loja.index') }}#produtos">Começar a comprar</a>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="account-panel">
+      <header class="account-panel-header">
+        <h2>Endereço de entrega</h2>
+        <p>Cadastre ou atualize o endereço utilizado nas suas compras.</p>
+      </header>
+      <form class="address-form" id="addressForm" novalidate>
+        <div class="address-row">
+          <div class="form-field">
+            <label for="endereco_cep">CEP</label>
+            <input type="text" id="endereco_cep" name="cep" inputmode="numeric" placeholder="00000-000" maxlength="9" required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_logradouro">Endereço</label>
+            <input type="text" id="endereco_logradouro" name="logradouro" placeholder="Rua, avenida, etc." required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_numero">Número</label>
+            <input type="text" id="endereco_numero" name="numero" placeholder="000" required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_complemento">Complemento</label>
+            <input type="text" id="endereco_complemento" name="complemento" placeholder="Apartamento, bloco, referência">
+          </div>
+        </div>
+        <div class="address-row">
+          <div class="form-field">
+            <label for="endereco_bairro">Bairro</label>
+            <input type="text" id="endereco_bairro" name="bairro" required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_cidade">Cidade</label>
+            <input type="text" id="endereco_cidade" name="cidade" required>
+          </div>
+          <div class="form-field">
+            <label for="endereco_estado">Estado</label>
+            <input type="text" id="endereco_estado" name="estado" maxlength="2" placeholder="UF" required>
+          </div>
+        </div>
+        <div class="address-actions">
+          <button type="submit" class="primary-cta">Salvar endereço</button>
+          <button type="reset" class="account-action-btn ghost">Limpar campos</button>
+        </div>
+        <p class="address-feedback" id="addressFeedback" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+  {{ super() }}
+  <script>
+    (function() {
+      const toggle = document.getElementById('editProfileToggle');
+      const popover = document.getElementById('editProfilePopover');
+      const addressForm = document.getElementById('addressForm');
+      const feedback = document.getElementById('addressFeedback');
+
+      if (toggle && popover) {
+        const closePopover = (event) => {
+          if (!popover.contains(event.target) && event.target !== toggle) {
+            popover.hidden = true;
+            popover.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.removeEventListener('click', closePopover);
+          }
+        };
+
+        toggle.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const isHidden = popover.hasAttribute('hidden');
+          if (isHidden) {
+            popover.hidden = false;
+            requestAnimationFrame(() => popover.classList.add('is-open'));
+            toggle.setAttribute('aria-expanded', 'true');
+            document.addEventListener('click', closePopover);
+          } else {
+            popover.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            popover.hidden = true;
+            document.removeEventListener('click', closePopover);
+          }
+        });
+      }
+
+      if (addressForm) {
+        addressForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          if (!addressForm.checkValidity()) {
+            addressForm.reportValidity();
+            return;
+          }
+
+          if (feedback) {
+            feedback.textContent = 'Endereço salvo localmente. Integração com o cadastro em breve!';
+            feedback.classList.add('is-visible');
+            setTimeout(() => {
+              feedback.classList.remove('is-visible');
+              feedback.textContent = '';
+            }, 5000);
+          }
+        });
+      }
+    })();
+  </script>
+{% endblock %}

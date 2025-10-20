@@ -1,37 +1,82 @@
 {% extends 'base.html' %}
+{% block title %}Criar conta - Imperium{% endblock %}
 {% block content %}
-<div class="cadastro-container">
-  <h2>Cadastro</h2>
-  <form method="POST" class="form">
-    <div class="form-group">
-      <input type="text" name="nome" placeholder="Nome" required>
-    </div>
-    <div class="form-group">
-      <input type="email" name="email" placeholder="E-mail" required>
-    </div>
-    <!-- Exemplo para login.html e cadastro.html -->
-    <div class="form-group senha-group">
-      <input type="password" name="senha" id="senha" placeholder="Senha" required>
-      <button type="button" class="toggle-senha" onclick="toggleSenha()" tabindex="-1">
-        <img id="olho" src="{{ url_for('static', filename='img/view.png') }}" alt="Mostrar senha" style="width:22px; height:22px;">
-      </button>
-    </div>
-    <button type="submit" class="btn-cadastrar">Cadastrar</button>
-  </form>
-</div>
+<section class="auth-section">
+  <div class="auth-card">
+    <h2>Criar conta</h2>
+    <p class="auth-subtitle">Cadastre-se para acessar ofertas exclusivas.</p>
+    <form method="POST" class="auth-form">
+      {{ form.hidden_tag() if form is defined }}
+      <div class="input-group">
+        <label for="nome">Nome completo</label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          placeholder="Seu nome"
+          value="{{ form.nome.data|default('', true) if form is defined else '' }}"
+          required
+        >
+        {% if form is defined and form.nome.errors %}
+          <small class="text-danger">{{ form.nome.errors[0] }}</small>
+        {% endif %}
+      </div>
+      <div class="input-group">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="nome@imperium.com"
+          value="{{ form.email.data|default('', true) if form is defined else '' }}"
+          required
+        >
+        {% if form is defined and form.email.errors %}
+          <small class="text-danger">{{ form.email.errors[0] }}</small>
+        {% endif %}
+      </div>
+      <div class="input-group password-group">
+        <label for="senha">Senha</label>
+        <div class="password-wrapper">
+          <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
+          <button type="button" class="toggle-password" onclick="toggleSenha()" aria-label="Mostrar ou ocultar senha">
+            <img id="olho" src="{{ url_for('static', filename='img/view.png') }}" alt="Mostrar senha">
+          </button>
+        </div>
+        {% if form is defined and form.senha.errors %}
+          <small class="text-danger">{{ form.senha.errors[0] }}</small>
+        {% endif %}
+        <small class="text-muted">
+          A senha deve ter <strong>6+ caracteres</strong>, pelo menos <strong>1 letra maiúscula</strong> e <strong>1 número</strong>.
+        </small>
+      </div>
+      <div class="input-group">
+        <label for="confirmar">Confirmar senha</label>
+        <input type="password" id="confirmar" name="confirmar" placeholder="Repita a senha" required>
+        {% if form is defined and form.confirmar.errors %}
+          <small class="text-danger">{{ form.confirmar.errors[0] }}</small>
+        {% endif %}
+      </div>
+      <button type="submit" class="auth-submit">Cadastrar</button>
+    </form>
+    <p class="auth-switch">Já é cliente? <a href="{{ url_for('auth.login') }}">Entre com sua conta</a>.</p>
+  </div>
+</section>
+{% endblock %}
+{% block extra_scripts %}
 <script>
-function toggleSenha() {
-  const senhaInput = document.getElementById('senha');
-  const olho = document.getElementById('olho');
-  if (senhaInput.type === "password") {
-    senhaInput.type = "text";
-    olho.src = "{{ url_for('static', filename='img/hide.png') }}";
-    olho.alt = "Esconder senha";
-  } else {
-    senhaInput.type = "password";
-    olho.src = "{{ url_for('static', filename='img/view.png') }}";
-    olho.alt = "Mostrar senha";
+  function toggleSenha() {
+    const senhaInput = document.getElementById('senha');
+    const olho = document.getElementById('olho');
+    if (senhaInput.type === 'password') {
+      senhaInput.type = 'text';
+      olho.src = "{{ url_for('static', filename='img/hide.png') }}";
+      olho.alt = 'Esconder senha';
+    } else {
+      senhaInput.type = 'password';
+      olho.src = "{{ url_for('static', filename='img/view.png') }}";
+      olho.alt = 'Mostrar senha';
+    }
   }
-}
 </script>
 {% endblock %}
